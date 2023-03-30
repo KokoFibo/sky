@@ -2,7 +2,7 @@
     @section('title', 'Invoice')
 
 
-    <h1 class="my-5 text-2xl font-semibold text-center">Invoicing</h1>
+    <h1 class="my-5 text-2xl font-semibold text-center">Invoice</h1>
     {{-- per Page --}}
     <div class="flex justify-between px-10">
         <x-text-input id="search" class="block w-full mt-1 lg:w-1/5" type="search" name="search" :value="old('search')"
