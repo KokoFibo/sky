@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Session;
 
 class Updateinvoicewr extends Component
 {
-    public $current_number, $invoice, $customer, $dataContract, $contract, $discount, $tax1;
+    public $current_number, $invoice, $customer, $dataContract, $contract, $discount, $tax;
     public $customer_id, $invoice_date, $due_date, $number, $invoice_number, $invoice_id, $packages;
     public $updateUpper, $current_id;
     public $package, $price, $qty;

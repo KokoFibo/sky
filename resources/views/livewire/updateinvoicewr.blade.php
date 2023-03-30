@@ -78,9 +78,12 @@
                         class="rounded-none rounded-r-lg w-full  bg-gray-50 border  border-gray-300 text-gray-600
                 text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
                 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        if($tax > 0){
 
                         <option value="2.5">2.5%</option>
-                        <option value="0">Without Tax1</option>
+                        } else {
+                        <option value="0">Without Tax</option>
+                        }
                     </select>
                 </div>
 
