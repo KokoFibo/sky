@@ -1,6 +1,6 @@
 <div>
     <div class="w-3/4 mx-auto mt-3 text-black bg-white shadow rounded-xl border-1">
-        <h2 class="py-3 text-2xl font-semibold text-center">Update Invoice 1</h2>
+        <h2 class="py-3 text-2xl font-semibold text-center">Update Invoice</h2>
     </div>
     <div class="w-3/4 p-3 mx-auto mt-3 text-black bg-white shadow rounded-xl border-1">
         <div class="flex items-start justify-between w-full px-10 ">
@@ -60,7 +60,7 @@
                 <div class="flex ">
                     <span
                         class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                        Taxi
+                        Tax
                     </span>
                     <select wire:model="tax" {{ $updateUpper ? '' : 'disabled' }}
                         class="rounded-none rounded-r-lg w-full  bg-gray-50 border  border-gray-300 text-gray-600
