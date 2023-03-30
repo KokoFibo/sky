@@ -2,6 +2,18 @@
     <div class="w-3/4 mx-auto mt-3 text-black bg-white shadow rounded-xl border-1">
         <h2 class="py-3 text-2xl font-semibold text-center">Update Invoice</h2>
     </div>
+    @if (Session::has('message'))
+        <script>
+            // toastr.success("{{ 'message' }}");
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Data Updated',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        </script>
+    @endif
     <div class="w-3/4 p-3 mx-auto mt-3 text-black bg-white shadow rounded-xl border-1">
         <div class="flex items-start justify-between w-full px-10 ">
             <div class="flex flex-col w-1/3 gap-3">
@@ -220,4 +232,5 @@
             </div>
         </div>
     </div>
+
 </div>

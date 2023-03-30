@@ -9,9 +9,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <title>Invoice PDF</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+
+
+
 </head>
 
 <body>
+    @if (Session::has('message'))
+        echo 'ada neh';
+        {{-- <script>
+            // toastr.success("{{ 'message' }}");
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Data Updated',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        </script> --}}
+    @endif
     <div class="container">
 
 
@@ -154,6 +171,21 @@
             <div><i class="fa-regular fa-envelope fa-lg"></i> hello@blueskycreation.id</div>
         </div>
     </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    {{-- @if (Session::has('message'))
+        <script>
+            toastr.success("{{ Session::get('message') }}");
+        </script>
+    @endif --}}
+
+
+
+
 </body>
 
 </html>

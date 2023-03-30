@@ -32,8 +32,9 @@ class Updatedetailinvoicewr extends Component
         $data->price = $this->price;
         $data->qty = $this->qty;
         $data->save();
-        $this->dispatchBrowserEvent('success', ['message' => 'Data Updated']);
+        // $this->dispatchBrowserEvent('success', ['message' => 'Data Updated']);
 
+        Session::flash('message', 'Data Updated mantafff');
         $url = 'updateinvoice/'.$this->number;
         return redirect()->to($url);
 
