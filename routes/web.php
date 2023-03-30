@@ -1,5 +1,6 @@
 <?php
 
+use App\Mail\Test;
 use App\Http\Livewire\Invoicewr;
 use App\Http\Livewire\Packagewr;
 use App\Http\Livewire\Customerwr;
@@ -8,10 +9,10 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Createinvoicewr;
 use App\Http\Livewire\Updateinvoicewr;
+use App\Http\Livewire\Createquotationwr;
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Updatedetailinvoicewr;
 use App\Http\Controllers\InvoiceEmailController;
-use App\Mail\Test;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,7 @@ Route::get('/createinvoice', Createinvoicewr::class)->name('createinvoice');
 Route::get('/updateinvoice/{current_number}', Updateinvoicewr::class)->name('updateinvoice');
 Route::get('/updatedetailinvoice/{current_id}/{number}', Updatedetailinvoicewr::class)->name('updatedetailinvoice');
 Route::get('/addinvoice/{number}', Addinvoicewr::class)->name('addinvoice');
+Route::get('/quotation', Createquotationwr::class)->name('quotation');
 
 Route::get('/pdftemplate/{number}', [InvoiceEmailController::class, 'index']);
 Route::get('/pdf/{number}', [InvoiceEmailController::class, 'pdf']);

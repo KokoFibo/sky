@@ -31,6 +31,11 @@
                         {{ __('Invoice') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('quotation')" :active="request()->routeIs('quotation')">
+                        {{ __('Quotation') }}
+                    </x-nav-link>
+                </div>
 
             </div>
 
@@ -108,6 +113,11 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('invoice')" :active="request()->routeIs('invoice')">
                 {{ __('Invoice') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('quotation')" :active="request()->routeIs('quotation')">
+                {{ __('Quotation') }}
             </x-responsive-nav-link>
         </div>
 
