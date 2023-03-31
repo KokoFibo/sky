@@ -49,7 +49,20 @@
                             <td class="px-6 py-4">{{ tanggal($d->invoice_date) }}</td>
                             <td class="px-6 py-4">{{ tanggal($d->due_date) }}</td>
                             <td class="px-6 py-4">
-                                <x-badge>{{ $d->status }}</x-badge>
+                                @if ($d->status == 'Draft')
+                                    <button
+                                        class="bg-orange-500 text-white text-sm font-medium mr-2 px-1 py-0.5 rounded">{{ $d->status }}</button>
+                                @elseif($d->status == 'Emailed')
+                                    <button
+                                        class="bg-blue-500 text-white text-sm font-medium mr-2 px-1 py-0.5 rounded">{{ $d->status }}</button>
+                                @elseif($d->status == 'Paid')
+                                    <button
+                                        class="bg-green-500 text-white text-sm font-medium mr-2 px-1 py-0.5 rounded">{{ $d->status }}</button>
+                                @else
+                                    <button
+                                        class="bg-black text-white text-sm font-medium mr-2 px-1 py-0.5 rounded">{{ $d->status }}</button>
+                                @endif
+
                             </td>
                             <td>
                                 <div class="flex gap-1">

@@ -124,6 +124,25 @@
                         wire:model="due_date" autocomplete="due_date" {{ $updateUpper ? '' : 'disabled' }}
                         class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
+
+                {{-- Contract --}}
+                <div class="flex ">
+                    <span
+                        class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                        Status
+                    </span>
+                    <select wire:model="status" {{ $updateUpper ? '' : 'disabled' }}
+                        class="w-full rounded-none rounded-r-lg bg-gray-50 border  border-gray-300 text-gray-600
+                text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
+                dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+                        <option value="Draft">Draft</option>
+                        <option value="Emailed">Emailed</option>
+                        <option value="Paid">Paid</option>
+                        <option value="Uncollectible">Uncollectible</option>
+                    </select>
+                </div>
+
                 <div class="flex justify-between">
                     @if ($updateUpper == false)
                         <button class="button button-blue" wire:click="editUpper">Edit</button>

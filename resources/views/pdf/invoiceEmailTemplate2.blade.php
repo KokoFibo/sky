@@ -9,9 +9,9 @@
 </head>
 
 <body>
-    Dear Anton,
+    Hello, <h1>{{ $custName }}</h1>
 
-    Apakah email ini bisa diterima?
+    <h1>Apakah email ini bisa diterima?</h1>
 
     Regards,
 

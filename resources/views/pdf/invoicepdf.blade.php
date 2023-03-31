@@ -5,29 +5,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('style/invoice.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-    <title>Invoice PDF</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <link rel="stylesheet" href="{{ asset('style/invoice.css') }}">
+    <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 
 <body>
     @if (Session::has('message'))
-        echo 'ada neh';
-        {{-- <script>
+        <script>
             // toastr.success("{{ 'message' }}");
             Swal.fire({
                 position: 'top-end',
                 icon: 'success',
-                title: 'Data Updated',
+                title: 'Data Emailed',
                 showConfirmButton: false,
                 timer: 1500
             })
-        </script> --}}
+        </script>
     @endif
     <div class="container">
 
@@ -48,6 +46,11 @@
             <div>
                 <a href="/invoice"><button
                         class="px-3 py-2 text-white bg-black rounded hover:bg-gray-700">Back</button></a>
+            </div>
+            <div>
+                <a href="/kirimemail/{{ $invoice->number }}"><button
+                        class="px-3 py-2 text-white bg-green-500 rounded hover:bg-gray-700">Email
+                        Html</button></a>
             </div>
 
             <div class="logo">
@@ -182,10 +185,6 @@
             toastr.success("{{ Session::get('message') }}");
         </script>
     @endif --}}
-
-
-
-
 </body>
 
 </html>

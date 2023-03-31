@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Mpdf\Mpdf;
 use App\Models\Invoice;
 use App\Models\Customer;
+use App\Mail\InvoiceMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
@@ -16,20 +17,11 @@ class InvoiceEmailController extends Controller
         $invoices = Invoice::where('number', $number)->get();
         $invoice = Invoice::where('number', $number)->first();
         $customer = Customer::find($invoice->customer_id);
-        // $mpdf->autoScriptToLang = true;
-        // $mpdf-> autoLangToFont = true;
-        // $mpdf = new \Mpdf\Mpdf();
-        // ob_get_clean();
-        // $html =  view ('pdf.invoicepdftemplate', compact(['invoices', 'invoice', 'customer']));
-        // $html =  view ('invoicepdftemplate');
-
-        // $mpdf->WriteHTML($html);
-        // $mpdf->Output('invoice.pdf', \Mpdf\Output\Destination::DOWNLOAD);
 
         return view('pdf.invoicepdf', compact(['invoices', 'invoice', 'customer']));
     }
 
-    public function pdf(Request $request, $number)
+    public function pdf($number)
     {
         $invoices = Invoice::where('number', $number)->get();
         $invoice = Invoice::where('number', $number)->first();
@@ -50,15 +42,13 @@ class InvoiceEmailController extends Controller
         // $request->session()->flash('message', 'PDF Generated');
         // return back();
         return back()->with('message' , 'PDF Generated');
-
-        // Storage::put('public/storage/pdf/' . $pdfFileName, $mpdf->Output($saveLocation . $pdfFileName, \Mpdf\Output\Destination::DOWNLOAD));
     }
 
     public function emailinvoice($number)
     {
         $invoices = Invoice::where('number', $number)->get();
         $invoice = Invoice::where('number', $number)->first();
-        if ($invoice->status == 'Emaileda') {
+        if ($invoice->status != 'Draft') {
             echo 'This Invoice has already Emailed';
         } else {
             $customer = Customer::find($invoice->customer_id);
@@ -67,21 +57,33 @@ class InvoiceEmailController extends Controller
             ob_get_clean();
             $cs_email = $customer->email;
             $cs_company = $customer->title . ' ' . $customer->company;
-            $data['toEmail'] = $customer->email;
+            // $data['toEmail'] = $customer->email;
+            $data['toEmail'] = 'kokonacci01@gmail.com';
             $data['company'] = $customer->title . ' ' . $customer->company;
             $data['fromEmail'] = 'hello@blueskycreation.id';
             $data['fromCompany'] = 'Blue Sky Creation';
             $data['subject'] = 'Blue Sky Creation Invoice No. ' . invNumberFormat($number, $invoice->invoice_date);
-            $cc = ['cc1@cc1.com', 'cc2@cc2.com'];
-            // $data['cc'] = 'cc@cc.com';
-            $data['bcc'] = 'bcc@bcc.com';
+            // $cc = ['cc1@cc1.com', 'cc2@cc2.com'];
+            $cc = ['anton.pru@gmail.com'];
+            // $data['cc'] = 'kokonacci@gmail.com';
+            $data['bcc'] = 'kokonacci@gmail.com';
             $data['body'] = 'ini adalah body atau isi dari emailnya';
+
+            // $data1 = [
+            //     'customer' => 'Anton'
+            // ];
+            $data1 = array('name' => 'Anton');
+            // $data1['nama'] = 'Anton';
+
+
+
 
             $html = view('pdf.invoicepdftemplate', compact(['invoices', 'invoice', 'customer']));
             $mpdf->WriteHTML($html);
             $pdf = $mpdf->Output('', 'S');
+            // $data1 = 'Anton Aja';
 
-            $is_sent = Mail::send('pdf.invoiceEmailTemplate', $data, function ($message) use ($data, $pdf, $pdfFileName, $cc) {
+            Mail::send('pdf.invoiceEmailTemplate', $data1, function ($message) use ($data, $pdf, $pdfFileName, $cc) {
                 $message
                     ->to($data['toEmail'], $data['company'])
                     ->from($data['fromEmail'], $data['fromCompany'])
@@ -95,7 +97,27 @@ class InvoiceEmailController extends Controller
             //     $d->status = 'Emailed';
             //     $d->save();
             // }
+            // echo 'Email is Sent';
             return back()->with('message', 'Invoice Emailed');
         }
     }
+
+    public function kirimemail ($number) {
+        // Mail::to('kokonaci@gmail.com')->send(new InvoiceMail($number));
+        Mail::send(new InvoiceMail($number));
+    }
+
+    public function emailhtml () {
+        $data1 = array('name' => 'Anton');
+        Mail::send('pdf.invoiceEmailTemplate2', $data1, function ($message) {
+            $message
+                ->to('kokonacci01@gmail.com')
+                ->from('hello@blueskycreation.id')
+                ->cc('kokonacci@gmail.com')
+                ->bcc('anton.pru@gmail.com')
+                ->subject('Subject nya ini');
+
+        });
+    }
 }
+
