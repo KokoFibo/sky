@@ -11,7 +11,7 @@
 <body>
     Hello, <h1>{{ $custName }}</h1>
 
-    <h1>Apakah email ini bisa diterima?</h1>
+    <h1>Apakah email 2 ini bisa diterima?</h1>
 
     Regards,
 
