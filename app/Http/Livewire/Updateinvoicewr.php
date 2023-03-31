@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Session;
 
 class Updateinvoicewr extends Component
 {
-    public $current_number, $invoice, $customer, $dataContract, $contract, $discount, $tax;
+    public $current_number, $invoice, $customer, $dataContract, $contract, $discount, $tax, $status;
     public $customer_id, $invoice_date, $due_date, $number, $invoice_number, $invoice_id, $packages;
     public $updateUpper, $current_id;
     public $package, $price, $qty;
@@ -52,6 +52,7 @@ class Updateinvoicewr extends Component
             $this->contract = $i->contract;
             $this->discount = $i->discount;
             $this->tax = $i->tax;
+            $this->status = $i->status;
 
         }
         $this->customer = Customer::all();
@@ -89,6 +90,7 @@ class Updateinvoicewr extends Component
                 }
                 $data->discount = $this->discount;
                 $data->tax = $this->tax;
+                $data->status = $this->status;
                 $data->save();
             }
             $this->dispatchBrowserEvent('success', ['message' => 'Data Updated']);

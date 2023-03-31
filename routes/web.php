@@ -1,6 +1,7 @@
 <?php
 
 use App\Mail\Test;
+use App\Mail\InvoiceMail;
 use App\Http\Livewire\Invoicewr;
 use App\Http\Livewire\Packagewr;
 use App\Http\Livewire\Customerwr;
@@ -37,7 +38,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+
+
+
 
 Route::get('/customer', Customerwr::class)->name('customer');
 Route::get('/package', Packagewr::class)->name('package');
@@ -51,6 +54,15 @@ Route::get('/quotation', Createquotationwr::class)->name('quotation');
 Route::get('/pdftemplate/{number}', [InvoiceEmailController::class, 'index']);
 Route::get('/pdf/{number}', [InvoiceEmailController::class, 'pdf']);
 Route::get('/emailinvoice/{number}', [InvoiceEmailController::class, 'emailinvoice']);
+Route::get('/kirimemail/{number}', [InvoiceEmailController::class, 'kirimemail']);
+
+});
+Route::get('/emailhtml', [InvoiceEmailController::class, 'emailhtml']);
+
+// Route::get('/invoicemail/{number}', [InvoiceMail::class]);
+Route::get('/invoicemail/{number}', function() {
+    Mail::send(new InvoiceMail());
+});
 
 
 

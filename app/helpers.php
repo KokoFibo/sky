@@ -4,6 +4,40 @@ use Carbon\Carbon;
 use App\Models\Invoice;
 use App\Models\Customer;
 
+function getCustomerfromInvoiceNo ($number) {
+    $invoice = Invoice::where('number', $number)->first();
+    $customer = Customer::find('id', $invoice->customer_id);
+    dd($customer->name);
+    return $customer ;
+
+}
+function getBgColor ($status) {
+    if($status != null) {
+        $bgColor = '';
+        switch ($status) {
+            case 'Draft' : $bgColor = 'yellow-500'; break;
+            case 'Emailed' : $bgColor = 'blue-500'; break;
+            case 'Paid' : $bgColor = 'green-500'; break;
+            case 'Uncollectible' : $bgColor = 'black'; break;
+        }
+    }
+    return $bgColor;
+}
+
+function getTextColor ($status) {
+    if($status != null) {
+        $textColor = '';
+        switch ($status) {
+            case 'Draft' : $textColor = 'black'; break;
+            case 'Emailed' : $textColor = 'white'; break;
+            case 'Paid' : $textColor = 'white'; break;
+            case 'Uncollectible' : $textColor = 'white'; break;
+        }
+    }
+    return $textColor;
+}
+
+
 function total($price, $qty, $tax)
 {
     return ($price * $qty / (100 - $tax)) *100 ;
