@@ -37,7 +37,7 @@ class InvoiceMail extends Mailable
     {
         return new Envelope(
             subject: 'Invoice Mail',
-            cc: ['anton.pru@gmail.com', 'anton.phangesti.com'],
+            cc: ['anton.pru@gmail.com', 'anton@phangesti.com'],
             from: 'michelle@blueskycreation.com',
             to: 'kokonacci@gmail.com',
         );
