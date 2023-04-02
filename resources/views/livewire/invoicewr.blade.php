@@ -31,6 +31,7 @@
                     <th scope="col" class="px-6 py-3">Total</th>
                     <th scope="col" class="px-6 py-3">Invoice Date</th>
                     <th scope="col" class="px-6 py-3">Due Date</th>
+                    <th scope="col" class="px-6 py-3">Month</th>
                     <th scope="col" class="px-6 py-3">Status</th>
                     <th scope="col" class="px-6 py-3">Action</th>
                 </tr>
@@ -48,6 +49,7 @@
                                 {{ number_format(getTotal($d->number)) }}</td>
                             <td class="px-6 py-4">{{ tanggal($d->invoice_date) }}</td>
                             <td class="px-6 py-4">{{ tanggal($d->due_date) }}</td>
+                            <td class="px-6 py-4">{{ getMonthName($d->due_date) }}</td>
                             <td class="px-6 py-4">
                                 @if ($d->status == 'Draft')
                                     <button
