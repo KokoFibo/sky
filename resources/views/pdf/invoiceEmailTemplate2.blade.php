@@ -15,13 +15,14 @@
       align-items: center;
       font-family: poppins;
       margin-top: 50px;
+      padding: 50px;
     ">
     <div class="card"
         style="
         width: 90%;
         max-width: 800px;
         background-color: #ffffff;
-        border: 1px solid black;
+        border: 1px solid #f1f1f1;
         border-radius: 10px;
         box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
         overflow: hidden;
