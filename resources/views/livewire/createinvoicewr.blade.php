@@ -1,9 +1,9 @@
 <div>
-    <div class="w-3/4 mx-auto mt-3 text-black bg-white rounded-xl border-1 shadow">
+    <div class="w-3/4 mx-auto mt-3 text-black bg-white shadow rounded-xl border-1">
         <h2 class="py-3 text-2xl font-semibold text-center">Create Invoice</h2>
     </div>
     {{-- <div class="w-3/4 mx-auto text-black bg-white" style="height: 100vh;"> --}}
-    <div class="w-3/4 mt-3 p-3 mx-auto text-black bg-white rounded-xl border-1 shadow">
+    <div class="w-3/4 p-3 mx-auto mt-3 text-black bg-white shadow rounded-xl border-1">
 
         <div class="flex items-start justify-between w-full px-10 ">
             <div class="flex flex-col w-full gap-3">
@@ -88,7 +88,7 @@
         {{-- <hr class="px-10 my-10"> --}}
 
 
-        <table class="w-full mx-auto mt-3 text-sm text-left text-gray-500  dark:text-gray-400">
+        <table class="w-full mx-auto mt-3 text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr class="text-white bg-gray-500 dark:text-white">
                     <th scope="col" class="px-6 py-3">#</th>
@@ -108,9 +108,10 @@
             <tbody>
                 @if (!empty($invoices))
                     @foreach ($invoices as $index => $invoice)
-                        <tr class="border-b dark:bg-gray-800 dark:border-gray-700 even:bg-gray-200 hover:bg-blue-200">
+                        <tr x-data="{ packageManual: false }" @dblclick="packageManual = !packageManual"
+                            class="border-b dark:bg-gray-800 dark:border-gray-700 even:bg-gray-200 hover:bg-blue-200">
                             <td class="px-6 py-4">{{ $loop->iteration }}</td>
-                            <td class="p-3 " x-data="{ packageManual: false }" @dblclick="packageManual = !packageManual ">
+                            <td class="p-3 ">
                                 {{-- <td class="px-6 py-4"> --}}
                                 {{-- <div class="p-3 " x-data="{ packageManual: false }" @dblclick="packageManual = !packageManual "> --}}
                                 <div class="w-full " x-show="!packageManual">
@@ -232,8 +233,8 @@
                     </a>
                 </div>
             </div>
-            <div class="mb-5 invisible">
-                <hr class="mt-5 invisible">
+            <div class="invisible mb-5">
+                <hr class="invisible mt-5">
             </div>
         </div>
 
