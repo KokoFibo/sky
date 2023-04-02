@@ -124,4 +124,15 @@ function getInvoiceNumber() {
             return date('d M Y', strtotime($tgl));
         }
 
+        function getMonthName($tgl) {
+
+            try {
+                $date = Carbon::createFromFormat('Y-m-d', $tgl);
+                return $date->format('F');
+            } catch (\Exception $e) {
+                 return $e->getMessage();
+   }
+
+        }
+
 

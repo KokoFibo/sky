@@ -40,18 +40,18 @@
                         class="px-3 py-2 text-white bg-red-500 rounded hover:bg-red-700">PDF</button></a>
             </div>
             <div>
-                <a href="/emailinvoice/{{ $invoice->number }}"><button
+                <a href="/kirimemail/{{ $invoice->number }}"><button
                         class="px-3 py-2 text-white bg-blue-500 rounded hover:bg-blue-700">Email</button></a>
             </div>
             <div>
                 <a href="/invoice"><button
                         class="px-3 py-2 text-white bg-black rounded hover:bg-gray-700">Back</button></a>
             </div>
-            <div>
+            {{-- <div>
                 <a href="/kirimemail/{{ $invoice->number }}"><button
                         class="px-3 py-2 text-white bg-green-500 rounded hover:bg-gray-700">Email
                         Html</button></a>
-            </div>
+            </div> --}}
 
             <div class="logo">
                 <img src="{{ asset('images/Blue Sky Creations.png') }}" style="width:250px" alt="">
