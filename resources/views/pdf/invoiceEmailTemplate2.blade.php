@@ -15,11 +15,11 @@
       align-items: center;
       font-family: poppins;
       margin-top: 50px;
-      padding: 50px;
     ">
     <div class="card"
         style="
         width: 90%;
+
         max-width: 800px;
         background-color: #ffffff;
         border: 1px solid #f1f1f1;
@@ -29,13 +29,14 @@
         margin: 0 auto;
       ">
         <img src="{{ asset('images/invoice-header.jpg') }}" style="display: block; width: 100%; height: auto" />
-        <div class="card-content" style="padding: 20px; text-align: left">
+        <div class="card-content" style="padding: 50px; text-align: left; ">
             <div>
                 <p
                     style="
               font-weight: bold;
               font-size: 16px;
               line-height: 2;
+
               margin-bottom: 0;
             ">
                     Dear {{ $title }} {{ $custName }} and team
