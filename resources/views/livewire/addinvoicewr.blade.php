@@ -1,15 +1,15 @@
 <div>
-    <div class="w-1/3 p-3 bg-white rounded-lg shadow mx-auto flex flex-col gap-3 mt-5 text-center">
+    <div class="flex flex-col w-1/3 gap-3 p-3 mx-auto mt-5 text-center bg-white rounded-lg shadow">
         Add Invoice Item
     </div>
-    <div class="w-1/3 p-3 bg-white rounded-lg shadow mx-auto flex flex-col gap-3 mt-5" x-data="{ inputManual: false }">
+    <div class="flex flex-col w-1/3 gap-3 p-3 mx-auto mt-5 bg-white rounded-lg shadow" x-data="{ inputManual: false }">
         {{-- Package --}}
         <div class="flex">
-            <span
+            <span @dblclick="inputManual = !inputManual"
                 class="inline-flex items-center w-24 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                 Package
             </span>
-            <div x-show="!inputManual" @dblclick="inputManual = !inputManual">
+            <div x-show="!inputManual">
 
                 <select wire:model="package" wire:change="getPrice"
                     class="w-80 rounded-none rounded-r-lg bg-gray-50 border  border-gray-300 text-gray-600
@@ -25,7 +25,8 @@
 
                 </select>
             </div>
-            <div x-show="inputManual" @dblclick="inputManual = !inputManual">
+            <div x-show="inputManual">
+                {{-- <div x-show="inputManual" @dblclick="inputManual = !inputManual"> --}}
 
                 <input type="text" required wire:model="package"
                     class="w-80 rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">

@@ -118,6 +118,11 @@ class InvoiceEmailController extends Controller
                 ->subject('Subject nya ini');
 
         });
+         // foreach ($invoices as $d) {
+            //     $d->status = 'Emailed';
+            //     $d->save();
+            // }
+            // echo 'Email is Sent';
     }
 }
 
