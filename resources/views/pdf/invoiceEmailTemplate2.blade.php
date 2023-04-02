@@ -21,6 +21,7 @@
         width: 90%;
         max-width: 800px;
         background-color: #ffffff;
+        border: 1px solid black;
         border-radius: 10px;
         box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
         overflow: hidden;
