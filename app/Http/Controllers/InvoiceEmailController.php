@@ -50,7 +50,16 @@ class InvoiceEmailController extends Controller
 
     public function kirimemail ($number) {
         // Mail::to('kokonaci@gmail.com')->send(new InvoiceMail($number));
-        Mail::send(new InvoiceMail($number));
+        try {
+            Mail::send(new InvoiceMail($number));
+            return redirect( route('invoice'))->with('success', 'Email sent');
+
+        } catch (\Exception $e) {
+            // dd('ada kesalahan email');
+            //  return $e->getMessage();
+            return redirect( route('invoice'))->with('error', 'Fail Sending Email');
+
+}
     }
 
 

@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    @if (Session::has('message'))
+    {{-- @if (Session::has('message'))
         <script>
             // toastr.success("{{ 'message' }}");
             Swal.fire({
@@ -26,37 +26,37 @@
                 timer: 1500
             })
         </script>
-    @endif
-    <div class="container">
+    @endif --}}
+    <div class="container px-5">
 
+        <div class="flex flex-row justify-between mt-5">
+            <div>
 
+            </div>
+            <div class="flex flex-row gap-2">
+                <a href="/kirimemail/{{ $invoice->number }}"><button
+                        class="px-2 py-1 text-sm text-white bg-blue-500 rounded hover:bg-blue-700">Email</button></a>
+
+                <a href="/pdf/{{ $invoice->number }}"><button
+                        class="px-2 py-1 text-sm text-white bg-red-500 rounded hover:bg-red-700">PDF</button></a>
+
+                <a href="/invoice"><button
+                        class="px-2 py-1 text-sm text-white bg-black rounded hover:bg-gray-700">Back</button></a>
+            </div>
+        </div>
         <div class="first-row">
             <div class="inv_no">
                 <span style="font-weight: 700">Invoice No.</span>
                 {{ invNumberFormat($invoice->number, $invoice->invoice_date) }}
             </div>
-            <div>
-                <a href="/pdf/{{ $invoice->number }}"><button
-                        class="px-3 py-2 text-white bg-red-500 rounded hover:bg-red-700">PDF</button></a>
-            </div>
-            <div>
-                <a href="/kirimemail/{{ $invoice->number }}"><button
-                        class="px-3 py-2 text-white bg-blue-500 rounded hover:bg-blue-700">Email</button></a>
-            </div>
-            <div>
-                <a href="/invoice"><button
-                        class="px-3 py-2 text-white bg-black rounded hover:bg-gray-700">Back</button></a>
-            </div>
-            {{-- <div>
-                <a href="/kirimemail/{{ $invoice->number }}"><button
-                        class="px-3 py-2 text-white bg-green-500 rounded hover:bg-gray-700">Email
-                        Html</button></a>
-            </div> --}}
+
+
 
             <div class="logo">
                 <img src="{{ asset('images/Blue Sky Creations.png') }}" style="width:250px" alt="">
             </div>
         </div>
+
         <div class=invoice>
             <p>INVOICE</p>
         </div>
