@@ -60,7 +60,7 @@ class InvoiceMail extends Mailable
         $invoice_number = invNumberFormat($this->number, $invoice->invoice_date);
 
         return new Content(
-            view: 'pdf.invoiceEmailTemplate2',
+            view: 'pdf.invoiceEmailTemplate',
             with: ['title' => $customer->salutation,  'custName' => $customer->name, 'invoice_number' => $invoice_number,
             'company' => $customer->company, 'due_date' => tanggal($invoice->due_date)
 
@@ -79,6 +79,7 @@ class InvoiceMail extends Mailable
         $invoices = Invoice::where('number', $this->number)->get();
         $invoice = Invoice::where('number', $this->number)->first();
         $customer = Customer::find($invoice->customer_id);
+        $pdfFileName = 'BlueSkyCreation_' . invNumberFormat($this->number, $invoice->invoice_date) . '.pdf';
 
         $mpdf = new \Mpdf\Mpdf();
         ob_get_clean();
@@ -87,7 +88,7 @@ class InvoiceMail extends Mailable
         $mpdf->WriteHTML($html);
         $pdf = $mpdf->Output('', 'S');
         return [
-            Attachment::fromData(fn () => $pdf, 'Report.pdf')
+            Attachment::fromData(fn () => $pdf, $pdfFileName)
             ->withMime('application/pdf'),
         ];
     }
