@@ -13,7 +13,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: poppins, 'sans-serif';
+      font-family: poppins, 'san-francisco';
       margin-top: 50px;
     ">
     <div class="card"
