@@ -11,10 +11,10 @@ use Illuminate\Support\Facades\Session;
 
 class Updateinvoicewr extends Component
 {
-    public $current_number, $invoice, $customer, $dataContract, $contract, $discount, $tax, $status;
+    public $current_number, $invoice, $customer, $dataContract, $contract, $discount, $tax = 0.0, $status;
     public $customer_id, $invoice_date, $due_date, $number, $invoice_number, $invoice_id, $packages;
     public $updateUpper, $current_id;
-    public $package, $price, $qty;
+    public $package, $price, $qty, $formattedTax = 0.0;
     protected $listeners =  ['delete'];
 
 
@@ -60,6 +60,15 @@ class Updateinvoicewr extends Component
         $this->invoice_number = invNumberFormat($this->number, $this->invoice_date);
 
 
+    }
+
+    public function updatedTax () {
+        // cara ini supaya tidak error saat edit
+        try {
+            $this->formattedTax = number_format((float)$this->tax);
+        } catch (\Exception $e) {
+             return $e->getMessage();
+}
     }
 
     public function updatedEditPackage () {

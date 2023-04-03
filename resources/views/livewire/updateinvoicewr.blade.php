@@ -79,10 +79,18 @@
                         Tax
                     </span>
 
-                    <input id="tax" type="text" name="tax" :value="old('tax')" required wire:model="tax"
+                    {{-- <input id="tax" type="text" name="tax" :value="old('tax')" required wire:model="tax"
                         autocomplete="tax" {{ $updateUpper ? '' : 'disabled' }}
-                        class="w-full rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        class="w-full rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"> --}}
 
+                    <select wire:model="tax" {{ $updateUpper ? '' : 'disabled' }}
+                        class="w-full rounded-none rounded-r-lg bg-gray-50 border  border-gray-300 text-gray-600
+                text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
+                dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+                        <option value="0">0%</option>
+                        <option value="2.5">2.5%</option>
+                    </select>
                 </div>
 
 
@@ -234,6 +242,7 @@
                     <div
                         class="text-right rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <p>{{ number_format($tax, 1) }}</p>
+                        {{-- <p>{{ $formattedTax }}</p> --}}
                     </div>
                 </div>
 
