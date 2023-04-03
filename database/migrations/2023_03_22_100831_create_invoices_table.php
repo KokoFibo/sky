@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('package');
             $table->integer('price');
             $table->integer('qty');
-            $table->float('tax');
+            $table->decimal('tax', $precision = 2, $scale = 1);
             $table->integer('discount');
             $table->string('status');
             $table->dateTime('emailed_at')->nullable;
