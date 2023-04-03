@@ -26,9 +26,8 @@ class InvoiceMail extends Mailable
     public function __construct($number)
     {
         $this->number = $number;
-
+        // ini kah
     }
-
 
     /**
      * Get the message envelope.
@@ -56,14 +55,12 @@ class InvoiceMail extends Mailable
      */
     public function content(): Content
     {
-
         $invoice = Invoice::where('number', $this->number)->first();
         $customer = Customer::where('id', $invoice->customer_id)->first();
         $invoice_number = invNumberFormat($this->number, $invoice->invoice_date);
 
-
         return new Content(
-            view: 'pdf.invoiceEmailTemplate',
+            view: 'pdf.invoiceEmailTemplate2',
             with: ['title' => $customer->salutation,  'custName' => $customer->name, 'invoice_number' => $invoice_number,
             'company' => $customer->company, 'due_date' => tanggal($invoice->due_date)
 

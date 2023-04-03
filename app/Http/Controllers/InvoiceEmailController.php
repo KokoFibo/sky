@@ -44,6 +44,8 @@ class InvoiceEmailController extends Controller
         return back()->with('message' , 'PDF Generated');
     }
 
+
+
     public function emailinvoice($number)
     {
         $invoices = Invoice::where('number', $number)->get();
@@ -83,7 +85,7 @@ class InvoiceEmailController extends Controller
             $pdf = $mpdf->Output('', 'S');
             // $data1 = 'Anton Aja';
 
-            Mail::send('pdf.invoiceEmailTemplate', $data1, function ($message) use ($data, $pdf, $pdfFileName, $cc) {
+            Mail::send('pdf.invoiceEmailTemplate2', $data1, function ($message) use ($data, $pdf, $pdfFileName, $cc) {
                 $message
                     ->to($data['toEmail'], $data['company'])
                     ->from($data['fromEmail'], $data['fromCompany'])
@@ -118,11 +120,8 @@ class InvoiceEmailController extends Controller
                 ->subject('Subject nya ini');
 
         });
-         // foreach ($invoices as $d) {
-            //     $d->status = 'Emailed';
-            //     $d->save();
-            // }
-            // echo 'Email is Sent';
     }
+
+
 }
 
