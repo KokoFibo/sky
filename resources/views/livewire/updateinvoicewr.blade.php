@@ -89,7 +89,7 @@
                 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                         <option value="0">0%</option>
-                        <option value="2.50">2.5%</option>
+                        <option value="2.5">2.5%</option>
                     </select>
                 </div>
 
