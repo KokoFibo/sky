@@ -45,7 +45,7 @@ class InvoiceMail extends Mailable
             // subject: 'Invoice Mail',
             subject: $subject,
             cc: ['anton.pru@gmail.com', 'anton.phangesti@gmail.com'],
-            from: 'michelle@blueskycreation.com',
+            from: 'michelle@blueskycreation.id',
             to: 'kokonacci@gmail.com',
         );
     }
