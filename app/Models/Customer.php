@@ -13,6 +13,9 @@ class Customer extends Model
     public function invoice () {
         return $this->hasMany(Invoice::class);
     }
+    public function quotation () {
+        return $this->hasMany(Quotation::class);
+    }
     public function contract () {
         return $this->hasMany(Contract::class);
     }

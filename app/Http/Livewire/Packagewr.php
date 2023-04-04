@@ -9,13 +9,14 @@ use Livewire\WithPagination;
 class Packagewr extends Component
 {
     use WithPagination;
-    public $package, $price, $idPackage;
+    public $package, $price, $description, $idPackage;
     protected $listeners =  ['delete'];
 
 
     public function clear () {
         $this->package = '';
         $this->price = '';
+        $this->description = '';
     }
 
     public function deleteConfirmation ($id) {
@@ -41,6 +42,7 @@ class Packagewr extends Component
         $data = new Package();
         $data->package = $this->package;
         $data->price = $this->price;
+        $data->description = $this->description;
         $data->save();
         $this->clear();
         $this->dispatchBrowserEvent('success', ['message' => 'Data Saved']);
@@ -52,6 +54,7 @@ class Packagewr extends Component
             $this->idPackage = $data->id;
             $this->package = $data->package;
             $this->price = $data->price;
+            $this->description = $data->description;
         }
     }
 
@@ -59,6 +62,7 @@ class Packagewr extends Component
         $data = Package::find($this->idPackage);
         $data->package = $this->package;
         $data->price = $this->price;
+        $data->description = $this->description;
         $data->save();
         $this->clear();
         $this->dispatchBrowserEvent('success', ['message' => 'Data Updated']);
@@ -68,7 +72,7 @@ class Packagewr extends Component
 
     public function render()
     {
-        $data = Package::orderBy('package', 'asc')->paginate(10);
+        $data = Package::orderBy('id', 'desc')->paginate(10);
 
         return view('livewire.packagewr', compact('data'));
     }
