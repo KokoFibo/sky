@@ -8,12 +8,18 @@ use App\Http\Livewire\Customerwr;
 use App\Http\Livewire\Quotationwr;
 use App\Http\Livewire\Addinvoicewr;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Livewire\Addquotationwr;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Createinvoicewr;
+use App\Http\Livewire\Editquotationwr;
 use App\Http\Livewire\Updateinvoicewr;
+use App\Http\Livewire\Createquotationwr;
+use App\Http\Livewire\Updatequotationwr;
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Updatedetailinvoicewr;
+use App\Http\Livewire\Updatedetailquotationwr;
 use App\Http\Controllers\InvoiceEmailController;
+use App\Http\Controllers\QuotationEmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,11 +56,20 @@ Route::get('/updateinvoice/{current_number}', Updateinvoicewr::class)->name('upd
 Route::get('/updatedetailinvoice/{current_id}/{number}', Updatedetailinvoicewr::class)->name('updatedetailinvoice');
 Route::get('/addinvoice/{number}', Addinvoicewr::class)->name('addinvoice');
 Route::get('/quotation', Quotationwr::class)->name('quotation');
+Route::get('/createquotation', Createquotationwr::class)->name('createquotation');
+Route::get('/updatequotation/{current_number}', Updatequotationwr::class)->name('updatequotation');
+Route::get('/updatedetailquotation/{current_id}/{number}', Updatedetailquotationwr::class)->name('updatedetailquotation');
+Route::get('/addquotation/{number}', Addquotationwr::class)->name('addquotation');
 
 Route::get('/pdftemplate/{number}', [InvoiceEmailController::class, 'index']);
 Route::get('/pdf/{number}', [InvoiceEmailController::class, 'pdf']);
 Route::get('/emailinvoice/{number}', [InvoiceEmailController::class, 'emailinvoice']);
 Route::get('/kirimemail/{number}', [InvoiceEmailController::class, 'kirimemail']);
+
+Route::get('/quotationtemplate/{number}', [QuotationEmailController::class, 'index']);
+Route::get('/quotationpdf/{number}', [QuotationEmailController::class, 'pdf']);
+Route::get('/quotationEmail/{number}', [QuotationEmailController::class, 'quotationEmail']);
+
 
 });
 Route::get('/emailhtml', [InvoiceEmailController::class, 'emailhtml']);

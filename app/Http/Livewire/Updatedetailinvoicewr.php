@@ -40,6 +40,16 @@ class Updatedetailinvoicewr extends Component
 
     }
 
+    public function updatedPackage()
+    {
+        try {
+            $data = Package::where('package', $this->package)->first();
+            $this->price = $data->price;
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
     public function cancel () {
 
         $url = 'updateinvoice/'.$this->number;

@@ -11,8 +11,9 @@
                     <th scope="col" class="px-6 py-3">Description</th>
                     <th scope="col" class="px-6 py-3">Quotation Date</th>
                     <th scope="col" class="px-6 py-3">Emailed At</th>
+                    <th scope="col" class="px-6 py-3">Status</th>
                     <th scope="col" class="px-6 py-3">
-                        <a href="#"><button
+                        <a href="/createquotation"><button
                                 class="px-3 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700">Add</button></a>
                     </th>
                 </tr>
@@ -30,14 +31,15 @@
                             <td class="px-6 py-4">{{ $d->description }}</td>
                             <td class="px-6 py-4">{{ $d->quotation_date }}</td>
                             <td class="px-6 py-4">{{ $d->emailed_at }}</td>
+                            <td class="px-6 py-4">{{ $d->status }}</td>
 
                             <td class="px-6 py-4">
                                 <div class="flex gap-2">
-                                    <a href="#"><button
-                                            class="px-3 py-2 text-white bg-teal-500 rounded-lg hover:bg-teal-700">Edit</button></a>
-                                    <button wire:click="deleteConfirmation({{ $d->id }})"
+                                    <a href="/updatequotation/{{ $d->number }}"><button
+                                            class="px-3 py-2 text-white bg-teal-500 rounded-lg hover:bg-teal-700">Update</button></a>
+                                    <button wire:click="deleteConfirmation({{ $d->number }})"
                                         class="px-3 py-2 text-white bg-red-500 rounded-lg hover:bg-red-700">Delete</button>
-                                    <a href="#"><button
+                                    <a href="/quotationtemplate/{{ $d->number }}"><button
                                             class="px-3 py-2 text-white bg-blue-500 rounded-lg hover:bg-red-700">Email</button></a>
                                 </div>
                             </td>
