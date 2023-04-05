@@ -91,7 +91,7 @@
                             <td class="px-6 py-4">
                                 @php
                                     $desc = getDetail($d->description);
-                                    dd($desc);
+                                    {{-- dd($desc); --}}
                                 @endphp
                                     <ul>
                                         @php
