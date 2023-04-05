@@ -8,7 +8,7 @@ use App\Models\Quotation;
 function getDetail($description)
 {
     if ($description != null) {
-        return explode(',', $description, 20);
+        return explode(',', $description);
     }
 }
 function getCustomerfromInvoiceNo($number)

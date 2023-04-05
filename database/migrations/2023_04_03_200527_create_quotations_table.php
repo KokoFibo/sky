@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('customer_id');
             $table->string('package');
             $table->integer('price');
-            $table->string('description');
+            $table->string('description',500);
             $table->string('status');
             $table->dateTime('emailed_at')->nullable;
             $table->timestamps();
