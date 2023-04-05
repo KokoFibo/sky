@@ -1,4 +1,23 @@
 <div>
+    @section('title', 'Quotation')
+
+
+    <h1 class="my-5 text-2xl font-semibold text-center">Quotation</h1>
+    {{-- per Page --}}
+    <div class="flex justify-between px-10">
+        <x-text-input id="search" class="block w-full mt-1 lg:w-1/5" type="search" name="search" :value="old('search')"
+            required wire:model.debounce.500ms="search" autofocus autocomplete="search" placeholder="Search Company ..." />
+        <select id="perPage" wire:model="perpage"
+            class="hidden  w-full lg:w-1/6 bg-gray-50 border rounded-lg border-gray-300 text-gray-600 text-sm  focus:ring-blue-500 focus:border-blue-500 lg:block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <option value="5">5 rows</option>
+            <option value="10">10 rows</option>
+            <option value="15">15 rows</option>
+            <option value="20">20 rows</option>
+            <option value="25">25 rows</option>
+        </select>
+
+
+    </div>
     <div class="relative px-10 mt-5 overflow-x-auto">
         <table class="w-full text-sm text-left text-gray-500 table-auto dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -9,12 +28,13 @@
                     <th scope="col" class="px-6 py-3">Package</th>
                     <th scope="col" class="px-6 py-3">Price</th>
                     <th scope="col" class="px-6 py-3">Description</th>
-                    <th scope="col" class="px-6 py-3">Quotation Date</th>
+                    <th scope="col" class="px-6 py-3">Date</th>
                     <th scope="col" class="px-6 py-3">Emailed At</th>
                     <th scope="col" class="px-6 py-3">Status</th>
                     <th scope="col" class="px-6 py-3">
                         <a href="/createquotation"><button
-                                class="px-3 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700">Add</button></a>
+                                class="px-3 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700">Create
+                                Quotation</button></a>
                     </th>
                 </tr>
             </thead>
@@ -24,14 +44,29 @@
                     @foreach ($data as $key => $d)
                         <tr class="border-b dark:bg-gray-800 dark:border-gray-700 even:bg-gray-200 hover:bg-blue-200">
                             <td class="px-6 py-4">{{ $loop->iteration }}</td>
-                            <td class="px-6 py-4">{{ $d->number }}</td>
-                            <td class="px-6 py-4">{{ $d->customer_id }}</td>
+                            <td class="px-6 py-4">{{ quoNumberFormat($d->number, $d->quotation_date) }}</td>
+                            <td class="px-6 py-4">{{ getCompany($d->customer_id) }}</td>
                             <td class="px-6 py-4">{{ $d->package }}</td>
-                            <td class="px-6 py-4">{{ $d->price }}</td>
+                            <td class="px-6 py-4">{{ number_format($d->price) }}</td>
                             <td class="px-6 py-4">{{ $d->description }}</td>
-                            <td class="px-6 py-4">{{ $d->quotation_date }}</td>
-                            <td class="px-6 py-4">{{ $d->emailed_at }}</td>
-                            <td class="px-6 py-4">{{ $d->status }}</td>
+                            <td class="px-6 py-4">{{ tanggal($d->quotation_date) }}</td>
+                            <td class="px-6 py-4">{{ tanggal_with_Jam($d->emailed_at) }}</td>
+                            <td class="px-6 py-4">
+                                @if ($d->status == 'Draft')
+                                    <button
+                                        class="bg-orange-500 text-white text-sm font-medium mr-2 px-1 py-0.5 rounded">{{ $d->status }}</button>
+                                @elseif($d->status == 'Emailed')
+                                    <button
+                                        class="bg-blue-500 text-white text-sm font-medium mr-2 px-1 py-0.5 rounded">{{ $d->status }}</button>
+                                @elseif($d->status == 'Contract')
+                                    <button
+                                        class="bg-green-500 text-white text-sm font-medium mr-2 px-1 py-0.5 rounded">{{ $d->status }}</button>
+                                @else
+                                    <button
+                                        class="bg-black text-white text-sm font-medium mr-2 px-1 py-0.5 rounded">{{ $d->status }}</button>
+                                @endif
+
+                            </td>
 
                             <td class="px-6 py-4">
                                 <div class="flex gap-2">

@@ -189,7 +189,14 @@ function roundedTotal($subtotal, $discount, $tax)
 
 function tanggal_with_hari($tgl){
     return date('D, d M Y', strtotime($tgl));
+}
+function tanggal_with_Jam($tgl){
+    if($tgl == '0000-00-00 00:00:00') {
+        return '-';
+    } else {
 
+        return date('d M Y H:i:s', strtotime($tgl));
+    }
 }
 
 function tanggal($tgl)

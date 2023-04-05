@@ -62,7 +62,7 @@
         </div>
         <div class="flex justify-between">
             <button class="button button-teal" wire:click="storeLower">Save</button>
-            <button class="button button-black" wire:click="cancel">Cancel</button>
+            <button class="button button-black" wire:click="cancel">Back</button>
         </div>
     </div>
 

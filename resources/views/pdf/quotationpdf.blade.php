@@ -45,9 +45,9 @@
                     <p class="text-3xl font-semibold">Created on</p>
                 </div>
                 <div class="flex gap-2">
-                    <a href="/quotationEmail/{{ $quotation->number }}"><button class="px-3 py-2 text-white bg-teal-500 rounded-lg hover:bg-teal-700">Email</button></a>
-                    <a href="/quotationpdf/{{ $quotation->number }}"><button class="px-3 py-2 text-white bg-red-500 rounded-lg hover:bg-red-700">PDF</button></a>
-                    <a href="/quotation"><button class="px-3 py-2 text-white bg-black border-2 rounded-lg hover:bg-white hover:text-black">Back</button></a>
+                    <a href="/quotationEmail/{{ $quotation->number }}"><button class="px-2 py-1 text-sm text-white bg-teal-500 rounded-lg hover:bg-teal-700">Email</button></a>
+                    <a href="/quotationpdf/{{ $quotation->number }}"><button class="px-2 py-1 text-sm text-white bg-red-500 rounded-lg hover:bg-red-700">PDF</button></a>
+                    <a href="/quotation"><button class="px-2 py-1 text-sm text-white bg-black rounded-lg hover:bg-gray-600 hover:text-white ">Back</button></a>
                 </div>
             </div>
             <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
@@ -91,6 +91,7 @@
                             <td class="px-6 py-4">
                                 @php
                                     $desc = getDetail($d->description);
+                                    dd($desc);
                                 @endphp
                                     <ul>
                                         @php

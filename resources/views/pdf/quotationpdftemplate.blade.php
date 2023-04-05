@@ -39,7 +39,7 @@
         <table style="width:100%">
             <tr>
                 <td style="width:50%; font-size: 15px; font-weight: bold; ">Created for</td>
-                <td style="width:50%; font-size: 15px; font-weight: bold; ">Created On</td>
+                <td style="width:50%; font-size: 15px; font-weight: bold; ">Created on</td>
             </tr>
 
             <tr>

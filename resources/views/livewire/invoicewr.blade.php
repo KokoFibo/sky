@@ -15,10 +15,7 @@
             <option value="20">20 rows</option>
             <option value="25">25 rows</option>
         </select>
-        <a href="/createinvoice">
-            <x-blue-button>Create Invoice
-            </x-blue-button>
-        </a>
+
 
     </div>
     <div class="relative px-10 mt-5 overflow-x-auto">
@@ -32,7 +29,12 @@
                     <th scope="col" class="px-6 py-3">Invoice Date</th>
                     <th scope="col" class="px-6 py-3">Due Date</th>
                     <th scope="col" class="px-6 py-3">Status</th>
-                    <th scope="col" class="px-6 py-3">Action</th>
+                    <th scope="col" class="px-6 py-3">
+                        <a href="/createinvoice">
+                            <x-blue-button>Create Invoice
+                            </x-blue-button>
+                        </a>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -55,7 +57,7 @@
                                 @elseif($d->status == 'Emailed')
                                     <button
                                         class="bg-blue-500 text-white text-sm font-medium mr-2 px-1 py-0.5 rounded">{{ $d->status }}</button>
-                                @elseif($d->status == 'Paid')
+                                @elseif($d->status == 'Contract')
                                     <button
                                         class="bg-green-500 text-white text-sm font-medium mr-2 px-1 py-0.5 rounded">{{ $d->status }}</button>
                                 @else
