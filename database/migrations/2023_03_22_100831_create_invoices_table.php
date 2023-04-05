@@ -24,7 +24,9 @@ return new class extends Migration
             $table->decimal('tax', $precision = 2, $scale = 1);
             $table->integer('discount');
             $table->string('status');
-            $table->dateTime('emailed_at')->nullable;
+            $table->timestamp('emailed_at')->nullable;
+            $table->timestamp('deleted_at')->nullable();
+
             $table->timestamps();
         });
     }

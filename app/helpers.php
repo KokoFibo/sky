@@ -86,7 +86,7 @@ function getInvoiceNumber()
     if ($month < 10) {
         $month = '0' . (string) $month;
     }
-    $data = Invoice::max('number') + 1;
+    $data = Invoice::withTrashed()->max('number') + 1;
     if ($data < 10) {
         $data = '0' . (string) $data;
     }
@@ -102,7 +102,7 @@ function getQuotationNumber()
     if ($month < 10) {
         $month = '0' . (string) $month;
     }
-    $data = Quotation::max('number') + 1;
+    $data = Quotation::withTrashed()->max('number') + 1;
     if ($data < 10) {
         $data = '0' . (string) $data;
     }
@@ -112,14 +112,13 @@ function getQuotationNumber()
 
 function getInvoiceRealNumber()
 {
-    $data = Invoice::max('number') + 1;
-    return $data = Invoice::max('number') + 1;
+    return $data = Invoice::withTrashed()->max('number') + 1;
 }
 
 function getQuotationRealNumber()
 {
-    $data = Quotation::max('number') + 1;
-    return $data = Quotation::max('number') + 1;
+
+    return $data = Quotation::withTrashed()->max('number') + 1;
 }
 
 function getCompany($id)
@@ -191,7 +190,7 @@ function tanggal_with_hari($tgl){
     return date('D, d M Y', strtotime($tgl));
 }
 function tanggal_with_Jam($tgl){
-    if($tgl == '0000-00-00 00:00:00') {
+    if($tgl == null) {
         return '-';
     } else {
 

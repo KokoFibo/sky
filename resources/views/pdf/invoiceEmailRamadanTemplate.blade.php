@@ -28,7 +28,8 @@
         overflow: hidden;
         margin: 0 auto;
       ">
-        <img src="https://sky.blueskycreation.id/invoice-header.jpg" style="display: block; width: 100%; height: auto" />
+        <img src="https://sky.blueskycreation.id/Header-Mail-Invoice-Ramadan-edition.jpg"
+            style="display: block; width: 100%; height: auto" />
         <div class="card-content" style="padding: 50px; text-align: left; ">
             <div>
                 <p
@@ -43,22 +44,25 @@
                 </p>
 
                 <p style="font-size: 16px; line-height: 2; margin-bottom: 0">
-                    Thank you for inviting us to quote for your project. We've reviewed your requirements and are
-                    pleased to present our response.
+                    We are wishing you an early Eid-Al Fitr celebration. We hope this holiday brings you and your family
+                    warmth, joy, and incredible opportunities. We wish you could enjoy this holiday to recharge and
+                    spend it with your loved ones.
                 </p>
 
                 <p style="font-size: 16px; line-height: 2; margin-bottom: 0">
-                    Please see the attachment below {{ $quotation_number }} for the details of the services we can
-                    provide for
-                    your project. We would welcome the opportunity to discuss this quote, and provide answers to any
-                    inquiries you may have.
+                    With apology, we are sending you the invoice ahead of schedule due to the upcoming holidays.
+                    However, the invoice's due date remains the same as the previous month, which is
+                    {{ $due_date }}. The report will also be sent to you at the end of this month.
                 </p>
                 <p style="font-size: 16px; line-height: 2; margin-bottom: 0">
-                    We hope you find this quotation acceptable and we could collaborate in this exciting project.
+                    We also want to inform you that due to the upcoming Eid-Al Fitr Holiday, <b>we are unable to accept
+                        both request nor revision on 19 - 25 April 2023</b>. However, posting schedules will be uploaded
+                    normally. We sincerely appreciate your understanding.
                 </p>
 
                 <p style="font-size: 16px; line-height: 2; margin-bottom: 0">
-                    Thank you and have a wonderful day
+                    We are thankful to have you as our client and we appreciate all the support you have given us
+                    before.
                 </p>
             </div>
         </div>

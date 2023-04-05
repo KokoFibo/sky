@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('contract_number');
             $table->date('contract_begin');
             $table->date('contract_end');
+            $table->timestamp('deleted_at')->nullable();
+
             $table->timestamps();
         });
     }

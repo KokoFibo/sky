@@ -62,7 +62,8 @@ class Quotationwr extends Component
 
     public function render()
     {
-        $data = DB::table('quotations')->groupBy('number')->orderBy('number', 'desc')->paginate($this->perpage);
+        // $data = DB::table('quotations')->groupBy('number')->orderBy('number', 'desc')->paginate($this->perpage);
+        $data = Quotation::groupBy('number')->orderBy('number', 'desc')->paginate($this->perpage);
         return view('livewire.quotationwr', compact(['data']));
     }
 }

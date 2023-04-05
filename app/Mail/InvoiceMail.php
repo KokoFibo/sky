@@ -46,7 +46,7 @@ class InvoiceMail extends Mailable
             subject: $subject,
             cc: ['anton.pru@gmail.com', 'anton.phangesti@gmail.com'],
             from: 'michelle@blueskycreation.id',
-            to: 'michellevelicia18@gmail.com',
+            to: 'kokonacci@gmail.com',
         );
     }
 
@@ -60,7 +60,8 @@ class InvoiceMail extends Mailable
         $invoice_number = invNumberFormat($this->number, $invoice->invoice_date);
 
         return new Content(
-            view: 'pdf.invoiceEmailTemplate',
+            // view: 'pdf.invoiceEmailTemplate',
+            view: 'pdf.invoiceEmailRamadanTemplate',
             with: ['title' => $customer->salutation,  'custName' => $customer->name, 'invoice_number' => $invoice_number,
             'company' => $customer->company, 'due_date' => tanggal($invoice->due_date)
             ],
