@@ -2,25 +2,24 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Invoice;
+use App\Models\Quotation;
 use Carbon\Carbon;
 use App\Models\Package;
 use Livewire\Component;
-use App\Models\Contract;
 use App\Models\Customer;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\DB;
 
-class Invoicewr extends Component
+class Quotationwr extends Component
 {
     use WithPagination;
-
+    public $customer, $package, $packageData,  $price, $description, $customer_id, $status;
     public $perpage = 5, $search = '';
     protected $listeners =  ['delete'];
 
     public function deleteConfirmation ($number) {
-        $data = Invoice::where('number', $number )->first();
-        $formattedNumber = invNumberFormat($number, $data->invoice_date);
+        $data = Quotation::where('number', $number )->first();
+        $formattedNumber = quoNumberFormat($number, $data->quotation_date);
         $company = getCompany($data->customer_id);
         $this->dispatchBrowserEvent('delete_confirmation', [
             'title' => 'Are you sure',
@@ -34,9 +33,9 @@ class Invoicewr extends Component
         $number = $id;
 
         if($id != null) {
-            $data = Invoice::where('number', $number)->get();
+            $data = Quotation::where('number', $number)->get();
             foreach($data as $d) {
-                $record = Invoice::find($d->id);
+                $record = Quotation::find($d->id);
                 $record->delete();
             }
         }
@@ -48,12 +47,22 @@ class Invoicewr extends Component
         $this->resetPage();
     }
 
+    public function mount () {
+        // $this->customer = Customer::all();
+        // $this->packageData = Package::all();
+    }
+
+    public function updatedPackage () {
+        if($this->package) {
+            $data = Package::where('package', $this->package)->first();
+            $this->price = $data->price;
+            $this->description = $data->description;
+        }
+    }
+
     public function render()
     {
-        // $data = Invoice::orderby('id', 'desc')->distinct('number')->paginate($this->perpage);
-        // $data = DB::table('invoices')->distinct('number')->count('price')->paginate($this->perpage);
-
-        $data = DB::table('invoices')->groupBy('number')->orderBy('number', 'desc')->paginate($this->perpage);
-        return view('livewire.invoicewr', compact(['data']));
+        $data = DB::table('quotations')->groupBy('number')->orderBy('number', 'desc')->paginate($this->perpage);
+        return view('livewire.quotationwr', compact(['data']));
     }
 }

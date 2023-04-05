@@ -2,19 +2,17 @@
 
 namespace App\Mail;
 
-use App\Models\Invoice;
 use App\Models\Customer;
-use Illuminate\Http\Request;
+use App\Models\Quotation;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class InvoiceMail extends Mailable
+class quotationMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -23,10 +21,10 @@ class InvoiceMail extends Mailable
      */
     public $number;
 
+
     public function __construct($number)
     {
         $this->number = $number;
-        // ini kah
     }
 
     /**
@@ -34,15 +32,13 @@ class InvoiceMail extends Mailable
      */
     public function envelope(): Envelope
     {
-        $invoice = Invoice::where('number', $this->number)->first();
-        $customer = Customer::where('id', $invoice->customer_id)->first();
-        $invoice_number = invNumberFormat($this->number, $invoice->invoice_date);
+        $quotation = Quotation::where('number', $this->number)->first();
+        $customer = Customer::where('id', $quotation->customer_id)->first();
+        $quotation_number = quoNumberFormat($this->number, $quotation->quotation_date);
         // $month = month($invoice->due_date);
-        $month = getMonthName($invoice->due_date);
-        $subject = 'Invoice '.$invoice_number. ' '.$customer->company .' for ' . $month;
-
+        $month = getMonthName($quotation->due_date);
+        $subject = 'Quotation '.$quotation_number. ' '.$customer->company .' for ' . $month;
         return new Envelope(
-            // subject: 'Invoice Mail',
             subject: $subject,
             cc: ['anton.pru@gmail.com', 'anton.phangesti@gmail.com'],
             from: 'michelle@blueskycreation.id',
@@ -55,14 +51,13 @@ class InvoiceMail extends Mailable
      */
     public function content(): Content
     {
-        $invoice = Invoice::where('number', $this->number)->first();
-        $customer = Customer::where('id', $invoice->customer_id)->first();
-        $invoice_number = invNumberFormat($this->number, $invoice->invoice_date);
-
+        $quotation = Quotation::where('number', $this->number)->first();
+        $customer = Customer::where('id', $quotation->customer_id)->first();
+        $quotation_number = invNumberFormat($this->number, $quotation->quotation_date);
         return new Content(
-            view: 'pdf.invoiceEmailTemplate',
-            with: ['title' => $customer->salutation,  'custName' => $customer->name, 'invoice_number' => $invoice_number,
-            'company' => $customer->company, 'due_date' => tanggal($invoice->due_date)
+            view: 'pdf.quotationEmailTemplate',
+            with: ['title' => $customer->salutation,  'custName' => $customer->name, 'quotation_number' => $quotation_number,
+            'company' => $customer->company,
             ],
         );
     }
@@ -74,11 +69,10 @@ class InvoiceMail extends Mailable
      */
     public function attachments(): array
     {
-        // $pdfFileName = 'BlueSkyCreation_' . invNumberFormat($number, $invoice->invoice_date) . '.pdf';
-        $invoices = Invoice::where('number', $this->number)->get();
-        $invoice = Invoice::where('number', $this->number)->first();
-        $customer = Customer::find($invoice->customer_id);
-        $pdfFileName = 'BlueSkyCreation_' . invNumberFormat($this->number, $invoice->invoice_date) . '.pdf';
+        $quotations = Quotation::where('number', $this->number)->get();
+        $quotation = Quotation::where('number', $this->number)->first();
+        $customer = Customer::find($quotation->customer_id);
+        $pdfFileName = 'BlueSkyCreation_' . invNumberFormat($this->number, $quotation->quotation_date) . '.pdf';
         $footer = '<table style="width: 100%">
         <tr>
             <td style="width: 33%; text-align:left ;  ">
@@ -96,7 +90,7 @@ class InvoiceMail extends Mailable
 
         ob_get_clean();
 
-        $html = view('pdf.invoicepdftemplate', compact(['invoices', 'invoice', 'customer']));
+        $html = view('pdf.quotationpdftemplate', compact(['quotations', 'quotation', 'customer']));
         $mpdf->WriteHTML($html);
         $pdf = $mpdf->Output('', 'S');
         return [

@@ -7,7 +7,11 @@
                     <th scope="col" class="px-6 py-3">#</th>
                     <th scope="col" class="px-6 py-3">Package</th>
                     <th scope="col" class="px-6 py-3">Price</th>
-                    <th scope="col" class="px-6 py-3">Action</th>
+                    <th scope="col" class="px-6 py-3">Description</th>
+                    <th scope="col" class="px-6 py-3">
+                        <button @click="addPackage=true"
+                            class="px-3 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700">Add</button>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -16,12 +20,12 @@
                         <td class="px-6 py-4">{{ $loop->iteration }}</td>
                         <td class="px-6 py-4">{{ $d->package }}</td>
                         <td class="px-6 py-4">{{ number_format($d->price) }}</td>
+                        <td class="px-6 py-4">{{ $d->description }}</td>
 
                         <td class="px-6 py-4">
                             <div class="flex gap-2">
 
-                                <button @click="addPackage=true"
-                                    class="px-3 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700">Add</button>
+
                                 <button @click="editPackage=true" wire:click="editPackage({{ $d->id }})"
                                     class="px-3 py-2 text-white bg-teal-500 rounded-lg hover:bg-teal-700">Edit</button>
                                 <button wire:click="deleteConfirmation({{ $d->id }})"

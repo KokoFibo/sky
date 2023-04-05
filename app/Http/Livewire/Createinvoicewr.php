@@ -41,7 +41,7 @@ class Createinvoicewr extends Component
             $this->invoices[$index]['price'] = $data->price;
         }
     }
-    
+
 
     public function add_row()
     {
@@ -207,12 +207,10 @@ class Createinvoicewr extends Component
         $this->packageData = Package::all();
         // $this->clear();
         $this->createInvoice();
-
     }
 
     public function render()
     {
-
         return view('livewire.createinvoicewr');
     }
 }

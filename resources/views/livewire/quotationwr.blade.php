@@ -1,8 +1,8 @@
 <div>
-    @section('title', 'Invoice')
+    @section('title', 'Quotation')
 
 
-    <h1 class="my-5 text-2xl font-semibold text-center">Invoice</h1>
+    <h1 class="my-5 text-2xl font-semibold text-center">Quotation</h1>
     {{-- per Page --}}
     <div class="flex justify-between px-10">
         <x-text-input id="search" class="block w-full mt-1 lg:w-1/5" type="search" name="search" :value="old('search')"
@@ -25,31 +25,32 @@
                     <th scope="col" class="px-6 py-3">#</th>
                     <th scope="col" class="px-6 py-3">Number</th>
                     <th scope="col" class="px-6 py-3">Customer</th>
-                    <th scope="col" class="px-6 py-3">Total</th>
-                    <th scope="col" class="px-6 py-3">Invoice Date</th>
-                    <th scope="col" class="px-6 py-3">Due Date</th>
+                    <th scope="col" class="px-6 py-3">Package</th>
+                    <th scope="col" class="px-6 py-3">Price</th>
+                    <th scope="col" class="px-6 py-3">Description</th>
+                    <th scope="col" class="px-6 py-3">Date</th>
+                    <th scope="col" class="px-6 py-3">Emailed At</th>
                     <th scope="col" class="px-6 py-3">Status</th>
                     <th scope="col" class="px-6 py-3">
-                        <a href="/createinvoice">
-                            <x-blue-button>Create Invoice
-                            </x-blue-button>
-                        </a>
+                        <a href="/createquotation"><button
+                                class="px-3 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700">Create
+                                Quotation</button></a>
                     </th>
                 </tr>
             </thead>
             <tbody>
                 @if (!empty($data))
 
-
                     @foreach ($data as $key => $d)
                         <tr class="border-b dark:bg-gray-800 dark:border-gray-700 even:bg-gray-200 hover:bg-blue-200">
                             <td class="px-6 py-4">{{ $loop->iteration }}</td>
-                            <td class="px-6 py-4">{{ invNumberFormat($d->number, $d->invoice_date) }}</td>
+                            <td class="px-6 py-4">{{ quoNumberFormat($d->number, $d->quotation_date) }}</td>
                             <td class="px-6 py-4">{{ getCompany($d->customer_id) }}</td>
-                            <td class="px-6 py-4 text-right">
-                                {{ number_format(getTotal($d->number)) }}</td>
-                            <td class="px-6 py-4">{{ tanggal($d->invoice_date) }}</td>
-                            <td class="px-6 py-4">{{ tanggal($d->due_date) }}</td>
+                            <td class="px-6 py-4">{{ $d->package }}</td>
+                            <td class="px-6 py-4">{{ number_format($d->price) }}</td>
+                            <td class="px-6 py-4">{{ $d->description }}</td>
+                            <td class="px-6 py-4">{{ tanggal($d->quotation_date) }}</td>
+                            <td class="px-6 py-4">{{ tanggal_with_Jam($d->emailed_at) }}</td>
                             <td class="px-6 py-4">
                                 @if ($d->status == 'Draft')
                                     <button
@@ -66,53 +67,31 @@
                                 @endif
 
                             </td>
-                            <td>
-                                <div class="flex gap-1">
-                                    <a href="/updateinvoice/{{ $d->number }}"><button
-                                            class="px-3 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700">Update</button></a>
+
+                            <td class="px-6 py-4">
+                                <div class="flex gap-2">
+                                    <a href="/updatequotation/{{ $d->number }}"><button
+                                            class="px-3 py-2 text-white bg-teal-500 rounded-lg hover:bg-teal-700">Update</button></a>
                                     <button wire:click="deleteConfirmation({{ $d->number }})"
                                         class="px-3 py-2 text-white bg-red-500 rounded-lg hover:bg-red-700">Delete</button>
-                                    <a href="/pdftemplate/{{ $d->number }}"> <button
-                                            class="px-3 py-2 text-white bg-teal-500 rounded-lg hover:bg-teal-700">Email</button></a>
+                                    <a href="/quotationtemplate/{{ $d->number }}"><button
+                                            class="px-3 py-2 text-white bg-blue-500 rounded-lg hover:bg-red-700">Email</button></a>
                                 </div>
-
                             </td>
                         </tr>
                     @endforeach
                 @else
                     <tr class="border-b dark:bg-gray-800 dark:border-gray-700 even:bg-gray-200 hover:bg-blue-200">
-                        <td class="px-6 py-4">
-                            <h4 class="text-xl">Sorry, no data found</h4>
-                        </td>
+                        <td class="px-6 py-4">No data Found !</td>
                     </tr>
-
                 @endif
+
             </tbody>
         </table>
-        <div class="my-3">
+
+        <div class="px-6 mt-3">
             {{ $data->links() }}
         </div>
     </div>
-</div>
 
-
-@push('script')
-    <script>
-        $(document).ready(function() {
-            // toastr.options.timeOut = 5000;
-            @if (Session::has('error'))
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: 'Fail Sending Email!',
-                    footer: 'Unknown Email Address'
-                })
-                // toastr.error('{{ Session::get('error') }}');
-            @elseif (Session::has('success'))
-                toastr.options.timeOut = 5000;
-                toastr.success('{{ Session::get('success') }}');
-            @endif
-        });
-    </script>
-@endpush
 </div>

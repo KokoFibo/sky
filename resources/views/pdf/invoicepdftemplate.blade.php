@@ -271,18 +271,9 @@
 
     <div>
     </div>
-    {{-- <div class="footer"> --}}
-    {{-- <htmlpagefooter name="myFooter2"> --}}
-    <hr>
-    <table style="width: 100%">
-        <tr>
-            <td style="width: 33%;">www.blueskycreation.id</td>
-            <td style="width: 33%; text-align:center">087 780 620 632</td>
-            <td style="width: 33%; : right;">hello@blueskycreation.id</td>
-        </tr>
-    </table>
+
+
     </div>
-    {{-- </htmlpagefooter> --}}
 </body>
 
 </html>

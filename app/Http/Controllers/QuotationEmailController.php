@@ -2,33 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use Mpdf\Mpdf;
 use Carbon\Carbon;
-use App\Models\Invoice;
 use App\Models\Customer;
-use App\Mail\InvoiceMail;
+use App\Models\Quotation;
+use App\Mail\quotationMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Storage;
 
-class InvoiceEmailController extends Controller
+class QuotationEmailController extends Controller
 {
     public function index($number)
     {
-        $invoices = Invoice::where('number', $number)->get();
-        $invoice = Invoice::where('number', $number)->first();
-        $customer = Customer::find($invoice->customer_id);
 
-        return view('pdf.invoicepdf', compact(['invoices', 'invoice', 'customer']));
+        $quotations = Quotation::where('number', $number)->get();
+        $quotation = Quotation::where('number', $number)->first();
+        $customer = Customer::find($quotation->customer_id);
+
+        return view('pdf.quotationpdf', compact(['quotations', 'quotation', 'customer']));
     }
 
     public function pdf($number)
     {
-        $invoices = Invoice::where('number', $number)->get();
-        $invoice = Invoice::where('number', $number)->first();
-        $customer = Customer::find($invoice->customer_id);
-        $saveLocation = 'public/storage/pdf/';
-        $pdfFileName = 'BlueSkyCreation_' . invNumberFormat($number, $invoice->invoice_date) . '.pdf';
+        $quotations = Quotation::where('number', $number)->get();
+        $quotation = Quotation::where('number', $number)->first();
+        $customer = Customer::find($quotation->customer_id);
+        // $saveLocation = 'public/storage/pdf/';
+        $pdfFileName = 'BlueSkyCreation_' . quoNumberFormat($number, $quotation->quotation_date) . '.pdf';
         $footer = '<table style="width: 100%">
         <tr>
             <td style="width: 33%; text-align:left ;  ">
@@ -41,16 +40,15 @@ class InvoiceEmailController extends Controller
                     width="30px" style="width: 15px;"> hello@blueskycreation.id</td>
         </tr>
     </table>';
-
+        // $mpdf = new \Mpdf\Mpdf();
         $mpdf = new \Mpdf\Mpdf();
         $mpdf->SetFooter($footer);
-
         ob_get_clean();
         $data['email'] = 'testaja@testaja.com';
         $data['subject'] = 'ini adalah title atau judulnya';
         $data['body'] = 'ini adalah body atau isi dari emailnya';
 
-        $html = view('pdf.invoicepdftemplate', compact(['invoices', 'invoice', 'customer']));
+        $html = view('pdf.quotationpdftemplate', compact(['quotations', 'quotation', 'customer']));
         $mpdf->WriteHTML($html);
 
         $mpdf->Output($pdfFileName,\Mpdf\Output\Destination::DOWNLOAD);
@@ -60,32 +58,24 @@ class InvoiceEmailController extends Controller
     }
 
 
-
-
-
-    public function kirimemail ($number) {
+    public function quotationEmail ($number) {
         // Mail::to('kokonaci@gmail.com')->send(new InvoiceMail($number));
         try {
-            Mail::send(new InvoiceMail($number));
-            $data = Invoice::where('number', $number)->get();
+            Mail::send(new quotationMail($number));
+            $data = Quotation::where('number', $number)->get();
             foreach($data as $d){
 
                  $d->emailed_at = Carbon::parse(Carbon::now())->format('Y-m-d H:i:s');
                 // $d->status = 'Emailed';
                 $d->save();
             }
-            return redirect( route('invoice'))->with('success', 'Email sent');
+            return redirect( route('quotation'))->with('success', 'Email sent');
 
         } catch (\Exception $e) {
             // dd('ada kesalahan email');
             //  return $e->getMessage();
-            return redirect( route('invoice'))->with('error', 'Fail Sending Email');
+            return redirect( route('quotation'))->with('error', 'Fail Sending Email');
 
         }
     }
-
-
-
-
 }
-

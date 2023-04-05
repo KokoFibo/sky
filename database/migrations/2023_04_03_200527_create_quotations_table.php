@@ -11,11 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('packages', function (Blueprint $table) {
+        Schema::create('quotations', function (Blueprint $table) {
             $table->id();
+            $table->string('number');
+            $table->date('quotation_date');
+            $table->foreignId('customer_id');
             $table->string('package');
             $table->integer('price');
-            $table->string('description', 500);
+            $table->string('description');
+            $table->string('status');
+            $table->dateTime('emailed_at')->nullable;
             $table->timestamps();
         });
     }
@@ -25,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('packages');
+        Schema::dropIfExists('quotations');
     }
 };
