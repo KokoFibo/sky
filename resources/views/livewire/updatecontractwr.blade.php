@@ -1,6 +1,6 @@
 <div>
     <div class="w-3/4 mx-auto mt-3 text-black bg-white shadow rounded-xl border-1">
-        <h2 class="py-3 text-2xl font-semibold text-center">Update Invoice</h2>
+        <h2 class="py-3 text-2xl font-semibold text-center">Update Contract</h2>
     </div>
     @if (Session::has('message'))
         <script>
@@ -120,6 +120,10 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="flex justify-between">
+            <div></div>
+            <button class="w-20 my-3 button button-black" wire:click="back">Back</button>
+        </div>
 
     </div>
 

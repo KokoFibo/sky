@@ -19,29 +19,23 @@ class Updatecontractwr extends Component
 
     protected $listeners =  ['delete'];
 
-    public function deleteConfirmation ($number) {
-        $data = Contract::where('contract_number', $number )->first();
-        $formattedNumber = contractNumberFormat($number);
-        $company = getCompany($data->customer_id);
+    public function deleteConfirmation ($id) {
         $this->dispatchBrowserEvent('delete_confirmation', [
             'title' => 'Are you sure',
-            'text' => "to delete " . $formattedNumber. " of ". $company. " data?",
+            'text' => "to delete this data?",
             'icon' => 'warning',
-            'id' => $number,
+            'id' => $id,
         ]);
     }
 
     public function delete ($id) {
-        $number = $id;
-
         if($id != null) {
-            $data = Contract::where('contract_number', $number)->get();
-            foreach($data as $d) {
-                $record = Contract::find($d->id);
-                $record->delete();
-            }
+            $data = Contract::find($id);
+            $data->delete();
+            $this->contract = Contract::where('contract_number', $this->current_number)->get();
+
+            $this->dispatchBrowserEvent('success', ['message' => 'Data Deleted']);
         }
-        $this->dispatchBrowserEvent('success', ['message' => 'Data Deleted']);
     }
 
     public function mount ($current_number) {
