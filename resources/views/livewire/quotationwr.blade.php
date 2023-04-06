@@ -5,7 +5,9 @@
     </div>
     <div x-show="!openModal">
 
-
+        {{-- <div class="px-10 mx-auto mt-3 text-black bg-white shadow rounded-xl border-1">
+            <h2 class="py-3 text-2xl font-semibold text-center">Quotation</h2>
+        </div> --}}
         <h1 class="my-5 text-2xl font-semibold text-center">Quotation</h1>
         {{-- per Page --}}
         <div class="flex justify-between px-10">

@@ -4,6 +4,7 @@ use App\Mail\Test;
 use App\Mail\InvoiceMail;
 use App\Http\Livewire\Invoicewr;
 use App\Http\Livewire\Packagewr;
+use App\Http\Livewire\Contractwr;
 use App\Http\Livewire\Customerwr;
 use App\Http\Livewire\Quotationwr;
 use App\Http\Livewire\Addinvoicewr;
@@ -69,6 +70,8 @@ Route::get('/kirimemail/{number}', [InvoiceEmailController::class, 'kirimemail']
 Route::get('/quotationtemplate/{number}', [QuotationEmailController::class, 'index']);
 Route::get('/quotationpdf/{number}', [QuotationEmailController::class, 'pdf']);
 Route::get('/quotationEmail/{number}', [QuotationEmailController::class, 'quotationEmail']);
+
+Route::get('/contract', Contractwr::class)->name('contract');
 
 
 });
