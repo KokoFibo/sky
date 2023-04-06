@@ -2,6 +2,7 @@
 
 use Carbon\Carbon;
 use App\Models\Invoice;
+use App\Models\Contract;
 use App\Models\Customer;
 use App\Models\Quotation;
 
@@ -109,10 +110,29 @@ function getQuotationNumber()
 
     return 'QUO' . strval($year - 2000) . (string) $month . (string) $data;
 }
+function getContractNumber()
+{
+    $now = Carbon::now();
+    $year = $now->year;
+    $month = $now->month;
+    if ($month < 10) {
+        $month = '0' . (string) $month;
+    }
+    $data = Contract::withTrashed()->max('contract_number') + 1;
+    if ($data < 10) {
+        $data = '0' . (string) $data;
+    }
+
+    return 'CTR' . strval($year - 2000) . (string) $month . (string) $data;
+}
 
 function getInvoiceRealNumber()
 {
     return $data = Invoice::withTrashed()->max('number') + 1;
+}
+function getContractRealNumber()
+{
+    return $data = Contract::withTrashed()->max('contract_number') + 1;
 }
 
 function getQuotationRealNumber()
@@ -191,6 +211,9 @@ function getQuotationData ($number) {
         return $data;
     }
 }
+
+
+
 
 
 function tanggal_with_hari($tgl){

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('quotations', function (Blueprint $table) {
             $table->id();
-            $table->string('number');
+            $table->integer('number');
             $table->date('quotation_date');
             $table->foreignId('customer_id');
             $table->string('package');

@@ -14,9 +14,14 @@ return new class extends Migration
         Schema::create('contracts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id');
-            $table->string('contract_number');
+            $table->integer('contract_number');
+            $table->string('package');
+            $table->integer('price');
+            $table->integer('qty');
+            $table->string('description', 500);
             $table->date('contract_begin');
             $table->date('contract_end');
+            $table->string('status');
             $table->timestamp('deleted_at')->nullable();
 
             $table->timestamps();

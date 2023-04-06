@@ -3,11 +3,14 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use App\Models\Contract;
 
 class Contractwr extends Component
 {
+    public $perpage = 5, $search = '';
     public function render()
     {
-        return view('livewire.contractwr');
+        $data = Contract::groupBy('contract_number')->orderBy('contract_number', 'desc')->paginate($this->perpage);
+        return view('livewire.contractwr', compact(['data']));
     }
 }

@@ -14,26 +14,6 @@ class Createinvoicewr extends Component
     public $number,  $price,  $qty, $tax,  $invoice_date, $due_date, $status, $package_id, $invoice_id, $paket;
     public $invoices = [], $package, $contract, $customer, $customer_id;
     public $lolos, $dataContract,$discount, $subtotal, $total, $test;
-    // public $perpage = 5, $search = '';
-
-    // public $contract, $contract_id, $dataContract;
-    // protected $listeners = ['delete'];
-    // public $customer, $packageData, $lolos;
-
-    // protected $rules = [
-    //     'invoices.*.number' => 'required',
-    //     'invoices.*.invoice_date' => 'required',
-    //     'invoices.*.due_date' => 'required',
-    //     'invoices.*.customer_id' => 'required',
-    //     'invoices.*.contract' => 'required',
-    //     'invoices.*.package' => 'required',
-    //     'invoices.*.price' => 'required|integer',
-    //     'invoices.*.qty' => 'required|integer',
-    //     'invoices.*.tax' => 'nullable',
-    //     'invoices.*.discount' => 'nullable|integer',
-    //     'invoices.*.status' => 'nullable',
-    // ];
-
 
     public function updatePrice ($index) {
         $data = Package::where('package', $this->invoices[$index]['package'])->first();
@@ -41,7 +21,6 @@ class Createinvoicewr extends Component
             $this->invoices[$index]['price'] = $data->price;
         }
     }
-
 
     public function add_row()
     {

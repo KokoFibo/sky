@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Createinvoicewr;
 use App\Http\Livewire\Editquotationwr;
 use App\Http\Livewire\Updateinvoicewr;
+use App\Http\Livewire\Createcontractwr;
 use App\Http\Livewire\Createquotationwr;
 use App\Http\Livewire\Updatequotationwr;
 use App\Http\Controllers\ProfileController;
@@ -72,6 +73,8 @@ Route::get('/quotationpdf/{number}', [QuotationEmailController::class, 'pdf']);
 Route::get('/quotationEmail/{number}', [QuotationEmailController::class, 'quotationEmail']);
 
 Route::get('/contract', Contractwr::class)->name('contract');
+Route::get('/createcontract', Createcontractwr::class)->name('createcontract');
+
 
 
 });
