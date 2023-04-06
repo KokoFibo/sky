@@ -20,6 +20,7 @@ use App\Http\Livewire\Createquotationwr;
 use App\Http\Livewire\Updatequotationwr;
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Updatedetailinvoicewr;
+use App\Http\Livewire\Updatedetailcontractwr;
 use App\Http\Livewire\Updatedetailquotationwr;
 use App\Http\Controllers\InvoiceEmailController;
 use App\Http\Controllers\QuotationEmailController;
@@ -76,6 +77,8 @@ Route::get('/quotationEmail/{number}', [QuotationEmailController::class, 'quotat
 Route::get('/contract', Contractwr::class)->name('contract');
 Route::get('/createcontract', Createcontractwr::class)->name('createcontract');
 Route::get('/updatecontract/{current_number}', Updatecontractwr::class)->name('updatecontract');
+Route::get('/updatedetailcontract/{current_id}/{number}', Updatedetailcontractwr::class)->name('updatedetailcontract');
+
 
 
 

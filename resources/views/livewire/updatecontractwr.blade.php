@@ -105,12 +105,15 @@
                         <td class="px-6 py-4">{{ $i->description }}</td>
 
                         <td>
+                            <div class="flex gap-2">
 
-                            <a href="/updatedetailcontract/{{ $i->id }}/{{ $i->contract_number }}"><button
-                                    class="button button-teal">Edit</button></a>
+                                <a href="/updatedetailcontract/{{ $i->id }}/{{ $i->contract_number }}"><button
+                                        class="button button-teal">Edit</button></a>
 
-                            <button class="button button-red"
-                                wire:click="deleteConfirmation({{ $i->id }})">Delete</button>
+                                <button class="button button-red"
+                                    wire:click="deleteConfirmation({{ $i->id }})">Delete</button>
+                            </div>
+
 
                         </td>
                     </tr>
