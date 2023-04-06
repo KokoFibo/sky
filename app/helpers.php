@@ -185,6 +185,13 @@ function roundedTotal($subtotal, $discount, $tax)
     }
     return $total = round(((($subtotal - $discount) / (100 - $tax)) * 100) / 1000) * 1000;
 }
+function getQuotationData ($number) {
+    if($number != null) {
+        $data = Quotation::where('number', $number)->get();
+        return $data;
+    }
+}
+
 
 function tanggal_with_hari($tgl){
     return date('D, d M Y', strtotime($tgl));
