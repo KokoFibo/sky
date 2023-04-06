@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('contract_begin');
             $table->date('contract_end');
             $table->string('status');
+            $table->string('pdf');
             $table->timestamp('deleted_at')->nullable();
 
             $table->timestamps();

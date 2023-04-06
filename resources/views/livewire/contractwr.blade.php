@@ -47,8 +47,13 @@
                                 <div class="flex gap-2">
                                     <a href="/updatecontract/{{ $d->contract_number }}"><button
                                             class="button button-teal">Update</button></a>
+
                                     <button wire:click="deleteConfirmation({{ $d->contract_number }})"
                                         class="button button-red">Delete</button>
+                                    @if ($d->pdf != null)
+                                        <button wire:click="downloadpdf({{ $d->contract_number }})"
+                                            class="button button-blue">Download</button>
+                                    @endif
                                 </div>
                             </td>
 

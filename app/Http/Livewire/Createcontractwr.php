@@ -48,6 +48,21 @@ class Createcontractwr extends Component
 
     public function saveContract()
     {
+
+        $this->validate([
+            'pdf' => 'file|max:1024|nullable', // 1MB Max
+        ]);
+        if($this->pdf != null) {
+            $filename = $this->pdf->store('pdfs');
+
+        } else {
+            $filename='';
+        }
+
+
+
+
+
         for($i = 0; $i < count($this->contracts); $i++){
             if($this->contracts[$i]['package'] == "" || $this->contracts[$i]['price'] <= 0 ||  $this->contracts[$i]['qty'] <= 0
             || $this->contracts[$i]['description'] == "" || $this->contract_begin == null || $this->contract_end == null) {
@@ -72,6 +87,8 @@ class Createcontractwr extends Component
                     'price' => $value['price'],
                     'qty' => $value['qty'],
                     'description' => $value['description'],
+                    'description' => $value['description'],
+                    'pdf' => $filename,
                     'status' => $value['status'],
                 ]);
             }
@@ -82,16 +99,15 @@ class Createcontractwr extends Component
             $this->dispatchBrowserEvent('error', ['message' => 'Data incomplete']);
         }
 
-        $this->validate([
-            'pdf' => 'pdf|max:1024', // 1MB Max
-        ]);
 
-        // $this->pdf->storeAs('pdf', 'test.pdf');
-        $filename = 'testaja.pdf';
-        $this->pdf->storeAs('product', $filename);
-        ProductImage::create([
-            'pdf' => $filename
-        ]);
+
+        $filename = $this->pdf->store('pdfs');
+
+        // $filename = 'testaja.pdf';
+        // $this->pdf->storeAs('product', $filename);
+        // ProductImage::create([
+        //     'pdf' => $filename
+        // ]);
     }
 
     public function createContract()
