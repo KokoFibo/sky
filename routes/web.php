@@ -8,6 +8,7 @@ use App\Http\Livewire\Contractwr;
 use App\Http\Livewire\Customerwr;
 use App\Http\Livewire\Quotationwr;
 use App\Http\Livewire\Addinvoicewr;
+use App\Http\Livewire\Addcontractwr;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Livewire\Addquotationwr;
 use Illuminate\Support\Facades\Route;
@@ -78,6 +79,8 @@ Route::get('/contract', Contractwr::class)->name('contract');
 Route::get('/createcontract', Createcontractwr::class)->name('createcontract');
 Route::get('/updatecontract/{current_number}', Updatecontractwr::class)->name('updatecontract');
 Route::get('/updatedetailcontract/{current_id}/{number}', Updatedetailcontractwr::class)->name('updatedetailcontract');
+Route::get('/addcontract/{contract_number}', Addcontractwr::class)->name('addcontract');
+
 
 
 

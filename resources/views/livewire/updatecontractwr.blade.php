@@ -82,7 +82,6 @@
 
     </div>
     {{-- table --}}
-
     <div class="w-3/4 p-3 mx-auto mt-3 text-black bg-white shadow rounded-xl border-1">
         <table class="w-full mx-auto mt-3 text-sm text-left text-gray-500 table-auto dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -92,7 +91,9 @@
                     <th scope="col" class="px-6 py-3">Qty</th>
                     <th scope="col" class="px-6 py-3">Description</th>
                     <th scope="col" class="px-6 py-3">
-                        <a href="/addcontract/{{ $number }}"><button class="button button-blue">Add</button></a>
+                        <a href="/addcontract/{{ $contract_number }}"><button
+                                class="button button-blue">Add</button></a>
+
                     </th>
                 </tr>
             </thead>
