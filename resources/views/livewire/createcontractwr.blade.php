@@ -3,7 +3,7 @@
         <h2 class="py-3 text-2xl font-semibold text-center">Create Contract</h2>
     </div>
 
-    <div class="w-3/4 p-3 mx-auto mt-3 text-black bg-white shadow rounded-xl border-1">
+    <div class="w-3/4 p-5 mx-auto mt-3 text-black bg-white shadow rounded-xl border-1">
         <div class="flex items-start justify-between w-full px-10 ">
             <div class="flex flex-col w-1/3 gap-3">
                 {{-- customer_id --}}
@@ -55,12 +55,25 @@
                         wire:model="contract_end" autocomplete="contract_end"
                         class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
+                <div class="flex ">
+                    <span
+                        class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                        Upload PDF
+                    </span>
+                    <input id="pdf" type="file" name="pdf" :value="old('pdf')" required wire:model="pdf"
+                        autocomplete="pdf"
+                        class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    @error('photo')
+                        <span class="error">{{ $message }}</span>
+                    @enderror
+                </div>
+
             </div>
         </div>
     </div>
     {{-- table --}}
     <div>
-        <table class="w-full mx-auto mt-3 text-sm text-left text-gray-500 dark:text-gray-400">
+        <table class="w-3/4 mx-auto mt-3 text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr class="text-white bg-gray-500 dark:text-white">
                     <th scope="col" class="px-6 py-3">#</th>
@@ -69,7 +82,7 @@
                     <th scope="col" class="px-6 py-3">Qty</th>
                     <th scope="col" class="px-6 py-3">Description</th>
                     <th scope="col" class="px-6 py-3">
-                        @if ($customer_id == '')
+                        @if ($customer_id == '' || $contract_begin == null || $contract_end == null)
                             <button wire:click="add_row" class="button button-gray" disabled>Add</button>
                         @else
                             <button wire:click="add_row" class="button button-blue">Add</button>
@@ -146,15 +159,20 @@
                 @endif
             </tbody>
         </table>
-        <div class="flex justify-between my-3 ">
-            <x-blue-button wire:click="saveContract">
-                {{ __('Save') }}
-            </x-blue-button>
-            <a href="/contract">
-                <x-primary-button>
-                    {{ __('Cancel') }}
-                </x-primary-button>
-            </a>
+
+
+        <div class="flex justify-between w-3/4 mx-auto my-3 ">
+            <div></div>
+            <div class="flex gap-2">
+                <x-blue-button wire:click="saveContract">
+                    {{ __('Save') }}
+                </x-blue-button>
+                <a href="/contract">
+                    <x-primary-button>
+                        {{ __('Cancel') }}
+                    </x-primary-button>
+                </a>
+            </div>
         </div>
     </div>
 

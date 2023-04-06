@@ -2,16 +2,20 @@
 
 namespace App\Http\Livewire;
 
+use Carbon\Carbon;
 use App\Models\Package;
 use Livewire\Component;
 use App\Models\Contract;
 use App\Models\Customer;
+use Livewire\WithFileUploads;
 
 class Createcontractwr extends Component
 {
+    use WithFileUploads;
     public $contract_number, $customer_id, $contract_begin, $contract_end, $package, $price, $qty=1, $description, $status;
     public $contracts = [];
-    public $lolos;
+    public $lolos, $canSave;
+    public $pdf;
 
     public function add_row()
     {
@@ -45,7 +49,8 @@ class Createcontractwr extends Component
     public function saveContract()
     {
         for($i = 0; $i < count($this->contracts); $i++){
-            if($this->contracts[$i]['package'] == "" || $this->contracts[$i]['price'] <= 0 ||  $this->contracts[$i]['qty'] <= 0 || $this->contracts[$i]['description'] == "") {
+            if($this->contracts[$i]['package'] == "" || $this->contracts[$i]['price'] <= 0 ||  $this->contracts[$i]['qty'] <= 0
+            || $this->contracts[$i]['description'] == "" || $this->contract_begin == null || $this->contract_end == null) {
                 $this->lolos = 0; break;
             } else {
                 $this->lolos = 1;
@@ -76,6 +81,17 @@ class Createcontractwr extends Component
         } else {
             $this->dispatchBrowserEvent('error', ['message' => 'Data incomplete']);
         }
+
+        $this->validate([
+            'pdf' => 'pdf|max:1024', // 1MB Max
+        ]);
+
+        // $this->pdf->storeAs('pdf', 'test.pdf');
+        $filename = 'testaja.pdf';
+        $this->pdf->storeAs('product', $filename);
+        ProductImage::create([
+            'pdf' => $filename
+        ]);
     }
 
     public function createContract()
@@ -104,6 +120,7 @@ class Createcontractwr extends Component
         $this->customer = Customer::all();
         $this->packageData = Package::all();
         $this->createContract();
+        $this->canSave = false;
     }
 
     public function render()
