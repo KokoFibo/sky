@@ -72,7 +72,6 @@ class QuotationEmailController extends Controller
             return redirect( route('quotation'))->with('success', 'Email sent');
 
         } catch (\Exception $e) {
-            // dd('ada kesalahan email');
             //  return $e->getMessage();
             return redirect( route('quotation'))->with('error', 'Fail Sending Email');
 

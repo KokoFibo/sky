@@ -18,22 +18,27 @@
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('customer')" :active="request()->routeIs('customer')">
-                        {{ __('Customer') }}
+                        {{ __('Customers') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('package')" :active="request()->routeIs('package')">
-                        {{ __('Package') }}
+                        {{ __('Packages') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('invoice')" :active="request()->routeIs('invoice')">
-                        {{ __('Invoice') }}
+                        {{ __('Invoices') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('quotation')" :active="request()->routeIs('quotation')">
-                        {{ __('Quotation') }}
+                        {{ __('Quotations') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('contract')" :active="request()->routeIs('contract')">
+                        {{ __('Contracts') }}
                     </x-nav-link>
                 </div>
 
@@ -102,22 +107,27 @@
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('customer')" :active="request()->routeIs('customer')">
-                {{ __('Customer') }}
+                {{ __('Customers') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('package')" :active="request()->routeIs('package')">
-                {{ __('Package') }}
+                {{ __('Packages') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('invoice')" :active="request()->routeIs('invoice')">
-                {{ __('Invoice') }}
+                {{ __('Invoices') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('quotation')" :active="request()->routeIs('quotation')">
-                {{ __('Quotation') }}
+                {{ __('Quotations') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('contract')" :active="request()->routeIs('contract')">
+                {{ __('Contracts') }}
             </x-responsive-nav-link>
         </div>
 

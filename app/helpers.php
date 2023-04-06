@@ -2,13 +2,14 @@
 
 use Carbon\Carbon;
 use App\Models\Invoice;
+use App\Models\Contract;
 use App\Models\Customer;
 use App\Models\Quotation;
 
 function getDetail($description)
 {
     if ($description != null) {
-        return explode(',', $description, 20);
+        return explode(',', $description);
     }
 }
 function getCustomerfromInvoiceNo($number)
@@ -86,7 +87,7 @@ function getInvoiceNumber()
     if ($month < 10) {
         $month = '0' . (string) $month;
     }
-    $data = Invoice::max('number') + 1;
+    $data = Invoice::withTrashed()->max('number') + 1;
     if ($data < 10) {
         $data = '0' . (string) $data;
     }
@@ -102,24 +103,42 @@ function getQuotationNumber()
     if ($month < 10) {
         $month = '0' . (string) $month;
     }
-    $data = Quotation::max('number') + 1;
+    $data = Quotation::withTrashed()->max('number') + 1;
     if ($data < 10) {
         $data = '0' . (string) $data;
     }
 
     return 'QUO' . strval($year - 2000) . (string) $month . (string) $data;
 }
+function getContractNumber()
+{
+    $now = Carbon::now();
+    $year = $now->year;
+    $month = $now->month;
+    if ($month < 10) {
+        $month = '0' . (string) $month;
+    }
+    $data = Contract::withTrashed()->max('contract_number') + 1;
+    if ($data < 10) {
+        $data = '0' . (string) $data;
+    }
+
+    return 'C/' . strval($year - 2000) . (string) $month .  '/' . (string) $data;
+}
 
 function getInvoiceRealNumber()
 {
-    $data = Invoice::max('number') + 1;
-    return $data = Invoice::max('number') + 1;
+    return $data = Invoice::withTrashed()->max('number') + 1;
+}
+function getContractRealNumber()
+{
+    return $data = Contract::withTrashed()->max('contract_number') + 1;
 }
 
 function getQuotationRealNumber()
 {
-    $data = Quotation::max('number') + 1;
-    return $data = Quotation::max('number') + 1;
+
+    return $data = Quotation::withTrashed()->max('number') + 1;
 }
 
 function getCompany($id)
@@ -162,6 +181,22 @@ function invNumberFormat($number, $invDate)
         return 'INV' . strval((int) $year - 2000) . $month . $data;
     }
 }
+function contractNumberFormat($number)
+{
+    if ($number != null) {
+        $newDate = Carbon::now();
+        $year = $newDate->format('Y');
+        $month = $newDate->format('m');
+        $data = '';
+
+        if ($number < 10) {
+            $data = '0' . (string) $number;
+        } else {
+            $data = (string) $number;
+        }
+        return 'C/' . strval((int) $year - 2000) . $month . '/'. $data;
+    }
+}
 function quoNumberFormat($number, $quoDate)
 {
     if ($number != null) {
@@ -186,12 +221,22 @@ function roundedTotal($subtotal, $discount, $tax)
     }
     return $total = round(((($subtotal - $discount) / (100 - $tax)) * 100) / 1000) * 1000;
 }
+function getQuotationData ($number) {
+    if($number != null) {
+        $data = Quotation::where('number', $number)->get();
+        return $data;
+    }
+}
+
+
+
+
 
 function tanggal_with_hari($tgl){
     return date('D, d M Y', strtotime($tgl));
 }
 function tanggal_with_Jam($tgl){
-    if($tgl == '0000-00-00 00:00:00') {
+    if($tgl == null) {
         return '-';
     } else {
 

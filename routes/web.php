@@ -4,19 +4,24 @@ use App\Mail\Test;
 use App\Mail\InvoiceMail;
 use App\Http\Livewire\Invoicewr;
 use App\Http\Livewire\Packagewr;
+use App\Http\Livewire\Contractwr;
 use App\Http\Livewire\Customerwr;
 use App\Http\Livewire\Quotationwr;
 use App\Http\Livewire\Addinvoicewr;
+use App\Http\Livewire\Addcontractwr;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Livewire\Addquotationwr;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Createinvoicewr;
 use App\Http\Livewire\Editquotationwr;
 use App\Http\Livewire\Updateinvoicewr;
+use App\Http\Livewire\Createcontractwr;
+use App\Http\Livewire\Updatecontractwr;
 use App\Http\Livewire\Createquotationwr;
 use App\Http\Livewire\Updatequotationwr;
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Updatedetailinvoicewr;
+use App\Http\Livewire\Updatedetailcontractwr;
 use App\Http\Livewire\Updatedetailquotationwr;
 use App\Http\Controllers\InvoiceEmailController;
 use App\Http\Controllers\QuotationEmailController;
@@ -69,6 +74,15 @@ Route::get('/kirimemail/{number}', [InvoiceEmailController::class, 'kirimemail']
 Route::get('/quotationtemplate/{number}', [QuotationEmailController::class, 'index']);
 Route::get('/quotationpdf/{number}', [QuotationEmailController::class, 'pdf']);
 Route::get('/quotationEmail/{number}', [QuotationEmailController::class, 'quotationEmail']);
+
+Route::get('/contract', Contractwr::class)->name('contract');
+Route::get('/createcontract', Createcontractwr::class)->name('createcontract');
+Route::get('/updatecontract/{current_number}', Updatecontractwr::class)->name('updatecontract');
+Route::get('/updatedetailcontract/{current_id}/{number}', Updatedetailcontractwr::class)->name('updatedetailcontract');
+Route::get('/addcontract/{contract_number}', Addcontractwr::class)->name('addcontract');
+
+
+
 
 
 });

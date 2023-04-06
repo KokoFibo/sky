@@ -3,7 +3,7 @@
         <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
     </div>
 
-    <div class="max-w-lg overflow-hidden transform bg-white rounded-lg sm:w-full sm:mx-auto">
+    <div class="overflow-hidden transform bg-white rounded-lg max-w-7xl sm:w-full sm:mx-auto">
         {{ $slot }}
     </div>
 </div>

@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('quotations', function (Blueprint $table) {
             $table->id();
-            $table->string('number');
+            $table->integer('number');
             $table->date('quotation_date');
             $table->foreignId('customer_id');
             $table->string('package');
             $table->integer('price');
-            $table->string('description');
+            $table->string('description',500);
             $table->string('status');
-            $table->dateTime('emailed_at')->nullable;
+            $table->timestamp('emailed_at')->nullable();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

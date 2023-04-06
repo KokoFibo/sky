@@ -165,6 +165,7 @@
         </div>
     </div>
 
+    {{-- table --}}
 
     <div class="w-3/4 p-3 mx-auto mt-3 text-black bg-white shadow rounded-xl border-1">
 

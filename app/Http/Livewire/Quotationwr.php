@@ -15,7 +15,32 @@ class Quotationwr extends Component
     use WithPagination;
     public $customer, $package, $packageData,  $price, $description, $customer_id, $status;
     public $perpage = 5, $search = '';
+    public $detailQuotation;
+    public $detailQuotations;
+    public $detailCustomer;
+    public $dcompany, $dquotation_date, $dpackage, $dprice, $ddescription, $demailed_at, $dstatus, $dquotation_number;
     protected $listeners =  ['delete'];
+
+    public function viewdata ($number) {
+        if($number != null) {
+            $this->detailQuotations = Quotation::where('number', $number)->get();
+            $this->detailQuotation = Quotation::where('number', $number)->first();
+            $this->detailCustomer = Customer::find($this->detailQuotation->customer_id);
+            $this->dcompany = $this->detailCustomer->company;
+            $this->dquotation_date = $this->detailQuotation->quotation_date;
+            $this->dpackage = $this->detailQuotation->package;
+            $this->dprice = $this->detailQuotation->price;
+            $this->ddescription = $this->detailQuotation->description;
+            $this->demailed_at = $this->detailQuotation->emailed_at;
+            $this->dstatus = $this->detailQuotation->status;
+            $this->dquotation_number = invNumberFormat($number, $this->detailQuotation->quotation_date);
+        }
+    }
+
+    public function mount () {
+        $this->detailQuotations = collect();
+        $this->detailCustomer =collect();
+    }
 
     public function deleteConfirmation ($number) {
         $data = Quotation::where('number', $number )->first();
@@ -47,10 +72,7 @@ class Quotationwr extends Component
         $this->resetPage();
     }
 
-    public function mount () {
-        // $this->customer = Customer::all();
-        // $this->packageData = Package::all();
-    }
+
 
     public function updatedPackage () {
         if($this->package) {
@@ -62,7 +84,8 @@ class Quotationwr extends Component
 
     public function render()
     {
-        $data = DB::table('quotations')->groupBy('number')->orderBy('number', 'desc')->paginate($this->perpage);
+        // $data = DB::table('quotations')->groupBy('number')->orderBy('number', 'desc')->paginate($this->perpage);
+        $data = Quotation::groupBy('number')->orderBy('number', 'desc')->paginate($this->perpage);
         return view('livewire.quotationwr', compact(['data']));
     }
 }
