@@ -46,7 +46,8 @@
                             <td class="px-6 py-4">
                                 <div class="flex gap-2">
                                     <a href="#"><button class="button button-teal">Update</button></a>
-                                    <a href="#"><button class="button button-red">Delete</button></a>
+                                    <a href="#"><button wire:click="deleteConfirmation({{ $d->contract_number }})"
+                                            class="button button-red">Delete</button></a>
                                 </div>
                             </td>
 

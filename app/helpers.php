@@ -123,7 +123,7 @@ function getContractNumber()
         $data = '0' . (string) $data;
     }
 
-    return 'CTR' . strval($year - 2000) . (string) $month . (string) $data;
+    return 'C/' . strval($year - 2000) . (string) $month .  '/' . (string) $data;
 }
 
 function getInvoiceRealNumber()
@@ -179,6 +179,22 @@ function invNumberFormat($number, $invDate)
             $data = (string) $number;
         }
         return 'INV' . strval((int) $year - 2000) . $month . $data;
+    }
+}
+function contractNumberFormat($number)
+{
+    if ($number != null) {
+        $newDate = Carbon::now();
+        $year = $newDate->format('Y');
+        $month = $newDate->format('m');
+        $data = '';
+
+        if ($number < 10) {
+            $data = '0' . (string) $number;
+        } else {
+            $data = (string) $number;
+        }
+        return 'C/' . strval((int) $year - 2000) . $month . '/'. $data;
     }
 }
 function quoNumberFormat($number, $quoDate)
