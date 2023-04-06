@@ -4,11 +4,20 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Contract;
+use Illuminate\Support\Facades\Storage;
 
 class Contractwr extends Component
 {
     public $perpage = 5, $search = '';
     protected $listeners =  ['delete'];
+
+    public function downloadpdf ($contract_number) {
+        $data = Contract::where('contract_number', $contract_number)->first();
+        // return response()->download(storage_path($pdf));
+        // return response()->download(storage_path($pdf));
+        // return Storage::download('pdfs\3Poxm6ik9vIoABHHO6pP6YBFa0kzr3zyvXT38Ty9.pdf');
+        return Storage::download($data->pdf);
+    }
 
 
     public function deleteConfirmation ($number) {
