@@ -19,11 +19,11 @@ return new class extends Migration
             $table->integer('price');
             $table->integer('qty');
             $table->string('description', 500);
+            $table->date('contract_date');
             $table->date('contract_begin');
             $table->date('contract_end');
             $table->string('status');
             $table->string('pdf');
-            // $table->string('pdfname');
             $table->timestamp('deleted_at')->nullable();
 
             $table->timestamps();

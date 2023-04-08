@@ -12,7 +12,7 @@ use Livewire\WithFileUploads;
 class Createcontractwr extends Component
 {
     use WithFileUploads;
-    public $contract_number, $customer_id, $contract_begin, $contract_end, $package, $price, $qty=1, $description, $status, $pdfname;
+    public $contract_number, $customer_id, $contract_date, $contract_begin, $contract_end, $package, $price, $qty=1, $description, $status, $pdfname;
     public $contracts = [];
     public $lolos, $canSave;
     public $pdf;
@@ -81,6 +81,7 @@ class Createcontractwr extends Component
             foreach ($this->contracts as $key => $value) {
                 $data = Contract::create([
                     'contract_number' => $value['contract_number'],
+                    'contract_date' => Carbon::now()->format('Y-m-d'),
                     'contract_begin' => $value['contract_begin'],
                     'contract_end' => $value['contract_end'],
                     'customer_id' => $value['customer_id'],

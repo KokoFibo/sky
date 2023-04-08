@@ -15,7 +15,7 @@ class Updatecontractwr extends Component
 {
     use WithFileUploads;
 
-    public $contract_number, $customer_id, $contract_begin, $contract_end, $package, $price, $qty=1, $description, $status;
+    public $contract_number, $customer_id, $contract_begin, $contract_end, $package, $price, $qty=1, $description, $status, $contract_date;
     public $contracts = [];
     public $lolos, $updateUpper;
     public $edit_price, $edit_description, $current_number, $number, $contract_number_full;
@@ -57,12 +57,14 @@ class Updatecontractwr extends Component
             $this->contract_begin = $i->contract_begin;
             $this->contract_end = $i->contract_end;
             $this->contract_number = $i->contract_number;
+            $this->contract_date = $i->contract_date;
+
             $this->status = $i->status;
             $this->prevPdf = $i->pdf;
 
         }
         $this->customer = Customer::all();
-        $this->contract_number_full = contractNumberFormat($current_number);
+        $this->contract_number_full = contractNumberFormat($current_number, $this->contract_date);
     }
 
     public function updatedEditPackage () {

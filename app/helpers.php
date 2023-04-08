@@ -181,10 +181,13 @@ function invNumberFormat($number, $invDate)
         return 'INV' . strval((int) $year - 2000) . $month . $data;
     }
 }
-function contractNumberFormat($number)
+function contractNumberFormat($number, $date)
 {
     if ($number != null) {
-        $newDate = Carbon::now();
+
+        // $newDate = Carbon::now();
+        $newDate = DateTime::createFromFormat('Y-m-d', $date);
+
         $year = $newDate->format('Y');
         $month = $newDate->format('m');
         $data = '';
