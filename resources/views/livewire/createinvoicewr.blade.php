@@ -173,9 +173,8 @@
             </tbody>
         </table>
 
-        <div class="flex justify-between px-10 mt-3">
+        <div class="flex justify-between w-full px-10 mt-3">
             <div>
-
             </div>
             <div class="flex flex-col gap-2 ">
                 {{-- Sub Total --}}
@@ -233,9 +232,10 @@
                     </a>
                 </div>
             </div>
-            <div class="invisible mb-5">
-                <hr class="invisible mt-5">
-            </div>
+        </div>
+
+        <div class="invisible mb-5">
+            <hr class="invisible mt-5">
         </div>
 
 
