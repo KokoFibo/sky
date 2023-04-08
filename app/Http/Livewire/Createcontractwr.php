@@ -12,7 +12,7 @@ use Livewire\WithFileUploads;
 class Createcontractwr extends Component
 {
     use WithFileUploads;
-    public $contract_number, $customer_id, $contract_begin, $contract_end, $package, $price, $qty=1, $description, $status;
+    public $contract_number, $customer_id, $contract_begin, $contract_end, $package, $price, $qty=1, $description, $status, $pdfname;
     public $contracts = [];
     public $lolos, $canSave;
     public $pdf;
@@ -31,6 +31,7 @@ class Createcontractwr extends Component
             'status' => 'Open',
         ];
     }
+
 
     public function updatePrice ($index) {
         $data = Package::where('package', $this->contracts[$index]['package'])->first();
@@ -53,7 +54,7 @@ class Createcontractwr extends Component
             'pdf' => 'file|max:1024|nullable', // 1MB Max
         ]);
         if($this->pdf != null) {
-            $filename = $this->pdf->store('pdfs');
+            $filename = $this->pdf->storeAs('pdfs',$this->pdf->getClientOriginalName());
 
         } else {
             $filename='';

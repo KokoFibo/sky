@@ -26,6 +26,7 @@
                     <th scope="col" class="px-6 py-3">Start Date</th>
                     <th scope="col" class="px-6 py-3">End Date</th>
                     <th scope="col" class="px-6 py-3">Status</th>
+                    <th scope="col" class="px-6 py-3">Created At</th>
                     <td scope="col" class="px-6 py-3">
                         <a href="/createcontract"><button class="button button-blue">Create Contract</button></a>
                     </td>
@@ -43,6 +44,7 @@
                             <td class="px-6 py-4">{{ $d->contract_begin }}</td>
                             <td class="px-6 py-4">{{ $d->contract_end }}</td>
                             <td class="px-6 py-4">{{ $d->status }}</td>
+                            <td class="px-6 py-4">{{ tanggal($d->created_at) }}</td>
                             <td class="px-6 py-4">
                                 <div class="flex gap-2">
                                     <a href="/updatecontract/{{ $d->contract_number }}"><button

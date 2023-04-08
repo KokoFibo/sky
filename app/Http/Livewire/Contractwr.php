@@ -13,9 +13,7 @@ class Contractwr extends Component
 
     public function downloadpdf ($contract_number) {
         $data = Contract::where('contract_number', $contract_number)->first();
-        // return response()->download(storage_path($pdf));
-        // return response()->download(storage_path($pdf));
-        // return Storage::download('pdfs\3Poxm6ik9vIoABHHO6pP6YBFa0kzr3zyvXT38Ty9.pdf');
+
         return Storage::download($data->pdf);
     }
 

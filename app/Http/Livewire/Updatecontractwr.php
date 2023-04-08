@@ -6,16 +6,22 @@ use App\Models\Package;
 use Livewire\Component;
 use App\Models\Contract;
 use App\Models\Customer;
+use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 
 class Updatecontractwr extends Component
 {
+    use WithFileUploads;
+
     public $contract_number, $customer_id, $contract_begin, $contract_end, $package, $price, $qty=1, $description, $status;
     public $contracts = [];
     public $lolos, $updateUpper;
     public $edit_price, $edit_description, $current_number, $number, $contract_number_full;
     public $current_id, $contract_id;
+    public $pdf, $prevPdf;
+
 
     protected $listeners =  ['delete'];
 
@@ -52,6 +58,7 @@ class Updatecontractwr extends Component
             $this->contract_end = $i->contract_end;
             $this->contract_number = $i->contract_number;
             $this->status = $i->status;
+            $this->prevPdf = $i->pdf;
 
         }
         $this->customer = Customer::all();
@@ -70,12 +77,26 @@ class Updatecontractwr extends Component
     public function updateUpper () {
         $data_id = Contract::where('contract_number', $this->current_number)->select('id')->get();
         if($data_id != null) {
+            $this->validate([
+                'pdf' => 'file|max:1024|nullable', // 1MB Max
+            ]);
+            if($this->pdf != null) {
+                Storage::delete($this->prevPdf);
+                $filename = $this->pdf->storeAs('pdfs',$this->pdf->getClientOriginalName());
+
+            }
+            else {
+                $filename='';
+            }
             foreach($data_id as $d) {
                 $data = Contract::find($d->id);
                 $data->customer_id = $this->customer_id;
                 $data->contract_begin = $this->contract_begin;
                 $data->contract_end = $this->contract_end;
                 $data->status = $this->status;
+                if($filename != null ) {
+                    $data->pdf = $filename;
+                }
                 $data->save();
             }
             $this->dispatchBrowserEvent('success', ['message' => 'Data Updated']);
