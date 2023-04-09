@@ -19,7 +19,7 @@ class Invoicewr extends Component
     public $detailInvoice;
     public $detailInvoices;
     public $detailCustomer;
-    public $invoice_number, $name, $contract, $discount, $tax, $invoice_date, $due_date, $emailed_at, $status;
+    public $invoice_number, $company, $contract, $discount, $tax, $invoice_date, $due_date, $emailed_at, $status;
     protected $listeners =  ['delete'];
 
     public function viewdata ($number) {
@@ -27,7 +27,7 @@ class Invoicewr extends Component
             $this->detailInvoices = Invoice::where('number', $number)->get();
             $this->detailInvoice = Invoice::where('number', $number)->first();
             $this->detailCustomer = Customer::find($this->detailInvoice->customer_id);
-            $this->name = $this->detailCustomer->name;
+            $this->company = $this->detailCustomer->company;
             $this->contract = $this->detailInvoice->contract;
             $this->discount = $this->detailInvoice->discount;
             $this->tax = $this->detailInvoice->tax;

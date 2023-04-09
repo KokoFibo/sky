@@ -96,6 +96,7 @@ class Updatecontractwr extends Component
                 $data->contract_begin = $this->contract_begin;
                 $data->contract_end = $this->contract_end;
                 $data->status = $this->status;
+                
                 if($filename != null ) {
                     $data->pdf = $filename;
                 }

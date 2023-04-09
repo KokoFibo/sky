@@ -13,7 +13,7 @@ class Updateinvoicewr extends Component
 {
     public $current_number, $invoice, $customer, $dataContract, $contract, $discount, $tax = 0.0, $status;
     public $customer_id, $invoice_date, $due_date, $number, $invoice_number, $invoice_id, $packages;
-    public $updateUpper, $current_id;
+    public $updateUpper, $current_id, $company;
     public $package, $price, $qty, $formattedTax = 0.0;
     protected $listeners =  ['delete'];
 
@@ -56,7 +56,13 @@ class Updateinvoicewr extends Component
 
         }
         $this->customer = Customer::all();
+        $data_company = Customer::find($this->customer_id);
+        $this->company = $data_company->company;
         $this->dataContract = Contract::where('customer_id', $this->customer_id)->get();
+        foreach($this->dataContract as $d) {
+            $this->contract_date = $d->contract_date;
+        }
+
         $this->invoice_number = invNumberFormat($this->number, $this->invoice_date);
 
 

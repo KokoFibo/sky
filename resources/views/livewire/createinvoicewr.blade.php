@@ -41,11 +41,10 @@
 
                         @if ($contract != '')
                             <option value="">Without Contract</option>
-                            <option value="{{ $contract }}">{{ $contract }}
+                            <option value="{{ $contract }}">{{ contractNumberFormat($contract, $contract_date) }}
                             </option>
                         @else
                             <option value="">No Contract</option>
-                            <option value="{{ $contract }}">{{ $contract }}
                         @endif
                     </select>
                 </div>

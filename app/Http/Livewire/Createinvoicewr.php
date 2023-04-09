@@ -12,7 +12,7 @@ use App\Models\Customer;
 class Createinvoicewr extends Component
 {
     public $number,  $price,  $qty, $tax,  $invoice_date, $due_date, $status, $package_id, $invoice_id, $paket;
-    public $invoices = [], $package, $contract, $customer, $customer_id;
+    public $invoices = [], $package, $contract, $contract_date, $customer, $customer_id;
     public $lolos, $dataContract,$discount, $subtotal, $total, $test;
 
     public function updatePrice ($index) {
@@ -47,6 +47,7 @@ class Createinvoicewr extends Component
 
     public function updatedContract () {
         $data = Contract::where('customer_id', $this->customer_id)->first();
+        $this->contract_date = $data->contract_date;
         if($this->contract != null) {
             if ($this->discount == null) {
                 $this->discount = 0;
@@ -78,6 +79,8 @@ class Createinvoicewr extends Component
             // $this->dataContract = Contract::where('customer_id', $this->customer_id)->first();
             // $this->contract = $this->dataContract->contract_number;
             $data = Contract::where('customer_id', $this->customer_id)->first();
+            $this->contract_date = $data->contract_date;
+
             $this->contract = $data->contract_number;
             if($this->contract != null) {
                 $this->delete_row(0);
