@@ -2,6 +2,8 @@
     <div class="w-3/4 mx-auto mt-3 text-black bg-white shadow rounded-xl border-1">
         <h2 class="py-3 text-2xl font-semibold text-center">Create Invoice</h2>
     </div>
+    <p>customer_id : {{ $this->customer_id }}</p>
+    <p>contract : {{ $this->contract }}</p>
     {{-- <div class="w-3/4 mx-auto text-black bg-white" style="height: 100vh;"> --}}
     <div class="w-3/4 p-3 mx-auto mt-3 text-black bg-white shadow rounded-xl border-1">
 
@@ -37,12 +39,14 @@
                 text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
                 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
-                        @if ($dataContract != null)
-                            @foreach ($dataContract as $c)
-                                <option value="{{ $c->contract_number }}">{{ $c->contract_number }}</option>
-                            @endforeach
+                        @if ($contract != '')
+                            <option value="">Without Contract</option>
+                            <option value="{{ $contract }}">{{ $contract }}
+                            </option>
+                        @else
+                            <option value="">No Contract</option>
+                            <option value="{{ $contract }}">{{ $contract }}
                         @endif
-                        <option value="">Without Contract</option>
                     </select>
                 </div>
             </div>
@@ -111,30 +115,39 @@
                         <tr x-data="{ packageManual: false }" @dblclick="packageManual = !packageManual"
                             class="border-b dark:bg-gray-800 dark:border-gray-700 even:bg-gray-200 hover:bg-blue-200">
                             <td class="px-6 py-4">{{ $loop->iteration }}</td>
-                            <td class="p-3 ">
-                                {{-- <td class="px-6 py-4"> --}}
-                                {{-- <div class="p-3 " x-data="{ packageManual: false }" @dblclick="packageManual = !packageManual "> --}}
-                                <div class="w-full " x-show="!packageManual">
-                                    <select wire:model="invoices.{{ $index }}.package"
-                                        wire:change="updatePrice({{ $index }})"
-                                        class="w-72  bg-gray-50 border rounded-lg border-gray-300 text-gray-600
+                            @if ($index == 0 && $contract != '')
+                                <td class="p-3 ">
+                                    <div class="w-full ">
+                                        <x-text-input class="w-full mt-1 marker:block" type="text" name="package"
+                                            wire:model.lazy="invoices.{{ $index }}.package" />
+                                    </div>
+                                </td>
+                            @else
+                                <td class="p-3 ">
+
+                                    <div class="w-full " x-show="!packageManual">
+                                        <select wire:model="invoices.{{ $index }}.package"
+                                            wire:change="updatePrice({{ $index }})"
+                                            class="w-72  bg-gray-50 border rounded-lg border-gray-300 text-gray-600
                     text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
                     dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option value="">Select Package</option>
-                                        @foreach ($packageData as $p)
-                                            <option value="{{ $p->package }}">{{ $p->package }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                            <option value="">Select Package</option>
+                                            @foreach ($packageData as $p)
+                                                <option value="{{ $p->package }}">{{ $p->package }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
 
-                                {{-- input package manual --}}
-                                <div class="w-full " x-show="packageManual">
-                                    <x-text-input class="w-full mt-1 marker:block" type="text" name="package"
-                                        :value="old('package')" required
-                                        wire:model.lazy="invoices.{{ $index }}.package" autocomplete="package" />
-                                </div>
-                                {{-- </div> --}}
-                            </td>
+                                    {{-- input package manual --}}
+                                    <div class="w-full " x-show="packageManual">
+                                        <x-text-input class="w-full mt-1 marker:block" type="text" name="package"
+                                            :value="old('package')" required
+                                            wire:model.lazy="invoices.{{ $index }}.package"
+                                            autocomplete="package" />
+                                    </div>
+                                    {{-- </div> --}}
+                                </td>
+                            @endif
                             <td class="px-6 py-4">
                                 {{-- input price --}}
                                 <div class="p-3 ">
@@ -160,13 +173,15 @@
                                         disabled onchange="Calc(this);" />
                                 </div>
                             </td>
+                            @if ($index != 0)
+                                <td class="px-6 py-4">
+                                    <div class="p-3 ">
+                                        <button wire:click="delete_row({{ $index }})" onclick="btnDel(this);"
+                                            class="button button-red">-</button>
+                                    </div>
+                                </td>
+                            @endif
 
-                            <td class="px-6 py-4">
-                                <div class="p-3 ">
-                                    <button wire:click="delete_row({{ $index }})" onclick="btnDel(this);"
-                                        class="button button-red">-</button>
-                                </div>
-                            </td>
                         </tr>
                     @endforeach
                 @endif

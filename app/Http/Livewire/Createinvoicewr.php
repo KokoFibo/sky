@@ -45,6 +45,76 @@ class Createinvoicewr extends Component
         ];
     }
 
+    public function updatedContract () {
+        $data = Contract::where('customer_id', $this->customer_id)->first();
+        if($this->contract != null) {
+            if ($this->discount == null) {
+                $this->discount = 0;
+            }
+            if ($this->tax == null) {
+                $this->tax = 0;
+            }
+            $this->invoices[] = [
+                'number' => getInvoiceRealNumber(),
+                'invoice_date' => $this->invoice_date,
+                'due_date' => $this->due_date,
+                'customer_id' => $this->customer_id,
+                'contract' => $this->contract,
+                'package' => $data->package,
+                'price' => $data->price,
+                'qty' => $data->qty,
+                'tax' => $this->tax,
+                'discount' => $this->discount,
+                'status' => 'Draft',
+            ];
+
+        } else {
+            $this->delete_row(0);
+        }
+    }
+    public function updatedCustomerId () {
+        try {
+            $this->contract = '';
+            // $this->dataContract = Contract::where('customer_id', $this->customer_id)->first();
+            // $this->contract = $this->dataContract->contract_number;
+            $data = Contract::where('customer_id', $this->customer_id)->first();
+            $this->contract = $data->contract_number;
+            if($this->contract != null) {
+                $this->delete_row(0);
+
+                if ($this->discount == null) {
+                    $this->discount = 0;
+                }
+                if ($this->tax == null) {
+                    $this->tax = 0;
+                }
+                $this->invoices[] = [
+                    'number' => getInvoiceRealNumber(),
+                    'invoice_date' => $this->invoice_date,
+                    'due_date' => $this->due_date,
+                    'customer_id' => $this->customer_id,
+                    'contract' => $this->contract,
+                    'package' => $data->package,
+                    'price' => $data->price,
+                    'qty' => $data->qty,
+                    'tax' => $this->tax,
+                    'discount' => $this->discount,
+                    'status' => 'Draft',
+                ];
+
+            } else {
+                dd('hello');
+                $this->delete_row(0);
+                $this->contract = '';
+            }
+        } catch (\Exception $e) {
+            $this->delete_row(0);
+            $this->contract = '';
+
+            return $e->getMessage();
+        }
+    }
+
     public function delete_row($index)
     {
         unset($this->invoices[$index]);
@@ -160,23 +230,19 @@ class Createinvoicewr extends Component
         $this->status = 'Draft';
     }
 
-    public function updatedCustomerId()
-    {
-        $this->dataContract = Contract::where('customer_id', $this->customer_id)->get();
-        //  if($this->dataContract != null) {
-        //     $this->contract = $this->dataContract[0]->contract_number;
-        //  } else {
-        //     $this->contract = '';
-        //  }
-        try {
-            if ($this->dataContract != null) {
-                $this->contract = $this->dataContract[0]->contract_number;
-            }
-        } catch (\Exception $e) {
-            $this->contract = '';
-            return $e->getMessage();
-        }
-    }
+    // public function updatedCustomerId()
+    // {
+    //     $this->dataContract = Contract::where('customer_id', $this->customer_id)->get();
+
+    //     try {
+    //         if ($this->dataContract != null) {
+    //             $this->contract = $this->dataContract[0]->contract_number;
+    //         }
+    //     } catch (\Exception $e) {
+    //         $this->contract = '';
+    //         return $e->getMessage();
+    //     }
+    // }
 
     public function mount()
     {
