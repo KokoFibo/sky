@@ -78,9 +78,6 @@ class Invoicewr extends Component
 
     public function render()
     {
-        // $data = Invoice::orderby('id', 'desc')->distinct('number')->paginate($this->perpage);
-        // $data = DB::table('invoices')->distinct('number')->count('price')->paginate($this->perpage);
-
         $data = Invoice::groupBy('number')->orderBy('number', 'desc')->paginate($this->perpage);
         return view('livewire.invoicewr', compact(['data']));
     }

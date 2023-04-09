@@ -14,6 +14,7 @@
             })
         </script>
     @endif
+    <p>COntract : {{ $contract }}</p>
     <div class="w-3/4 p-3 mx-auto mt-3 text-black bg-white shadow rounded-xl border-1">
         <div class="flex items-start justify-between w-full px-10 ">
             <div class="flex flex-col w-1/3 gap-3">
@@ -172,7 +173,8 @@
         <table class="w-full mx-auto mt-3 text-sm text-left text-gray-500 table-auto dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr class="text-white bg-gray-500 dark:text-white">
-                    <th scope="col" class="px-6 py-3">package</th>
+                    <th scope="col" class="px-6 py-3">ID</th>
+                    <th scope="col" class="px-6 py-3">Package</th>
                     <th scope="col" class="px-6 py-3">Price</th>
                     <th scope="col" class="px-6 py-3">Qty</th>
                     <th scope="col" class="px-6 py-3">Amount</th>
@@ -187,6 +189,7 @@
                 @endphp
                 @foreach ($invoice as $i)
                     <tr class="border-b dark:bg-gray-800 dark:border-gray-700 even:bg-gray-200 hover:bg-blue-200">
+                        <td class="px-6 py-4">{{ $i->id }}</td>
                         <td class="px-6 py-4">{{ $i->package }}</td>
                         <td class="px-6 py-4">{{ number_format($i->price) }}</td>
                         <td class="px-6 py-4">{{ number_format($i->qty) }}</td>

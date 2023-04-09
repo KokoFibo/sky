@@ -13,7 +13,7 @@ class Createinvoicewr extends Component
 {
     public $number,  $price,  $qty, $tax,  $invoice_date, $due_date, $status, $package_id, $invoice_id, $paket;
     public $invoices = [], $package, $contract, $customer, $customer_id;
-    public $lolos, $dataContract,$discount, $subtotal, $total, $test;
+    public $lolos, $dataContract,$discount, $subtotal, $total, $test, $indexStart, $firstRow = false;
 
     public function updatePrice ($index) {
         $data = Package::where('package', $this->invoices[$index]['package'])->first();
@@ -21,6 +21,34 @@ class Createinvoicewr extends Component
             $this->invoices[$index]['price'] = $data->price;
         }
     }
+
+    public function updatedContract () {
+        if($this->contract != null) {
+
+
+        $data = Contract::where('contract_number', $this->contract)->first();
+        if ($this->discount == null) {
+            $this->discount = 0;
+        }
+        if ($this->tax == null) {
+            $this->tax = 0;
+        }
+        $this->invoices[] = [
+            'number' => getInvoiceRealNumber(),
+            'invoice_date' => $this->invoice_date,
+            'due_date' => $this->due_date,
+            'customer_id' => $this->customer_id,
+            'contract' => $this->contract,
+            'package' => $data->package,
+            'price' =>$data->price,
+            'qty' => 0,
+            'tax' => $this->tax,
+            'discount' => $this->discount,
+            'status' => 'Draft'
+        ];
+    }
+    }
+
 
     public function add_row()
     {
@@ -43,6 +71,7 @@ class Createinvoicewr extends Component
             'discount' => $this->discount,
             'status' => 'Draft',
         ];
+        // $this->firstRow = false;
     }
 
     public function delete_row($index)
@@ -62,7 +91,7 @@ class Createinvoicewr extends Component
         // $this->validate();
         //    if($this->invoices != null){
 
-        for($i = 0; $i < count($this->invoices); $i++){
+        for($i = $this->indexStart; $i < count($this->invoices); $i++){
             if($this->invoices[$i]['package'] == "" || $this->invoices[$i]['price'] <= 0 ||  $this->invoices[$i]['qty'] <= 0) {
                 $this->lolos = 0; break;
             } else {
@@ -72,11 +101,9 @@ class Createinvoicewr extends Component
 
         if ($this->lolos == 1 ) {
 
-
-
         for ($i = 0; $i < count($this->invoices); $i++) {
             $this->invoices[$i]['customer_id'] = $this->customer_id;
-            $this->invoices[$i]['contract'] = $this->contract;
+            // $this->invoices[$i]['contract'] = $this->contract;
             $this->invoices[$i]['tax'] = $this->tax;
             $this->invoices[$i]['discount'] = $this->discount;
             $this->invoices[$i]['invoice_date'] = $this->invoice_date;
@@ -85,6 +112,9 @@ class Createinvoicewr extends Component
 
         // dd($this->invoices[0]['customer_id']);
         foreach ($this->invoices as $key => $value) {
+
+
+
             $data = Invoice::create([
                 'number' => $value['number'],
                 'invoice_date' => $value['invoice_date'],
@@ -99,6 +129,8 @@ class Createinvoicewr extends Component
                 'status' => $value['status'],
             ]);
         }
+
+
         // }
         $this->invoices = [];
         $this->dispatchBrowserEvent('success', ['message' => 'Data Saved']);
@@ -162,20 +194,16 @@ class Createinvoicewr extends Component
 
     public function updatedCustomerId()
     {
-        $this->dataContract = Contract::where('customer_id', $this->customer_id)->get();
-        //  if($this->dataContract != null) {
-        //     $this->contract = $this->dataContract[0]->contract_number;
-        //  } else {
+        $this->dataContract = Contract::where('customer_id', $this->customer_id)->groupBy('contract_number')->get();
+
+        // try {
+        //     if ($this->dataContract != null) {
+        //         $this->contract = $this->dataContract[0]->contract_number;
+        //     }
+        // } catch (\Exception $e) {
         //     $this->contract = '';
-        //  }
-        try {
-            if ($this->dataContract != null) {
-                $this->contract = $this->dataContract[0]->contract_number;
-            }
-        } catch (\Exception $e) {
-            $this->contract = '';
-            return $e->getMessage();
-        }
+        //     return $e->getMessage();
+        // }
     }
 
     public function mount()
@@ -184,6 +212,9 @@ class Createinvoicewr extends Component
         $this->total = 0;
         $this->customer = Customer::all();
         $this->packageData = Package::all();
+        $this->indexStart = 0;
+        $this->firstRow = false;
+
         // $this->clear();
         $this->createInvoice();
     }

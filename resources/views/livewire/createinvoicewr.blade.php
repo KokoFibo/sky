@@ -87,7 +87,7 @@
         </div>
         {{-- <hr class="px-10 my-10"> --}}
 
-
+        <p>firstRow: {{ $firstRow }}</p>
         <table class="w-full mx-auto mt-3 text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr class="text-white bg-gray-500 dark:text-white">
@@ -107,6 +107,51 @@
             </thead>
             <tbody>
                 @if (!empty($invoices))
+                    {{-- @if ($firstRow) --}}
+                    {{-- first  Row --}}
+                    {{-- @foreach ($invoices as $index => $invoice) --}}
+                    {{-- <tr x-data="{ packageManual: false }" @dblclick="packageManual = !packageManual"
+                            class="border-b dark:bg-gray-800 dark:border-gray-700 even:bg-gray-200 hover:bg-blue-200">
+                            <td class="px-6 py-4">1</td>
+
+                            <td class="p-3 ">
+                                <div class="w-full ">
+                                    <x-text-input class="w-full mt-1 marker:block" type="text"
+                                        wire:model.lazy="invoices.0.package" />
+                                </div>
+                            </td>
+                            <td class="px-6 py-4"> --}}
+                    {{-- input price --}}
+                    {{-- <div class="p-3 ">
+                                    <x-text-input class="block w-full mt-1 text-right" type="text" name="price"
+                                        onchange="Calc(this);" :value="old('price')" wire:model.lazy="invoices.0.price"
+                                        autocomplete="price" /> --}}
+                    {{-- <input type="text" wire:model.lazy="invoices.0.price"> --}}
+
+                    {{-- </div>
+                            </td>
+                            <td class="px-6 py-4"> --}}
+                    {{-- input Qty --}}
+                    {{-- <div class="p-3 ">
+                                    <x-text-input class="block w-full mt-1 text-right" type="number" name="qty"
+                                        onchange="Calc(this);" :value="old('qty')" required
+                                        wire:model.lazy="invoices.0.qty" autocomplete="qty" />
+                                </div>
+                            </td>
+                            <td class="px-6 py-4"> --}}
+                    {{-- Amount --}}
+                    {{-- <div class="p-3 ">
+                                    <x-text-input class="block w-full mt-1 text-right" type="text" name="amount"
+                                        disabled onchange="Calc(this);" />
+
+                                </div>
+
+                            </td>
+
+
+                        </tr> --}}
+                    {{-- @endforeach --}}
+                    {{-- @else --}}
                     @foreach ($invoices as $index => $invoice)
                         <tr x-data="{ packageManual: false }" @dblclick="packageManual = !packageManual"
                             class="border-b dark:bg-gray-800 dark:border-gray-700 even:bg-gray-200 hover:bg-blue-200">
@@ -131,7 +176,8 @@
                                 <div class="w-full " x-show="packageManual">
                                     <x-text-input class="w-full mt-1 marker:block" type="text" name="package"
                                         :value="old('package')" required
-                                        wire:model.lazy="invoices.{{ $index }}.package" autocomplete="package" />
+                                        wire:model.lazy="invoices.{{ $index }}.package"
+                                        autocomplete="package" />
                                 </div>
                                 {{-- </div> --}}
                             </td>
@@ -169,6 +215,7 @@
                             </td>
                         </tr>
                     @endforeach
+                    {{-- @endif --}}
                 @endif
             </tbody>
         </table>

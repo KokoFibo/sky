@@ -16,7 +16,7 @@ class Customerwr extends Component
 
     public function updatingSearch () {
         $this->resetPage();
- }
+    }
 
     public function deleteConfirmation ($id) {
         $data = Customer::find($id);

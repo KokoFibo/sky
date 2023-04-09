@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('invoice_date');
             $table->date('due_date');
             $table->foreignId('customer_id');
-            $table->string('contract');
+            $table->string('contract')->nullable();
             $table->string('package');
             $table->integer('price');
             $table->integer('qty');
