@@ -22,36 +22,12 @@ class Createinvoicewr extends Component
         }
     }
 
-    public function updatedContract () {
-        if($this->contract != null) {
 
-
-        $data = Contract::where('contract_number', $this->contract)->first();
-        if ($this->discount == null) {
-            $this->discount = 0;
-        }
-        if ($this->tax == null) {
-            $this->tax = 0;
-        }
-        $this->invoices[] = [
-            'number' => getInvoiceRealNumber(),
-            'invoice_date' => $this->invoice_date,
-            'due_date' => $this->due_date,
-            'customer_id' => $this->customer_id,
-            'contract' => $this->contract,
-            'package' => $data->package,
-            'price' =>$data->price,
-            'qty' => 0,
-            'tax' => $this->tax,
-            'discount' => $this->discount,
-            'status' => 'Draft'
-        ];
-    }
-    }
 
 
     public function add_row()
     {
+
         if ($this->discount == null) {
             $this->discount = 0;
         }
@@ -194,16 +170,43 @@ class Createinvoicewr extends Component
 
     public function updatedCustomerId()
     {
-        $this->dataContract = Contract::where('customer_id', $this->customer_id)->groupBy('contract_number')->get();
+        try {
+            $contract_number = checkContract($this->customer_id);
+            if($contract_number != null && $this->firstRow == false) {
+                $data = Contract::where('contract_number', $contract_number)->first();
+                $this->contract = $contract_number;
+                $this->contract_number = contractNumberFormat($contract_number, $data->contract_date);
 
-        // try {
-        //     if ($this->dataContract != null) {
-        //         $this->contract = $this->dataContract[0]->contract_number;
-        //     }
-        // } catch (\Exception $e) {
-        //     $this->contract = '';
-        //     return $e->getMessage();
-        // }
+                if ($this->discount == null) {
+                    $this->discount = 0;
+                }
+                if ($this->tax == null) {
+                    $this->tax = 0;
+                }
+                $this->invoices[] = [
+                    'number' => getInvoiceRealNumber(),
+                    'invoice_date' => $this->invoice_date,
+                    'due_date' => $this->due_date,
+                    'customer_id' => $this->customer_id,
+                    'contract' => $this->contract,
+                    'package' => $data->package,
+                    'price' =>$data->price,
+                    'qty' => 0,
+                    'tax' => $this->tax,
+                    'discount' => $this->discount,
+                    'status' => 'Draft'
+                ];
+                $this->firstRow = true;
+            } elseif ($contract_number != null && $this->firstRow == true) {
+                $this->delete_row(0);
+                $this->contract = '';
+                $this->contract_number = 'Without Contract';
+
+                $this->firstRow = false;
+            }
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 
     public function mount()
@@ -213,7 +216,8 @@ class Createinvoicewr extends Component
         $this->customer = Customer::all();
         $this->packageData = Package::all();
         $this->indexStart = 0;
-        $this->firstRow = false;
+        // $this->firstRow = false;
+
 
         // $this->clear();
         $this->createInvoice();

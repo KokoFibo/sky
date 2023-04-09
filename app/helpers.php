@@ -6,24 +6,35 @@ use App\Models\Contract;
 use App\Models\Customer;
 use App\Models\Quotation;
 
-function getInvoiceId($number) {
-    $datas = Invoice::where('number', $number)->get();
-    $data = Invoice::where('number', $number)->first();
-    $contract = Contract::where('customer_id', $data->customer_id)->first();
-    foreach($datas as $d) {
-        if($d->package == $contract->package)
-            $id = $d->id;
-    }
-    if($id != null){
-        return $id;
-
-    } else {
-        return '';
-    }
-
-
+function checkContract($id) {
+    $contract = Contract::where('customer_id', $id)->first();
+    try {
+        $contract_number = $contract->contract_number;
+        if($contract_number != null){
+            return $contract_number;
+        } else {
+            return '';
+        }
+    } catch (\Exception $e) {
+         return $e->getMessage();
+}
 
 }
+function getContractDate($id) {
+    $contract = Contract::where('customer_id', $id)->first();
+    try {
+        $contract_date = $contract->contract_date;
+        if($contract_date != null){
+            return $contract_date;
+        } else {
+            return '';
+        }
+    } catch (\Exception $e) {
+         return $e->getMessage();
+}
+
+}
+
 function getDetail($description)
 {
     if ($description != null) {

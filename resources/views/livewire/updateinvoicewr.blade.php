@@ -14,7 +14,6 @@
             })
         </script>
     @endif
-    <p>COntract : {{ $contract }}</p>
     <div class="w-3/4 p-3 mx-auto mt-3 text-black bg-white shadow rounded-xl border-1">
         <div class="flex items-start justify-between w-full px-10 ">
             <div class="flex flex-col w-1/3 gap-3">
@@ -43,19 +42,13 @@
                         class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                         Contract
                     </span>
-                    <select wire:model="contract" {{ $updateUpper ? '' : 'disabled' }}
-                        class="w-full rounded-none rounded-r-lg bg-gray-50 border  border-gray-300 text-gray-600
-                text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
-                dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
-                        @if ($dataContract != null)
-                            @foreach ($dataContract as $c)
-                                <option value="{{ $c->contract_number }}">{{ $c->contract_number }}</option>
-                            @endforeach
-                        @endif
-                        <option value="">Without Contract</option>
-                    </select>
+                    <input id="contract_number" type="text" name="contract_number" :value="old('contract_number')"
+                        disabled required wire:model="contract_number" autocomplete="contract_number"
+                        {{ $updateUpper ? '' : 'disabled' }}
+                        class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
+
                 <div class="flex">
                     <span
                         class="inline-flex items-center w-24 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">

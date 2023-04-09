@@ -6,7 +6,7 @@
     <div class="w-3/4 p-3 mx-auto mt-3 text-black bg-white shadow rounded-xl border-1">
 
         <div class="flex items-start justify-between w-full px-10 ">
-            <div class="flex flex-col w-full gap-3">
+            <div class="flex flex-col w-1/3 gap-3">
 
 
                 {{-- customer --}}
@@ -16,7 +16,7 @@
                         Customer
                     </span>
                     <select wire:model="customer_id"
-                        class=" w-72  bg-gray-50 border  border-gray-300 text-gray-600 rounded-none rounded-r-lg
+                        class=" w-full  bg-gray-50 border  border-gray-300 text-gray-600 rounded-none rounded-r-lg
         text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
         dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option value="">Select Customer</option>
@@ -30,21 +30,14 @@
                 <div class="flex ">
                     <span
                         class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                        Contract
+                        Contract Number
                     </span>
-                    <select wire:model="contract"
-                        class="w-72  bg-gray-50 border  border-gray-300 text-gray-600 rounded-none rounded-r-lg
-                text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
-                dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
-                        @if ($dataContract != null)
-                            @foreach ($dataContract as $c)
-                                <option value="{{ $c->contract_number }}">{{ $c->contract_number }}</option>
-                            @endforeach
-                        @endif
-                        <option value="">Without Contract</option>
-                    </select>
+                    <input id="contract_number" type="text" name="contract_number" :value="old('contract_number')"
+                        disabled required wire:model="contract_number" autocomplete="contract_number"
+                        class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
+
             </div>
 
 
@@ -76,8 +69,7 @@
                         class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                         Due Date
                     </span>
-                    {{-- <x-text-input id="due_date" type="text" name="due_date" :value="old('due_date')" required
-                        wire:model="due_date"  autocomplete="due_date" /> --}}
+
                     <input id="due_date" type="text" name="due_date" :value="old('due_date')" required
                         wire:model="due_date" autocomplete="due_date"
                         class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -87,7 +79,6 @@
         </div>
         {{-- <hr class="px-10 my-10"> --}}
 
-        <p>firstRow: {{ $firstRow }}</p>
         <table class="w-full mx-auto mt-3 text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr class="text-white bg-gray-500 dark:text-white">
@@ -107,51 +98,7 @@
             </thead>
             <tbody>
                 @if (!empty($invoices))
-                    {{-- @if ($firstRow) --}}
-                    {{-- first  Row --}}
-                    {{-- @foreach ($invoices as $index => $invoice) --}}
-                    {{-- <tr x-data="{ packageManual: false }" @dblclick="packageManual = !packageManual"
-                            class="border-b dark:bg-gray-800 dark:border-gray-700 even:bg-gray-200 hover:bg-blue-200">
-                            <td class="px-6 py-4">1</td>
 
-                            <td class="p-3 ">
-                                <div class="w-full ">
-                                    <x-text-input class="w-full mt-1 marker:block" type="text"
-                                        wire:model.lazy="invoices.0.package" />
-                                </div>
-                            </td>
-                            <td class="px-6 py-4"> --}}
-                    {{-- input price --}}
-                    {{-- <div class="p-3 ">
-                                    <x-text-input class="block w-full mt-1 text-right" type="text" name="price"
-                                        onchange="Calc(this);" :value="old('price')" wire:model.lazy="invoices.0.price"
-                                        autocomplete="price" /> --}}
-                    {{-- <input type="text" wire:model.lazy="invoices.0.price"> --}}
-
-                    {{-- </div>
-                            </td>
-                            <td class="px-6 py-4"> --}}
-                    {{-- input Qty --}}
-                    {{-- <div class="p-3 ">
-                                    <x-text-input class="block w-full mt-1 text-right" type="number" name="qty"
-                                        onchange="Calc(this);" :value="old('qty')" required
-                                        wire:model.lazy="invoices.0.qty" autocomplete="qty" />
-                                </div>
-                            </td>
-                            <td class="px-6 py-4"> --}}
-                    {{-- Amount --}}
-                    {{-- <div class="p-3 ">
-                                    <x-text-input class="block w-full mt-1 text-right" type="text" name="amount"
-                                        disabled onchange="Calc(this);" />
-
-                                </div>
-
-                            </td>
-
-
-                        </tr> --}}
-                    {{-- @endforeach --}}
-                    {{-- @else --}}
                     @foreach ($invoices as $index => $invoice)
                         <tr x-data="{ packageManual: false }" @dblclick="packageManual = !packageManual"
                             class="border-b dark:bg-gray-800 dark:border-gray-700 even:bg-gray-200 hover:bg-blue-200">
@@ -176,8 +123,7 @@
                                 <div class="w-full " x-show="packageManual">
                                     <x-text-input class="w-full mt-1 marker:block" type="text" name="package"
                                         :value="old('package')" required
-                                        wire:model.lazy="invoices.{{ $index }}.package"
-                                        autocomplete="package" />
+                                        wire:model.lazy="invoices.{{ $index }}.package" autocomplete="package" />
                                 </div>
                                 {{-- </div> --}}
                             </td>
@@ -188,7 +134,6 @@
                                         onchange="Calc(this);" :value="old('price')"
                                         wire:model.lazy="invoices.{{ $index }}.price" autocomplete="price" />
                                     {{-- <input type="text" wire:model.lazy="invoices.{{ $index }}.price"> --}}
-
                                 </div>
                             </td>
                             <td class="px-6 py-4">
@@ -207,12 +152,14 @@
                                 </div>
                             </td>
 
-                            <td class="px-6 py-4">
-                                <div class="p-3 ">
-                                    <button wire:click="delete_row({{ $index }})" onclick="btnDel(this);"
-                                        class="button button-red">-</button>
-                                </div>
-                            </td>
+                            @if ($index != 0)
+                                <td class="px-6 py-4">
+                                    <div class="p-3 ">
+                                        <button wire:click="delete_row({{ $index }})" onclick="btnDel(this);"
+                                            class="button button-red">-</button>
+                                    </div>
+                                </td>
+                            @endif
                         </tr>
                     @endforeach
                     {{-- @endif --}}
