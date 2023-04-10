@@ -29,7 +29,10 @@
                     <th scope="col" class="px-6 py-3">Mobile</th>
                     <th scope="col" class="px-6 py-3">Email</th>
                     <th scope="col" class="px-6 py-3">Notes</th>
-                    <th scope="col" class="px-6 py-3">Action</th>
+                    <th scope="col" class="px-6 py-3">
+                        <button @click="addCustomer=true"
+                            class="px-3 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700">Add</button>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -47,8 +50,7 @@
                         <td class="px-6 py-4">
                             <div class="flex gap-2">
 
-                                <button @click="addCustomer=true"
-                                    class="px-3 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700">Add</button>
+
                                 <button @click="editCustomer=true" wire:click="editCustomer({{ $d->id }})"
                                     class="px-3 py-2 text-white bg-teal-500 rounded-lg hover:bg-teal-700">Edit</button>
                                 <button wire:click="deleteConfirmation({{ $d->id }})"

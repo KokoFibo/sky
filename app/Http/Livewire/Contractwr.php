@@ -12,6 +12,7 @@ class Contractwr extends Component
     public $perpage = 5, $search = '';
     public $detailContracts, $detailContract, $detailCustomer, $dcompany;
     public $dcontract_number, $dpackage, $dprice, $ddescription, $dcontract_date, $dcontract_begin, $dcontract_end, $dstatus, $dPDF;
+    public $dsent, $dsigned, $dcancel, $ddone;
     protected $listeners =  ['delete'];
 
     public function viewdata ($number) {
@@ -29,6 +30,10 @@ class Contractwr extends Component
             $this->dcontract_begin = $this->detailContract->contract_begin;
             $this->dcontract_end = $this->detailContract->contract_end;
             $this->dstatus = $this->detailContract->status;
+            $this->dsent = $this->detailContract->sent;
+            $this->dsigned = $this->detailContract->signed;
+            $this->ddone = $this->detailContract->done;
+            $this->dcancel = $this->detailContract->cancel;
             $this->dPDF = $this->detailContract->pdf;
 
 
@@ -49,8 +54,7 @@ class Contractwr extends Component
 
     public function deleteConfirmation ($number) {
         $data = Contract::where('contract_number', $number )->first();
-        $formattedNumber = contractNumberFormat($number);
-        // $formattedNumber = invNumberFormat($number, $data->contract_date);
+        $formattedNumber = contractNumberFormat($number, $data->contract_date);
         $company = getCompany($data->customer_id);
         $this->dispatchBrowserEvent('delete_confirmation', [
             'title' => 'Are you sure',

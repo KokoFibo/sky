@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Carbon\Carbon;
 use App\Models\Package;
 use Livewire\Component;
 use App\Models\Contract;
@@ -19,7 +20,7 @@ class Updatecontractwr extends Component
     public $contracts = [];
     public $lolos, $updateUpper;
     public $edit_price, $edit_description, $current_number, $number, $contract_number_full;
-    public $current_id, $contract_id;
+    public $current_id, $contract_id,  $signed, $done, $cancel, $prevStatus;
     public $pdf, $prevPdf;
 
 
@@ -60,6 +61,10 @@ class Updatecontractwr extends Component
             $this->contract_date = $i->contract_date;
 
             $this->status = $i->status;
+            $this->prevStatus = $i->status ;
+
+
+
             $this->prevPdf = $i->pdf;
 
         }
@@ -95,8 +100,21 @@ class Updatecontractwr extends Component
                 $data->customer_id = $this->customer_id;
                 $data->contract_begin = $this->contract_begin;
                 $data->contract_end = $this->contract_end;
-                $data->status = $this->status;
-                
+                if($this->status != '') {
+                    $data->status = $this->status;
+                    switch($this->status) {
+                        case 'Signed': {
+                            $data->signed = Carbon::now()->format('Y-m-d'); break;
+                        }
+                        case 'Done': {
+                            $data->done = Carbon::now()->format('Y-m-d'); break;
+                        }
+                        case 'Cancel': {
+                            $data->cancel = Carbon::now()->format('Y-m-d'); break;
+                        }
+                    }
+                }
+
                 if($filename != null ) {
                     $data->pdf = $filename;
                 }

@@ -42,38 +42,15 @@ class DatabaseSeeder extends Seeder
                 'description' => 'Editorial monthly plan, 12 Instagram Feed, 4 Series Instagram Story (3 pg/ series), Copywriting, 12x Instagram Feed posting, 4x Instagram Story posting, Max 3 Ads proposals with FB Ads Manager (Not incld budget or payment method) , Monthly content report, Monthly content report'
             ]
         );
-        DB::table('contracts')->insert(
-            [
-                'customer_id' => '1',
-                'contract_number' => 'Contract-001',
-                'contract_begin' => '2023-03-01',
-                'contract_end' => '2023-06-01',
-            ]
-        );
-        DB::table('contracts')->insert(
-            [
-                'customer_id' => '1',
-                'contract_number' => 'Contract-005',
-                'contract_begin' => '2023-03-01',
-                'contract_end' => '2023-06-01',
-            ]
-        );
-        DB::table('contracts')->insert(
-            [
-                'customer_id' => '2',
-                'contract_number' => 'Contract-002',
-                'contract_begin' => '2023-03-01',
-                'contract_end' => '2023-07-01',
-            ]
-        );
-        DB::table('contracts')->insert(
-            [
-                'customer_id' => '3',
-                'contract_number' => 'Contract-003',
-                'contract_begin' => '2023-03-01',
-                'contract_end' => '2023-08-01',
-            ]
-        );
+
+        // DB::table('contracts')->insert(
+        //     [
+        //         'customer_id' => '3',
+        //         'contract_number' => 'Contract-003',
+        //         'contract_begin' => '2023-03-01',
+        //         'contract_end' => '2023-08-01',
+        //     ]
+        // );
 
 
 

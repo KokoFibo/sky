@@ -4,7 +4,7 @@
     </div>
 
     <div class="flex w-3/4 gap-10 p-5 mx-auto">
-        <div class="w-1/2">
+        <div class="w-1/3">
             <div class="flex mt-3 ">
                 <span
                     class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
@@ -48,7 +48,7 @@
 
 
         </div>
-        <div class="w-1/2">
+        <div class="w-1/3">
             <div class="flex mt-3 ">
                 <span
                     class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
@@ -81,9 +81,56 @@
             </div>
 
 
-
-
         </div>
+        <div class="w-1/3">
+            <div class="flex mt-3 ">
+                <span
+                    class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                    Sent Date
+                </span>
+                <div
+                    class="w-56  rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0  text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <p>{{ tanggal($dsent) }}</p>
+                </div>
+            </div>
+            @if ($dsigned != '0000-00-00')
+                <div class="flex mt-3 ">
+                    <span
+                        class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                        Signed Date
+                    </span>
+                    <div
+                        class="w-56  rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0  text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <p>{{ tanggal($dsigned) }}</p>
+                    </div>
+                </div>
+            @endif
+            @if ($ddone != '0000-00-00')
+                <div class="flex mt-3 ">
+                    <span
+                        class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                        Done Date
+                    </span>
+                    <div
+                        class="w-56  rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0  text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <p>{{ tanggal($ddone) }}</p>
+                    </div>
+                </div>
+            @endif
+            @if ($dcancel != '0000-00-00')
+                <div class="flex mt-3 ">
+                    <span
+                        class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                        Cancel Date
+                    </span>
+                    <div
+                        class="w-56  rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0  text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <p>{{ tanggal($dcancel) }}</p>
+                    </div>
+                </div>
+            @endif
+        </div>
+
     </div>
 
     <table class="w-3/4 mx-auto mt-3 text-sm text-left text-gray-500 dark:text-gray-400">
