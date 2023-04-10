@@ -1,55 +1,110 @@
-<div x-show="addCustomer" class="w-3/4" x-cloak>
-    <x-modalCustom>
-        <h2 class="text-2xl text-center font-semibold mt-3">Add Customer Data</h2>
-        <hr class="my-2 px-3">
-        <div class="p-3">
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
-                wire:model="name" autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+<div x-show="addCustomer" class="w-1/3" x-cloak>
+    <x-modalCustomer>
+        <h2 class="mt-3 text-2xl font-semibold text-center">Add Customer Data</h2>
+        <hr class="px-3 my-2">
+        <div class="flex flex-col w-full gap-3 p-5">
+
+            <div class="flex ">
+                <span
+                    class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                    Name
+                </span>
+                <input type="text" id="name" type="text" name="name" required wire:model="name"
+                    autocomplete="name"
+                    class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block  min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            </div>
+            <div class="flex ">
+                <span
+                    class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                    Salutation
+                </span>
+                <select wire:model="salutation"
+                    class="w-full text-sm text-gray-600 border border-gray-300 rounded-none rounded-r-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 lg:block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+                    <option value="">Select Salutation</option>
+                    <option value="Mr">Mr.</option>
+                    <option value="Ms">Ms.</option>
+
+                </select>
+                <x-input-error :messages="$errors->get('salutation')" class="mt-2" />
+            </div>
+            <div class="flex ">
+                <span
+                    class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                    Company
+                </span>
+                <input type="text" id="company" type="text" name="company" required wire:model="company"
+                    autocomplete="company"
+                    class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block  min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <x-input-error :messages="$errors->get('company')" class="mt-2" />
+            </div>
+            <div class="flex ">
+                <span
+                    class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                    Title
+                </span>
+                <select wire:model="title"
+                    class="w-full  bg-gray-50 border  border-gray-300 text-gray-600 rounded-none rounded-r-lg
+                text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
+                dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+                    <option value="">Select Title</option>
+                    <option value="PT">PT</option>
+                    <option value="CV">CV</option>
+
+                </select>
+                <x-input-error :messages="$errors->get('title')" class="mt-2" />
+            </div>
+            <div class="flex ">
+                <span
+                    class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                    Address
+                </span>
+                <input type="text" id="address" type="text" name="address" required wire:model="address"
+                    autocomplete="address"
+                    class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block  min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <x-input-error :messages="$errors->get('address')" class="mt-2" />
+            </div>
+            <div class="flex ">
+                <span
+                    class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                    Mobile
+                </span>
+                <input type="text" id="mobile" type="text" name="mobile" required wire:model="mobile"
+                    autocomplete="mobile"
+                    class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block  min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <x-input-error :messages="$errors->get('mobile')" class="mt-2" />
+            </div>
+            <div class="flex ">
+                <span
+                    class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                    Email
+                </span>
+                <input type="text" id="email" type="text" name="email" required wire:model="email"
+                    autocomplete="email"
+                    class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block  min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            </div>
+            <div class="flex ">
+                <span
+                    class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                    Notes
+                </span>
+                <input type="text" id="notes" type="text" name="notes" required wire:model="notes"
+                    autocomplete="notes"
+                    class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block  min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <x-input-error :messages="$errors->get('notes')" class="mt-2" />
+            </div>
         </div>
-        <div class="p-3">
-            <x-input-label for="salutation" :value="__('Salutation')" />
-            <x-text-input id="salutation" class="block mt-1 w-full" type="text" name="salutation" :value="old('salutation')"
-                required wire:model="salutation" autofocus autocomplete="salutation" />
-            <x-input-error :messages="$errors->get('salutation')" class="mt-2" />
-        </div>
-        <div class="p-3">
-            <x-input-label for="title" :value="__('Title')" />
-            <x-text-input id="title" class="block mt-1 w-full" type="text" name="title" :value="old('title')"
-                required wire:model="title" autofocus autocomplete="title" />
-            <x-input-error :messages="$errors->get('title')" class="mt-2" />
-        </div>
-        <div class="p-3">
-            <x-input-label for="company" :value="__('Company')" />
-            <x-text-input id="company" class="block mt-1 w-full" type="text" name="company" :value="old('company')"
-                required wire:model="company" autofocus autocomplete="company" />
-            <x-input-error :messages="$errors->get('company')" class="mt-2" />
-        </div>
-        <div class="p-3">
-            <x-input-label for="address" :value="__('Address')" />
-            <x-text-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')"
-                required wire:model="address" autofocus autocomplete="address" />
-            <x-input-error :messages="$errors->get('address')" class="mt-2" />
-        </div>
-        <div class="p-3">
-            <x-input-label for="mobile" :value="__('Mobile')" />
-            <x-text-input id="mobile" class="block mt-1 w-full" type="text" name="mobile" :value="old('mobile')"
-                required wire:model="mobile" autofocus autocomplete="mobile" />
-            <x-input-error :messages="$errors->get('mobile')" class="mt-2" />
-        </div>
-        <div class="p-3">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="text" name="email" :value="old('email')"
-                required wire:model="email" autofocus autocomplete="email" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-        <div class="p-3">
-            <x-input-label for="notes" :value="__('Notes')" />
-            <x-text-input id="notes" class="block mt-1 w-full" type="text" name="notes" :value="old('notes')"
-                required wire:model="notes" autofocus autocomplete="notes" />
-            <x-input-error :messages="$errors->get('notes')" class="mt-2" />
-        </div>
+
+
+
+
+
+
+
+
         <div class="flex justify-between">
             <x-blue-button class="m-3" @click="addCustomer=false" wire:click="saveCustomer">
                 {{ __('Save') }}
@@ -60,5 +115,5 @@
         </div>
 
 
-    </x-modalCustom>
+    </x-modalCustomer>
 </div>

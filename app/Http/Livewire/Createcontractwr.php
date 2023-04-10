@@ -12,9 +12,9 @@ use Livewire\WithFileUploads;
 class Createcontractwr extends Component
 {
     use WithFileUploads;
-    public $contract_number, $customer_id, $contract_begin, $contract_end, $package, $price, $qty=1, $description, $status;
+    public $contract_number, $customer_id, $contract_date, $contract_begin, $contract_end, $package, $price, $qty=1, $description, $status, $pdfname;
     public $contracts = [];
-    public $lolos, $canSave;
+    public $lolos, $canSave, $sent;
     public $pdf;
 
     public function add_row()
@@ -28,9 +28,10 @@ class Createcontractwr extends Component
             'price' => 0,
             'qty' => 1,
             'description' =>'',
-            'status' => 'Open',
+            'status' => 'Sent',
         ];
     }
+
 
     public function updatePrice ($index) {
         $data = Package::where('package', $this->contracts[$index]['package'])->first();
@@ -53,16 +54,11 @@ class Createcontractwr extends Component
             'pdf' => 'file|max:1024|nullable', // 1MB Max
         ]);
         if($this->pdf != null) {
-            $filename = $this->pdf->store('pdfs');
+            $filename = $this->pdf->storeAs('pdfs',$this->pdf->getClientOriginalName());
 
         } else {
             $filename='';
         }
-
-
-
-
-
         for($i = 0; $i < count($this->contracts); $i++){
             if($this->contracts[$i]['package'] == "" || $this->contracts[$i]['price'] <= 0 ||  $this->contracts[$i]['qty'] <= 0
             || $this->contracts[$i]['description'] == "" || $this->contract_begin == null || $this->contract_end == null) {
@@ -80,6 +76,7 @@ class Createcontractwr extends Component
             foreach ($this->contracts as $key => $value) {
                 $data = Contract::create([
                     'contract_number' => $value['contract_number'],
+                    'contract_date' => Carbon::now()->format('Y-m-d'),
                     'contract_begin' => $value['contract_begin'],
                     'contract_end' => $value['contract_end'],
                     'customer_id' => $value['customer_id'],
@@ -90,6 +87,7 @@ class Createcontractwr extends Component
                     'description' => $value['description'],
                     'pdf' => $filename,
                     'status' => $value['status'],
+                    'sent' => $this->sent,
                 ]);
             }
             $this->contracts = [];
@@ -128,7 +126,7 @@ class Createcontractwr extends Component
         $this->price = '0';
         $this->qty = '0';
         $this->description = '';
-        $this->status = 'Open';
+        $this->status = 'Sent';
     }
 
     public function mount()
@@ -137,6 +135,7 @@ class Createcontractwr extends Component
         $this->packageData = Package::all();
         $this->createContract();
         $this->canSave = false;
+        $this->sent = Carbon::now()->format('Y-m-d');
     }
 
     public function render()

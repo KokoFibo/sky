@@ -6,6 +6,20 @@ use App\Models\Contract;
 use App\Models\Customer;
 use App\Models\Quotation;
 
+// function getContractNumber($id) {
+//     try {
+//         $data = Contract::where('customer_id', $id)->first();
+//         if( $data->contract_number != null) {
+//             return $data->contract_number;
+//         } else {
+//             return '';
+//         }
+//     } catch (\Exception $e) {
+//          return $e->getMessage();
+//     }
+// }
+
+
 function getDetail($description)
 {
     if ($description != null) {
@@ -181,10 +195,13 @@ function invNumberFormat($number, $invDate)
         return 'INV' . strval((int) $year - 2000) . $month . $data;
     }
 }
-function contractNumberFormat($number)
+function contractNumberFormat($number, $date)
 {
     if ($number != null) {
-        $newDate = Carbon::now();
+
+        // $newDate = Carbon::now();
+        $newDate = DateTime::createFromFormat('Y-m-d', $date);
+
         $year = $newDate->format('Y');
         $month = $newDate->format('m');
         $data = '';

@@ -61,7 +61,7 @@ class Customerwr extends Component
         $data->company = $this->company;
         $data->address = $this->address;
         $data->mobile = $this->mobile;
-        $data->email = $this->email;
+        $data->email = trim($this->email, ' ');
         $data->notes = $this->notes;
         $data->save();
         $this->clear();
@@ -90,7 +90,7 @@ class Customerwr extends Component
         $data->company = $this->company;
         $data->address = $this->address;
         $data->mobile = $this->mobile;
-        $data->email = $this->email;
+        $data->email = trim($this->email,' ');
         $data->notes = $this->notes;
         $data->save();
         $this->clear();

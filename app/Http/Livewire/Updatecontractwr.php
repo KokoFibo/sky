@@ -2,20 +2,27 @@
 
 namespace App\Http\Livewire;
 
+use Carbon\Carbon;
 use App\Models\Package;
 use Livewire\Component;
 use App\Models\Contract;
 use App\Models\Customer;
+use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 
 class Updatecontractwr extends Component
 {
-    public $contract_number, $customer_id, $contract_begin, $contract_end, $package, $price, $qty=1, $description, $status;
+    use WithFileUploads;
+
+    public $contract_number, $customer_id, $contract_begin, $contract_end, $package, $price, $qty=1, $description, $status, $contract_date;
     public $contracts = [];
     public $lolos, $updateUpper;
     public $edit_price, $edit_description, $current_number, $number, $contract_number_full;
-    public $current_id, $contract_id;
+    public $current_id, $contract_id,  $signed, $done, $cancel, $prevStatus;
+    public $pdf, $prevPdf;
+
 
     protected $listeners =  ['delete'];
 
@@ -51,11 +58,18 @@ class Updatecontractwr extends Component
             $this->contract_begin = $i->contract_begin;
             $this->contract_end = $i->contract_end;
             $this->contract_number = $i->contract_number;
+            $this->contract_date = $i->contract_date;
+
             $this->status = $i->status;
+            $this->prevStatus = $i->status ;
+
+
+
+            $this->prevPdf = $i->pdf;
 
         }
         $this->customer = Customer::all();
-        $this->contract_number_full = contractNumberFormat($current_number);
+        $this->contract_number_full = contractNumberFormat($current_number, $this->contract_date);
     }
 
     public function updatedEditPackage () {
@@ -70,12 +84,40 @@ class Updatecontractwr extends Component
     public function updateUpper () {
         $data_id = Contract::where('contract_number', $this->current_number)->select('id')->get();
         if($data_id != null) {
+            $this->validate([
+                'pdf' => 'file|max:1024|nullable', // 1MB Max
+            ]);
+            if($this->pdf != null) {
+                Storage::delete($this->prevPdf);
+                $filename = $this->pdf->storeAs('pdfs',$this->pdf->getClientOriginalName());
+
+            }
+            else {
+                $filename='';
+            }
             foreach($data_id as $d) {
                 $data = Contract::find($d->id);
                 $data->customer_id = $this->customer_id;
                 $data->contract_begin = $this->contract_begin;
                 $data->contract_end = $this->contract_end;
-                $data->status = $this->status;
+                if($this->status != '') {
+                    $data->status = $this->status;
+                    switch($this->status) {
+                        case 'Signed': {
+                            $data->signed = Carbon::now()->format('Y-m-d'); break;
+                        }
+                        case 'Done': {
+                            $data->done = Carbon::now()->format('Y-m-d'); break;
+                        }
+                        case 'Cancel': {
+                            $data->cancel = Carbon::now()->format('Y-m-d'); break;
+                        }
+                    }
+                }
+
+                if($filename != null ) {
+                    $data->pdf = $filename;
+                }
                 $data->save();
             }
             $this->dispatchBrowserEvent('success', ['message' => 'Data Updated']);

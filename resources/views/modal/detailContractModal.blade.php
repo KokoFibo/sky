@@ -1,18 +1,18 @@
 <div x-show="openModal" mx-auto x-cloak @click="openModal = false">
     <div class="w-3/4 mx-auto mt-3 text-black bg-white shadow rounded-xl border-1">
-        <h2 class="py-3 text-2xl font-semibold text-center">Detail Invoice</h2>
+        <h2 class="py-3 text-2xl font-semibold text-center">Detail Contract</h2>
     </div>
 
     <div class="flex w-3/4 gap-10 p-5 mx-auto">
-        <div class="w-1/2">
+        <div class="w-1/3">
             <div class="flex mt-3 ">
                 <span
                     class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                    Invoice No.
+                    Contract No.
                 </span>
                 <div
                     class="w-56  rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0  text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <p>{{ $invoice_number }}</p>
+                    <p>{{ $dcontract_number }}</p>
                 </div>
             </div>
             <div class="flex mt-3 ">
@@ -22,74 +22,7 @@
                 </span>
                 <div
                     class="w-56  rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0  text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <p>{{ $company }}</p>
-                </div>
-            </div>
-            <div class="flex mt-3 ">
-                <span
-                    class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                    Contract
-                </span>
-                <div
-                    class="w-56  rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0  text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    @if ($contract == null)
-                        <p>Without Contract</p>
-                    @else
-                        <p>{{ $contract }}</p>
-                    @endif
-                </div>
-            </div>
-            <div class="flex mt-3 ">
-                <span
-                    class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                    Discount
-                </span>
-                <div
-                    class="w-56  rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0  text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <p>IDR {{ number_format($discount) }}</p>
-                </div>
-            </div>
-            <div class="flex mt-3 ">
-                <span
-                    class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                    Tax
-                </span>
-                <div
-                    class="w-56  rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0  text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <p>{{ number_format($tax, 1) }} %</p>
-                </div>
-            </div>
-
-        </div>
-        <div class="w-1/2">
-            <div class="flex mt-3 ">
-                <span
-                    class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                    Invoice Date
-                </span>
-                <div
-                    class="w-56  rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0  text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <p>{{ tanggal($invoice_date) }}</p>
-                </div>
-            </div>
-            <div class="flex mt-3 ">
-                <span
-                    class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                    Due Date
-                </span>
-                <div
-                    class="w-56  rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0  text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <p>{{ tanggal($due_date) }}</p>
-                </div>
-            </div>
-            <div class="flex mt-3 ">
-                <span
-                    class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                    Emailed Date
-                </span>
-                <div
-                    class="w-56  rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0  text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <p>{{ tanggal_with_Jam($emailed_at) }}</p>
+                    <p>{{ $dcompany }}</p>
                 </div>
             </div>
             <div class="flex mt-3 ">
@@ -99,13 +32,105 @@
                 </span>
                 <div
                     class="w-56  rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0  text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <p>{{ $status }}</p>
+                    <p>{{ $dstatus }}</p>
+                </div>
+            </div>
+            <div class="flex mt-3 ">
+                <span
+                    class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                    PDF
+                </span>
+                <div
+                    class="w-56  rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0  text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <p>{{ $dPDF }}</p>
                 </div>
             </div>
 
 
+        </div>
+        <div class="w-1/3">
+            <div class="flex mt-3 ">
+                <span
+                    class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                    Contract Date
+                </span>
+                <div
+                    class="w-56  rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0  text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <p>{{ tanggal($dcontract_date) }}</p>
+                </div>
+            </div>
+            <div class="flex mt-3 ">
+                <span
+                    class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                    Contract Begin
+                </span>
+                <div
+                    class="w-56  rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0  text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <p>{{ tanggal($dcontract_begin) }}</p>
+                </div>
+            </div>
+            <div class="flex mt-3 ">
+                <span
+                    class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                    Contract End
+                </span>
+                <div
+                    class="w-56  rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0  text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <p>{{ tanggal($dcontract_end) }}</p>
+                </div>
+            </div>
+
 
         </div>
+        <div class="w-1/3">
+            <div class="flex mt-3 ">
+                <span
+                    class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                    Sent Date
+                </span>
+                <div
+                    class="w-56  rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0  text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <p>{{ tanggal($dsent) }}</p>
+                </div>
+            </div>
+            @if ($dsigned != '0000-00-00')
+                <div class="flex mt-3 ">
+                    <span
+                        class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                        Signed Date
+                    </span>
+                    <div
+                        class="w-56  rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0  text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <p>{{ tanggal($dsigned) }}</p>
+                    </div>
+                </div>
+            @endif
+            @if ($ddone != '0000-00-00')
+                <div class="flex mt-3 ">
+                    <span
+                        class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                        Done Date
+                    </span>
+                    <div
+                        class="w-56  rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0  text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <p>{{ tanggal($ddone) }}</p>
+                    </div>
+                </div>
+            @endif
+            @if ($dcancel != '0000-00-00')
+                <div class="flex mt-3 ">
+                    <span
+                        class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                        Cancel Date
+                    </span>
+                    <div
+                        class="w-56  rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0  text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <p>{{ tanggal($dcancel) }}</p>
+                    </div>
+                </div>
+            @endif
+        </div>
+
     </div>
 
     <table class="w-3/4 mx-auto mt-3 text-sm text-left text-gray-500 dark:text-gray-400">
@@ -113,82 +138,43 @@
             <tr class="text-white bg-gray-500 dark:text-white">
                 <th scope="col" class="px-6 py-3">#</th>
                 <th scope="col" class="px-6 py-3">Package</th>
-                <th scope="col" class="px-6 py-3">Qty</th>
                 <th scope="col" class="px-6 py-3">Price</th>
-                <th scope="col" class="px-6 py-3">Amount</th>
+                <th scope="col" class="px-6 py-3">Description</th>
             </tr>
         </thead>
         <tbody>
             @php
                 $subtotal = 0;
             @endphp
-            @foreach ($detailInvoices as $d)
+            @foreach ($detailContracts as $d)
                 <tr class="border-b dark:bg-gray-800 dark:border-gray-700 even:bg-gray-200 hover:bg-blue-200">
                     <td class="px-6 py-4"> {{ $loop->iteration }}</td>
                     <td class="px-6 py-4"> {{ $d->package }}</td>
-                    <td class="px-6 py-4"> {{ number_format($d->qty) }}</td>
                     <td class="px-6 py-4"> {{ number_format($d->price) }}</td>
-                    <td class="px-6 py-4"> {{ number_format($d->price * $d->qty) }}</td>
+                    <td class="px-6 py-4">
+                        @php
+                                    $desc = getDetail($d->description);
+                                @endphp
+                                    <ul>
+                                        @php
+                                        foreach ($desc as $de) {
+                                            @endphp
+                                            <li class="list-disc">
+                                                @php
+                                                echo $de;
+                                                @endphp
+                                            </li>
+                                            @php
+                                        }
+                                        @endphp
+
+                                    </ul>
+                    </td>
                 </tr>
-                @php
-                    $subtotal = $subtotal + $d->price * $d->qty;
-                @endphp
             @endforeach
         </tbody>
     </table>
-    <div class="flex justify-between w-3/4 px-5 mt-3 mb-5">
-        <div></div>
-        <div class="flex flex-col gap-2 ">
 
-
-            <div class="flex ">
-                <span
-                    class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                    Sub Total
-                </span>
-                <div
-                    class="text-right rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <p>{{ number_format($subtotal) }}</p>
-
-                </div>
-            </div>
-
-            <div class="flex ">
-                <span
-                    class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                    Discount
-                </span>
-                <div
-                    class="text-right rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <p> {{ number_format($discount) }} </p>
-                </div>
-            </div>
-
-            <div class="flex ">
-                <span
-                    class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                    Tax
-                </span>
-                <div
-                    class="text-right rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <p>{{ number_format($tax, 1) }}</p>
-                    {{-- <p>{{ $formattedTax }}</p> --}}
-                </div>
-            </div>
-
-            <div class="flex ">
-                <span
-                    class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                    Total
-                </span>
-                <div
-                    class="w-56 text-right rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0  text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <p>{{ number_format(roundedTotal($subtotal, $discount, $tax)) }}</p>
-                </div>
-            </div>
-
-        </div>
-    </div>
 
     <div class="w-3/4 mx-auto mt-44">
         <button @click="openModal=false" class="w-full button button-teal">Click Everywhere above this line to go

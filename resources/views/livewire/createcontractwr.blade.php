@@ -2,7 +2,7 @@
     <div class="w-3/4 mx-auto mt-3 text-black bg-white shadow rounded-xl border-1">
         <h2 class="py-3 text-2xl font-semibold text-center">Create Contract</h2>
     </div>
-
+    <p>customer_id: {{ $customer_id }}</p>
     <div class="w-3/4 p-5 mx-auto mt-3 text-black bg-white shadow rounded-xl border-1">
         <div class="flex items-start justify-between w-full px-10 ">
             <div class="flex flex-col w-1/3 gap-3">
@@ -10,13 +10,13 @@
                 <div class="flex ">
                     <span
                         class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                        Customer
+                        Company
                     </span>
                     <select wire:model="customer_id"
                         class=" w-full  bg-gray-50 border  border-gray-300 text-gray-600 rounded-none rounded-r-lg
         text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
         dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option value="">Select Customer</option>
+                        <option value="">Select Company</option>
                         @foreach ($customer as $c)
                             <option value="{{ $c->id }}">{{ $c->company }}</option>
                         @endforeach
@@ -63,7 +63,7 @@
                     <input id="pdf" type="file" name="pdf" :value="old('pdf')" required wire:model="pdf"
                         autocomplete="pdf"
                         class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    @error('photo')
+                    @error('pdf')
                         <span class="error">{{ $message }}</span>
                     @enderror
                 </div>
@@ -142,10 +142,12 @@
                             <td class="px-6 py-4">
                                 {{-- input description --}}
                                 <div class="w-full ">
-                                    <x-text-input class="w-full mt-1 marker:block" type="text" name="description"
+                                    {{-- <x-text-input class="w-full mt-1 marker:block" type="text" name="description"
                                         :value="old('description')" required
                                         wire:model.lazy="contracts.{{ $index }}.description"
-                                        autocomplete="description" />
+                                        autocomplete="description" /> --}}
+                                    <textarea rows="3" wire:model.lazy="contracts.{{ $index }}.description"
+                                        class="rounded-none  w-full rounded-r-lg block p-2.5  text-sm text-gray-900 bg-gray-50  border-r-0 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
                                 </div>
                             </td>
                             <td class="px-6 py-4">

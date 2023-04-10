@@ -21,13 +21,13 @@
                 <div class="flex ">
                     <span
                         class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                        Customer
+                        Company
                     </span>
                     <select wire:model="customer_id" {{ $updateUpper ? '' : 'disabled' }}
                         class=" w-full  bg-gray-50 border  border-gray-300 text-gray-600 rounded-none rounded-r-lg
         text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
         dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option value="">Select Customer</option>
+                        <option value="">Select Company</option>
                         @foreach ($customer as $c)
                             <option value="{{ $c->id }}">{{ $c->company }}</option>
                         @endforeach
@@ -44,6 +44,18 @@
                         {{ $updateUpper ? '' : 'disabled' }} required wire:model="contract_number_full"
                         autocomplete="contract_number_full"
                         class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                </div>
+                <div class="flex ">
+                    <span
+                        class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                        Upload PDF
+                    </span>
+                    <input id="pdf" type="file" name="pdf" :value="old('pdf')" required wire:model="pdf"
+                        {{ $updateUpper ? '' : 'disabled' }} autocomplete="pdf"
+                        class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    @error('pdf')
+                        <span class="error">{{ $message }}</span>
+                    @enderror
                 </div>
 
             </div>
@@ -67,13 +79,33 @@
                         {{ $updateUpper ? '' : 'disabled' }} wire:model="contract_end" autocomplete="contract_end"
                         class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
+                <div class="flex ">
+                    <span
+                        class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                        Status
+                    </span>
+                    <select wire:model="status" {{ $updateUpper ? '' : 'disabled' }}
+                        class=" w-full  bg-gray-50 border  border-gray-300 text-gray-600 rounded-none rounded-r-lg
+        text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
+        dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option value="">Choose Status</option>
+
+                        @if ($prevStatus == 'Sent')
+                            <option value="Signed">Signed</option>
+                        @endif
+                        @if ($prevStatus == 'Signed' || $prevStatus == 'Sent')
+                            <option value="Done">Done</option>
+                        @endif
+                        <option value="Cancel">Cancel</option>
+                    </select>
+                </div>
                 <div class="flex justify-between">
                     @if ($updateUpper == false)
                         <button class="button button-blue" wire:click="editUpper">Edit</button>
-                        <button class="button button-black" wire:click="back">Cancel</button>
+                        <button class="button button-black" wire:click="back">Back</button>
                     @else
                         <button class="button button-teal" wire:click="updateUpper">Update</button>
-                        <button class="button button-black" wire:click="cancel">Cancel</button>
+                        <button class="button button-black" wire:click="back">Back</button>
                     @endif
                 </div>
             </div>
