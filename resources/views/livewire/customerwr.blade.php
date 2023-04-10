@@ -31,7 +31,8 @@
                     <th scope="col" class="px-6 py-3">Notes</th>
                     <th scope="col" class="px-6 py-3">
                         <button @click="addCustomer=true"
-                            class="px-3 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700">Add</button>
+                            class="px-3 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700">Create
+                            Customer</button>
                     </th>
                 </tr>
             </thead>
