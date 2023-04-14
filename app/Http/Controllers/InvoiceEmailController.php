@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Mpdf\Mpdf;
 use Carbon\Carbon;
 use App\Models\Invoice;
+use App\Models\Contract;
 use App\Models\Customer;
 use App\Mail\InvoiceMail;
 use Illuminate\Http\Request;
@@ -18,8 +19,14 @@ class InvoiceEmailController extends Controller
         $invoices = Invoice::where('number', $number)->get();
         $invoice = Invoice::where('number', $number)->first();
         $customer = Customer::find($invoice->customer_id);
+        $contract = Contract::where('contract_number', $invoice->contract)->first();
+        if( $contract != ''){
+            $contract_number = contractNumberFormat($contract->contract_number, $contract->contract_date);
+        } else {
+            $contract_number = '-';
+        }
 
-        return view('pdf.invoicepdf', compact(['invoices', 'invoice', 'customer']));
+        return view('pdf.invoicepdf', compact(['invoices', 'invoice', 'customer', 'contract_number']));
     }
 
     public function pdf($number)
@@ -27,6 +34,12 @@ class InvoiceEmailController extends Controller
         $invoices = Invoice::where('number', $number)->get();
         $invoice = Invoice::where('number', $number)->first();
         $customer = Customer::find($invoice->customer_id);
+        $contract = Contract::where('contract_number', $invoice->contract)->first();
+        if( $contract != ''){
+            $contract_number = contractNumberFormat($contract->contract_number, $contract->contract_date);
+        } else {
+            $contract_number = '-';
+        }
         $saveLocation = 'public/storage/pdf/';
         $pdfFileName = 'BlueSkyCreation_' . invNumberFormat($number, $invoice->invoice_date) . '.pdf';
         $footer = '<table style="width: 100%">
@@ -50,7 +63,7 @@ class InvoiceEmailController extends Controller
         $data['subject'] = 'ini adalah title atau judulnya';
         $data['body'] = 'ini adalah body atau isi dari emailnya';
 
-        $html = view('pdf.invoicepdftemplate', compact(['invoices', 'invoice', 'customer']));
+        $html = view('pdf.invoicepdftemplate', compact(['invoices', 'invoice', 'customer', 'contract_number']));
         $mpdf->WriteHTML($html);
 
         $mpdf->Output($pdfFileName,\Mpdf\Output\Destination::DOWNLOAD);

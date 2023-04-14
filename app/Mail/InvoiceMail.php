@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Models\Invoice;
+use App\Models\Contract;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Bus\Queueable;
@@ -46,7 +47,7 @@ class InvoiceMail extends Mailable
             subject: $subject,
             cc: ['anton.pru@gmail.com', 'anton.phangesti@gmail.com'],
             from: 'michelle@blueskycreation.id',
-            to: 'michellevelicia18@gmail.com',
+            to: 'kokonacci@gmail.com',
         );
     }
 
@@ -59,11 +60,12 @@ class InvoiceMail extends Mailable
         $customer = Customer::where('id', $invoice->customer_id)->first();
         $invoice_number = invNumberFormat($this->number, $invoice->invoice_date);
 
+
         return new Content(
             // view: 'pdf.invoiceEmailTemplate',
             view: 'pdf.invoiceEmailRamadanTemplate',
             with: ['title' => $customer->salutation,  'custName' => $customer->name, 'invoice_number' => $invoice_number,
-            'company' => $customer->company, 'due_date' => tanggal($invoice->due_date)
+             'company' => $customer->company, 'due_date' => tanggal($invoice->due_date)
             ],
         );
     }
@@ -79,6 +81,14 @@ class InvoiceMail extends Mailable
         $invoices = Invoice::where('number', $this->number)->get();
         $invoice = Invoice::where('number', $this->number)->first();
         $customer = Customer::find($invoice->customer_id);
+        $contract = Contract::where('contract_number', $invoice->contract)->first();
+        if( $contract != ''){
+            $contract_number = contractNumberFormat($contract->contract_number, $contract->contract_date);
+            // dd($contract_number);
+        } else {
+            $contract_number = '-';
+            // dd($contract_number);
+        }
         $pdfFileName = 'BlueSkyCreation_' . invNumberFormat($this->number, $invoice->invoice_date) . '.pdf';
         $footer = '<table style="width: 100%">
         <tr>
@@ -97,7 +107,7 @@ class InvoiceMail extends Mailable
 
         ob_get_clean();
 
-        $html = view('pdf.invoicepdftemplate', compact(['invoices', 'invoice', 'customer']));
+        $html = view('pdf.invoicepdftemplate', compact(['invoices', 'invoice', 'customer', 'contract_number']));
         $mpdf->WriteHTML($html);
         $pdf = $mpdf->Output('', 'S');
         return [

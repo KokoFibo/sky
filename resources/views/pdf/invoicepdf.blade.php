@@ -61,19 +61,24 @@
             <p>INVOICE</p>
         </div>
 
-        <div class="main">
+        <div class="flex flex-row items-start main">
             <div class="left">
                 <div>
                     <p class="bold">Name</p>
                     <p class="bold">Company</p>
                     <p class="bold">Address</p>
-                    <p class="bold">Contract No.</p>
+                    @if ($contract_number != '-')
+                        <p class="bold">Contract No.</p>
+                    @endif
                 </div>
                 <div style="margin-left: 20px;">
                     <p>{{ $customer->salutation }} {{ $customer->name }}</p>
                     <p>{{ $customer->company }}</p>
                     <p>{{ $customer->address }}</p>
-                    <p>{{ $invoice->contract }}</p>
+                    @if ($contract_number != '-')
+                        <p>{{ $contract_number }}</p>
+                    @endif
+
                 </div>
             </div>
             <div class="right">
