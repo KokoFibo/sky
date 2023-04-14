@@ -164,8 +164,14 @@
             <td style="width: 30%">{{ tanggal($invoice->due_date) }}</td>
         </tr>
         <tr>
-            <td style="width: 15%"><b>Contract No.</b></td>
-            <td style="width: 30%">{{ $invoice->contract }}</td>
+            @if ($contract_number != '-')
+                <td style="width: 15%"><b>Contract No.</b></td>
+                <td style="width: 30%">{{ $contract_number }}</td>
+            @else
+                <td style="width: 15%"><b>Contract No.</b></td>
+                <td style="width: 30%">None</td>
+            @endif
+
             <td style="width: 15%"><b>Payment to</b></td>
             <td style="width: 30%">Tiffany Mareta</td>
         </tr>

@@ -59,15 +59,23 @@
                                     class="px-6 py-4">
                                     @php
                                         $packages = getQuotationData($d->number);
+
                                     @endphp
+
+
                                     <ul>
-
-                                        @foreach ($packages as $p)
-                                            <li class="list-disc">
+                                        @if (count($packages) <= 1)
+                                            @foreach ($packages as $p)
                                                 {{ $p->package }}
+                                            @endforeach
+                                        @else
+                                            @foreach ($packages as $p)
+                                                <li class="list-disc">
+                                                    {{ $p->package }}
+                                                </li>
+                                            @endforeach
+                                        @endif
 
-                                            </li>
-                                        @endforeach
                                     </ul>
                                 </td>
                                 <td @dblclick="openModal=true" wire:click="viewdata({{ $d->number }})"
@@ -76,12 +84,17 @@
                                         $prices = getQuotationData($d->number);
                                     @endphp
                                     <ul>
-
-                                        @foreach ($prices as $p)
-                                            <li class="list-disc">
+                                        @if (count($packages) <= 1)
+                                            @foreach ($prices as $p)
                                                 {{ number_format($p->price) }}
-                                            </li>
-                                        @endforeach
+                                            @endforeach
+                                        @else
+                                            @foreach ($prices as $p)
+                                                <li class="list-disc">
+                                                    {{ number_format($p->price) }}
+                                                </li>
+                                            @endforeach
+                                        @endif
                                     </ul>
                                 </td>
 
