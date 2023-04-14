@@ -5,9 +5,6 @@
         @include('modal.detailInvoiceModal')
     </div>
     <div x-show="!openModal">
-
-
-
         <h1 class="my-5 text-2xl font-semibold text-center">Invoice</h1>
         {{-- per Page --}}
         <div class="flex justify-between px-10">
@@ -22,8 +19,6 @@
                 <option value="20">20 rows</option>
                 <option value="25">25 rows</option>
             </select>
-
-
         </div>
         <div class="relative px-10 mt-5 overflow-x-auto">
             <table class="w-full text-sm text-left text-gray-500 table-auto dark:text-gray-400">
@@ -46,8 +41,6 @@
                 </thead>
                 <tbody>
                     @if (!empty($data))
-
-
                         @foreach ($data as $key => $d)
                             <tr
                                 class="border-b dark:bg-gray-800 dark:border-gray-700 even:bg-gray-200 hover:bg-blue-200">
@@ -81,10 +74,9 @@
                                         <button
                                             class="bg-black text-white text-sm font-medium mr-2 px-1 py-0.5 rounded">{{ $d->status }}</button>
                                     @endif
-
                                 </td>
                                 <td>
-                                    <div class="flex gap-1">
+                                    <div class="flex gap-1 px-3">
                                         <a href="/updateinvoice/{{ $d->number }}"><button
                                                 class="px-3 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700">Update</button></a>
                                         <button wire:click="deleteConfirmation({{ $d->number }})"
@@ -92,7 +84,6 @@
                                         <a href="/pdftemplate/{{ $d->number }}"> <button
                                                 class="px-3 py-2 text-white bg-teal-500 rounded-lg hover:bg-teal-700">Email</button></a>
                                     </div>
-
                                 </td>
                             </tr>
                         @endforeach
@@ -102,16 +93,13 @@
                                 <h4 class="text-xl">Sorry, no data found</h4>
                             </td>
                         </tr>
-
                     @endif
-
                 </tbody>
             </table>
             <div class="my-3">
                 {{ $data->links() }}
             </div>
         </div>
-
     </div>
 
 
