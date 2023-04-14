@@ -142,7 +142,7 @@
                 {{ invNumberFormat($invoice->number, $invoice->invoice_date) }}
             </td>
             <td style="text-align: right;">
-                <img style="width:150px; " src="https://kokofibo.com/images/logobsc.png" alt="logobsc"
+                <img style="width:150px; " src="https://blueskycreation.id/images/logobsc.png" alt="logobsc"
                     border="0" /></a>
             </td>
         </tr>
@@ -256,14 +256,15 @@
                     to continue the ongoing project. Proof of<br>
                     payment could be sent via Whatsapp or email</p>
             </td>
-            <td style="text-align: right;"><img src="https://kokofibo.com/images/tiff-signs.png" alt=""></td>
+            <td style="text-align: right;"><img src="https://blueskycreation.id/images/mich-signs.png" alt="">
+            </td>
         </tr>
         <tr>
             <td style="vertical-align: bottom;">
                 <h2><b><i>Thank you for your support!</i></b></h2>
             </td>
             <td style="vertical-align: bottom; text-align: right;">
-                <p style="text-align: center"><b>Tiffany M</b> <br>
+                <p style="text-align: center"><b>Michelle Velicia</b> <br>
                     Blue Sky Creation</p>
             </td>
         </tr>

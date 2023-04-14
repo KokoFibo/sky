@@ -2,8 +2,7 @@
     <div class="w-3/4 mx-auto mt-3 text-black bg-white shadow rounded-xl border-1">
         <h2 class="py-3 text-2xl font-semibold text-center">Create Invoice</h2>
     </div>
-    <p>customer_id : {{ $this->customer_id }}</p>
-    <p>contract : {{ $this->contract }}</p>
+
     {{-- <div class="w-3/4 mx-auto text-black bg-white" style="height: 100vh;"> --}}
     <div class="w-3/4 p-3 mx-auto mt-3 text-black bg-white shadow rounded-xl border-1">
 

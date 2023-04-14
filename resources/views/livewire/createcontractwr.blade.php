@@ -2,7 +2,6 @@
     <div class="w-3/4 mx-auto mt-3 text-black bg-white shadow rounded-xl border-1">
         <h2 class="py-3 text-2xl font-semibold text-center">Create Contract</h2>
     </div>
-    <p>customer_id: {{ $customer_id }}</p>
     <div class="w-3/4 p-5 mx-auto mt-3 text-black bg-white shadow rounded-xl border-1">
         <div class="flex items-start justify-between w-full px-10 ">
             <div class="flex flex-col w-1/3 gap-3">
