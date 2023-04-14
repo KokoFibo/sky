@@ -11,7 +11,7 @@ class Customerwr extends Component
     use WithPagination;
 
     public $name, $salutation, $title, $company, $address, $mobile, $email, $notes, $idCustomer;
-    public $perpage=5, $search='';
+    public $perpage=10, $search='';
     protected $listeners =  ['delete'];
 
     public function updatingSearch () {

@@ -24,7 +24,7 @@
                     <th scope="col" class="px-6 py-3">Name</th>
                     <th scope="col" class="px-6 py-3">Salutation</th>
                     <th scope="col" class="px-6 py-3">Title</th>
-                    <th scope="col" class="px-6 py-3">Company</th>
+                    <th scope="col" class="px-6 py-3">Brand</th>
                     <th scope="col" class="px-6 py-3">Address</th>
                     <th scope="col" class="px-6 py-3">Mobile</th>
                     <th scope="col" class="px-6 py-3">Email</th>
