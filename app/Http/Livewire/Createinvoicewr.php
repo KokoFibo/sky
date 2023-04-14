@@ -63,7 +63,8 @@ class Createinvoicewr extends Component
                 'contract' => $this->contract,
                 'package' => $data->package,
                 'price' => $data->price,
-                'qty' => $data->qty,
+                // 'qty' => $data->qty,
+                'qty' => 0,
                 'tax' => $this->tax,
                 'discount' => $this->discount,
                 'status' => 'Draft',
@@ -99,14 +100,14 @@ class Createinvoicewr extends Component
                     'contract' => $this->contract,
                     'package' => $data->package,
                     'price' => $data->price,
-                    'qty' => $data->qty,
+                    // 'qty' => $data->qty,
+                    'qty' => 0,
                     'tax' => $this->tax,
                     'discount' => $this->discount,
                     'status' => 'Draft',
                 ];
 
             } else {
-                dd('hello');
                 $this->delete_row(0);
                 $this->contract = '';
             }

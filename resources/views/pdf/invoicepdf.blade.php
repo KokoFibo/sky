@@ -160,8 +160,8 @@
                 </div>
             </div>
             <div class="flex right">
-                <div><img src="{{ asset('images/tiff-signs.png') }}" alt=""></div>
-                <div class="tiffany">Tiffany M</div>
+                <div><img src="{{ asset('images/mich-signs.png') }}" alt=""></div>
+                <div class="tiffany">Michelle Velicia</div>
                 <div>Blue Sky Creation</div>
             </div>
         </div>
