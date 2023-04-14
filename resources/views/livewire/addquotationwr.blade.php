@@ -1,18 +1,18 @@
-<div>
-    <div class="flex flex-col w-1/3 gap-3 p-3 mx-auto mt-5 text-center bg-white rounded-lg shadow">
+<div class="p-3">
+    <div class="flex flex-col w-full gap-3 p-3 mx-auto mt-5 text-center bg-white rounded-lg shadow lg:w-1/3">
         Add Quotation Item
     </div>
-    <div class="flex flex-col w-1/3 gap-3 p-3 mx-auto mt-5 bg-white rounded-lg shadow" x-data="{ inputManual: false }">
+    <div class="flex flex-col w-full gap-3 p-3 mx-auto mt-5 bg-white rounded-lg shadow lg:w-1/3" x-data="{ inputManual: false }">
         {{-- Package --}}
-        <div class="flex">
+        <div class="flex w-full">
             <span @dblclick="inputManual = !inputManual"
                 class="inline-flex items-center w-24 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                 Package
             </span>
-            <div x-show="!inputManual">
+            <div x-show="!inputManual" class="w-full">
 
                 <select wire:model="package" wire:change="getPrice"
-                    class="w-80 rounded-none rounded-r-lg bg-gray-50 border  border-gray-300 text-gray-600
+                    class="w-full  rounded-none rounded-r-lg bg-gray-50 border  border-gray-300 text-gray-600
                 text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
                 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
@@ -25,17 +25,17 @@
 
                 </select>
             </div>
-            <div x-show="inputManual">
+            <div x-show="inputManual" class="w-full">
                 {{-- <div x-show="inputManual" @dblclick="inputManual = !inputManual"> --}}
 
                 <input type="text" required wire:model="package"
-                    class="w-80 rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    class="w-full rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             </div>
 
 
         </div>
         {{-- Price --}}
-        <div class="flex">
+        <div class="flex w-full">
             <span
                 class="inline-flex items-center w-24 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
 
@@ -48,7 +48,7 @@
         </div>
 
         {{-- Description --}}
-        <div class="flex">
+        <div class="flex w-full">
             <span
                 class="inline-flex items-center w-24 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
 

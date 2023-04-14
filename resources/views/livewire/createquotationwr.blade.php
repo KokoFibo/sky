@@ -1,4 +1,4 @@
-<div>
+<div class="p-3">
     <div class="w-full mt-3 text-black bg-white shadow lg:mx-auto lg:px-0 lg:w-3/4 rounded-xl border-1">
         <h2 class="py-3 text-2xl font-semibold text-center">Create Quotation</h2>
     </div>
@@ -137,7 +137,7 @@
             </x-blue-button>
             <a href="/quotation">
                 <x-primary-button>
-                    {{ __('Cancel') }}
+                    {{ __('Back') }}
                 </x-primary-button>
             </a>
         </div>
