@@ -3,7 +3,7 @@
         <h2 class="py-3 text-2xl font-semibold text-center">Detail Contract</h2>
     </div>
 
-    <div class="flex flex-col w-full p-5 mx-auto lg:w-3/4 lg:flex-row">
+    <div class="flex flex-col w-full gap-3 p-5 mx-auto lg:w-3/4 lg:flex-row">
         <div class="w-full lg:w-1/3">
             <div class="flex mt-3 ">
                 <span
