@@ -57,7 +57,7 @@ class quotationMail extends Mailable
     {
         $quotation = Quotation::where('number', $this->number)->first();
         $customer = Customer::where('id', $quotation->customer_id)->first();
-        $quotation_number = invNumberFormat($this->number, $quotation->quotation_date);
+        $quotation_number = quoNumberFormat($this->number, $quotation->quotation_date);
         return new Content(
             view: 'pdf.quotationEmailTemplate',
             with: ['title' => $customer->salutation,  'custName' => $customer->name, 'quotation_number' => $quotation_number,
@@ -76,7 +76,7 @@ class quotationMail extends Mailable
         $quotations = Quotation::where('number', $this->number)->get();
         $quotation = Quotation::where('number', $this->number)->first();
         $customer = Customer::find($quotation->customer_id);
-        $pdfFileName = 'BlueSkyCreation_' . invNumberFormat($this->number, $quotation->quotation_date) . '.pdf';
+        $pdfFileName = 'BlueSkyCreation_' . quoNumberFormat($this->number, $quotation->quotation_date) . '.pdf';
         $footer = '<table style="width: 100%">
         <tr>
             <td style="width: 33%; text-align:left ;  ">
