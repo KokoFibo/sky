@@ -46,8 +46,6 @@ class quotationMail extends Mailable
             // from: 'info.blueskycreation@gmail.com',
             // from: new Address('info.blueskycreation@gmail.com', 'Blue Sky Creation'),
             from: new Address('info@blueskycreation.id', 'Blue Sky Creation'),
-
-
             to: $customer->email,
         );
     }
