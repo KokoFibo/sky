@@ -60,7 +60,7 @@ class QuotationEmailController extends Controller
 
     public function quotationEmail ($number) {
         // Mail::to('kokonaci@gmail.com')->send(new InvoiceMail($number));
-        // try {
+        try {
             Mail::send(new quotationMail($number));
             $data = Quotation::where('number', $number)->get();
             foreach($data as $d){
@@ -71,10 +71,10 @@ class QuotationEmailController extends Controller
             }
             return redirect( route('quotation'))->with('success', 'Email sent');
 
-        // } catch (\Exception $e) {
-            //  return $e->getMessage();
+        } catch (\Exception $e) {
+             return $e->getMessage();
             return redirect( route('quotation'))->with('error', 'Fail Sending Email');
 
-        // }
+        }
     }
 }
