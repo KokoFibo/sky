@@ -34,7 +34,7 @@
 
             </div>
             <div class="flex flex-row gap-2">
-                <a href="/kirimemail/{{ $invoice->number }}"><button
+                <a href="/invoiceEmail/{{ $invoice->number }}"><button
                         class="px-2 py-1 text-sm text-white bg-blue-500 rounded hover:bg-blue-700">Email</button></a>
 
                 <a href="/pdf/{{ $invoice->number }}"><button

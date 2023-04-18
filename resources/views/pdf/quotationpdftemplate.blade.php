@@ -76,7 +76,7 @@
             <thead>
                 <tr>
                     <td colspan="3"
-                        style="text-align:center; background-color:#d9eaf7; padding: 5px 0 5px 0; border: 1px solid #999; font-size: 25px">
+                        style="text-align:center; background-color:#D9EAF7; padding: 5px 0 5px 0; border: 1px solid #999; font-size: 25px">
                         PROVIDED
                         SERVICES</td>
                 </tr>

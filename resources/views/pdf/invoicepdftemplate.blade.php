@@ -113,7 +113,7 @@
         } */
 
         thead tr {
-            background-color: skyblue;
+            background-color: #D9EAF7;
             /* height: 25px; */
             border: 1px solid #999;
         }

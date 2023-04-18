@@ -66,7 +66,7 @@ class QuotationEmailController extends Controller
             foreach($data as $d){
 
                  $d->emailed_at = Carbon::parse(Carbon::now())->format('Y-m-d H:i:s');
-                // $d->status = 'Emailed';
+                $d->status = 'Emailed';
                 $d->save();
             }
             return redirect( route('quotation'))->with('success', 'Email sent');

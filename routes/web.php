@@ -69,7 +69,7 @@ Route::get('/addquotation/{number}', Addquotationwr::class)->name('addquotation'
 Route::get('/pdftemplate/{number}', [InvoiceEmailController::class, 'index']);
 Route::get('/pdf/{number}', [InvoiceEmailController::class, 'pdf']);
 Route::get('/emailinvoice/{number}', [InvoiceEmailController::class, 'emailinvoice']);
-Route::get('/kirimemail/{number}', [InvoiceEmailController::class, 'kirimemail']);
+Route::get('/invoiceEmail/{number}', [InvoiceEmailController::class, 'invoiceEmail']);
 
 Route::get('/quotationtemplate/{number}', [QuotationEmailController::class, 'index']);
 Route::get('/quotationpdf/{number}', [QuotationEmailController::class, 'pdf']);
