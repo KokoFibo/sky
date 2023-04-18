@@ -72,19 +72,15 @@ class InvoiceEmailController extends Controller
         return back()->with('message' , 'PDF Generated');
     }
 
-
-
-
-
-    public function kirimemail ($number) {
+    public function invoiceEmail ($number) {
         // Mail::to('kokonaci@gmail.com')->send(new InvoiceMail($number));
         try {
             Mail::send(new InvoiceMail($number));
             $data = Invoice::where('number', $number)->get();
             foreach($data as $d){
 
-                 $d->emailed_at = Carbon::parse(Carbon::now())->format('Y-m-d H:i:s');
-                // $d->status = 'Emailed';
+                $d->emailed_at = Carbon::parse(Carbon::now())->format('Y-m-d H:i:s');
+                $d->status = 'Emailed';
                 $d->save();
             }
             return redirect( route('invoice'))->with('success', 'Email sent');

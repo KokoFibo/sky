@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\Quotation;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Envelope;
@@ -40,9 +41,12 @@ class quotationMail extends Mailable
         $subject = 'Quotation '.$quotation_number. ' for '.$customer->company;
         return new Envelope(
             subject: $subject,
-            cc: ['anton.pru@gmail.com', 'anton.phangesti@gmail.com'],
-            from: 'michelle@blueskycreation.id',
-            to: 'michellevelicia18@gmail.com',
+            cc: ['tiffany.blueskycreation@gmail.com'],
+            bcc: 'info.blueskycreation@gmail.com',
+            // from: 'info.blueskycreation@gmail.com',
+            from: new Address('info.blueskycreation@gmail.com', 'Blue Sky Creation'),
+
+            to: $customer->email,
         );
     }
 

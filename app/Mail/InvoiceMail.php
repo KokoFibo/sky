@@ -45,9 +45,12 @@ class InvoiceMail extends Mailable
         return new Envelope(
             // subject: 'Invoice Mail',
             subject: $subject,
-            cc: ['anton.pru@gmail.com', 'anton.phangesti@gmail.com'],
-            from: 'michelle@blueskycreation.id',
-            to: 'kokonacci@gmail.com',
+            cc: ['tiffany.blueskycreation@gmail.com'],
+            bcc: 'info.blueskycreation@gmail.com',
+            // from: 'info.blueskycreation@gmail.com',
+            // from: [$address = 'info.blueskycreation@gmail.com', $name = 'Info Blue Sky Creation'],
+            from: new Address('info.blueskycreation@gmail.com', 'Blue Sky Creation'),
+            to: $customer->email,
         );
     }
 
