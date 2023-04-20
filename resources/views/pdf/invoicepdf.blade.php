@@ -46,7 +46,7 @@
 
                     <a href="/pdf/{{ $invoice->number }}"><button x-on:click="buttonDisabled = true"
                             x-bind:disabled="buttonDisabled"
-                            class="px-2 py-1 text-sm text-white bg-red-500 rounded hover:bg-red-700">PDF1</button></a>
+                            class="px-2 py-1 text-sm text-white bg-red-500 rounded hover:bg-red-700">PDF</button></a>
                 </div>
 
                 <a href="/invoice"><button
