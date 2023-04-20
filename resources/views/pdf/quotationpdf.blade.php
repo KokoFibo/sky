@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     <title>Quotation</title>
 </head>
 <style>
@@ -45,8 +47,16 @@
                     <p class="text-3xl font-semibold">Created on</p>
                 </div>
                 <div class="flex gap-2">
-                    <a href="/quotationEmail/{{ $quotation->number }}"><button class="px-2 py-1 text-sm text-white bg-teal-500 rounded-lg hover:bg-teal-700">Email</button></a>
-                    <a href="/quotationpdf/{{ $quotation->number }}"><button class="px-2 py-1 text-sm text-white bg-red-500 rounded-lg hover:bg-red-700">PDF</button></a>
+                    <div x-data="{ buttonDisabled: false }">
+                        <a href="/quotationEmail/{{ $quotation->number }}"><button x-on:click="buttonDisabled = true"
+                            x-bind:disabled="buttonDisabled" class="px-2 py-1 text-sm text-white bg-teal-500 rounded-lg hover:bg-teal-700">Email</button></a>
+                    </div>
+                    <div x-data="{ buttonDisabled: false }">
+
+                        <a href="/quotationpdf/{{ $quotation->number }}"><button x-on:click="buttonDisabled = true"
+                        x-bind:disabled="buttonDisabled" class="px-2 py-1 text-sm text-white bg-red-500 rounded-lg hover:bg-red-700">PDF</button></a>
+                    </div>
+
                     <a href="/quotation"><button class="px-2 py-1 text-sm text-white bg-black rounded-lg hover:bg-gray-600 hover:text-white ">Back</button></a>
                 </div>
             </div>
