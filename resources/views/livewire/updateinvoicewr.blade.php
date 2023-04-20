@@ -147,10 +147,10 @@
                 <div class="flex justify-between">
                     @if ($updateUpper == false)
                         <button class="button button-blue" wire:click="editUpper">Edit</button>
-                        <button class="button button-black" wire:click="back">Cancel</button>
+                        <button class="button button-black" wire:click="back">Back</button>
                     @else
                         <button class="button button-teal" wire:click="updateUpper">Update</button>
-                        <button class="button button-black" wire:click="cancel">Cancel</button>
+                        <button class="button button-black" wire:click="cancel">Back</button>
                     @endif
                 </div>
 
