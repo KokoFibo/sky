@@ -28,8 +28,7 @@
         overflow: hidden;
         margin: 0 auto;
       ">
-        <img src="https://sky.blueskycreation.id/Header-Mail-Invoice-Ramadan-edition.jpg"
-            style="display: block; width: 100%; height: auto" />
+        <img src="https://sky.blueskycreation.id/invoice-header.jpg" style="display: block; width: 100%; height: auto" />
         <div class="card-content" style="padding: 50px; text-align: left; ">
             <div>
                 <p
