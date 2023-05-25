@@ -71,7 +71,7 @@ class InvoiceEmailController extends Controller
         // return back();
         return back()->with('message' , 'PDF Generated');
     }
-
+ 
     public function invoiceEmail ($number) {
         // Mail::to('kokonaci@gmail.com')->send(new InvoiceMail($number));
         try {
