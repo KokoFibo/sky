@@ -63,7 +63,7 @@ class InvoiceMail extends Mailable
 
         return new Content(
             // view: 'pdf.invoiceEmailTemplate',
-            view: 'pdf.invoiceEmailRamadanTemplate',
+            view: 'pdf.invoiceEmailTemplate.blade',
             with: ['title' => $customer->salutation,  'custName' => $customer->name, 'invoice_number' => $invoice_number,
              'company' => $customer->company, 'due_date' => tanggal($invoice->due_date)
             ],
