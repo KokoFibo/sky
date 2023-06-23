@@ -153,7 +153,7 @@
     <table style="margin-bottom: 25px">
         <tr>
             <td style="width: 15%"><b>Name</b></td>
-            <td style="width: 30%">{{ $customer->name }}</td>
+            <td style="width: 30%">{{ $customer->salutation }} {{ $customer->name }}</td>
             <td style="width: 15%"><b>Invoice Date</b></td>
             <td style="width: 15%">{{ tanggal($invoice->invoice_date) }}</td>
         </tr>
