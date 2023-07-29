@@ -57,6 +57,8 @@
                         <th class="w-10 px-6 py-3 ">#</th>
                         <th class="px-6 py-3 w-80 ">Package</th>
                         <th class="px-6 py-3 w-60 ">Price</th>
+                        <th class="px-6 py-3 w-60 ">Quantity</th>
+                        <th class="px-6 py-3 w-96 ">Amount</th>
                         <th class="px-6 py-3 w-96 ">Description</th>
                         <th class="w-20 px-6 py-3 ">
                             @if ($customer_id == '')
@@ -93,7 +95,7 @@
                                     {{-- input package manual --}}
                                     <div x-show="packageManual">
                                         <x-text-input class="w-full mt-1 " type="text" name="package"
-                                            :value="old('package')" required
+                                            onchange="Calc(this);" :value="old('package')" required
                                             wire:model.lazy="quotations.{{ $index }}.package"
                                             autocomplete="package" />
                                     </div>
@@ -103,9 +105,24 @@
                                     {{-- input price --}}
                                     <div>
                                         <x-text-input class="block w-full mt-1 text-right " type="text"
-                                            name="price" :value="old('price')"
+                                            name="price" onchange="Calc(this);" :value="old('price')"
                                             wire:model.lazy="quotations.{{ $index }}.price"
                                             autocomplete="price" />
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{-- input Qty --}}
+                                    <div>
+                                        <x-text-input class="block w-full mt-1 text-right" type="number" name="qty"
+                                            onchange="Calc(this);" :value="old('qty')" required
+                                            wire:model.lazy="quotations.{{ $index }}.qty" autocomplete="qty" />
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{-- Amount --}}
+                                    <div>
+                                        <x-text-input class="block w-full mt-1 text-right" type="text" name="amount"
+                                            disabled onchange="Calc(this);" />
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 ">
@@ -131,15 +148,94 @@
                 </tbody>
             </table>
         </div>
-        <div class="flex justify-between gap-2 my-3 text-right lg:justify-start ">
-            <x-blue-button wire:click="saveQuotation">
-                {{ __('Save') }}
-            </x-blue-button>
-            <a href="/quotation">
-                <x-primary-button>
-                    {{ __('Back') }}
-                </x-primary-button>
-            </a>
+        <div class="flex justify-between">
+            <div></div>
+
+            <div class="flex flex-col w-full gap-2 lg:w-1/4 ">
+                {{-- Sub Total --}}
+                <div class="flex ">
+                    <span
+                        class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                        Sub Total
+                    </span>
+                    <input type="text" id="subtotal" disabled
+                        class="text-right rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                </div>
+
+
+                {{-- Tax --}}
+                <div class="flex ">
+                    <span
+                        class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                        Tax
+                    </span>
+                    <select wire:model="tax" id="tax" onchange="getTotal()"
+                        class="w-full  bg-gray-50 border  border-gray-300 text-gray-600 rounded-none rounded-r-lg
+                    text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
+                    dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option value="0" selected>Without Tax</option>
+                        <option value="2.5">2.5%</option>
+                    </select>
+                </div>
+
+                {{-- Discount --}}
+                <div class="flex ">
+                    <span
+                        class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                        Total
+                    </span>
+                    <input type="text" id="total" disabled onchange="getTotal()"
+                        class="text-right rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                </div>
+                <div class="flex justify-between my-3 ">
+                    <x-blue-button wire:click="saveQuotation">
+                        {{ __('Save') }}
+                    </x-blue-button>
+                    <a href="/invoice">
+                        <x-primary-button>
+                            {{ __('Back') }}
+                        </x-primary-button>
+                    </a>
+                </div>
+            </div>
         </div>
+
+        @push('script')
+            <script>
+                function btnDel(v) {
+                    $(v).parent().parent().parent().remove();
+                    getTotal();
+                }
+
+
+
+                function Calc(v) {
+                    var index = $(v).parent().parent().parent().index();
+                    var qty = document.getElementsByName("qty")[index].value;
+                    var price = document.getElementsByName("price")[index].value;
+                    var amount = qty * price;
+                    document.getElementsByName('amount')[index].value = amount;
+
+                    getTotal();
+                }
+
+                function getTotal() {
+                    var sum = 0;
+                    var amounts = document.getElementsByName("amount");
+
+                    for (let index = 0; index < amounts.length; index++) {
+                        var amount = amounts[index].value;
+                        sum = +(sum) + +(amount);
+                    }
+                    document.getElementById("subtotal").value = sum.toLocaleString('en');
+                    var tax = document.getElementById("tax").value;
+
+                    var total = sum / (100 - tax) * 100;
+                    var roundedTotal = Math.round(total / 1000) * 1000;
+                    document.getElementById("total").value = roundedTotal.toLocaleString('en');
+                }
+            </script>
+        @endpush
+
     </div>
 </div>

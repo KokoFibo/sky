@@ -11,7 +11,7 @@ use Livewire\Component;
 
 class Createquotationwr extends Component
 {
-    public $number, $price, $quotation_date, $status, $package_id, $quotation_id, $paket;
+    public $number, $price, $qty, $tax, $quotation_date, $status, $package_id, $quotation_id, $paket;
     public $quotations = [],
         $package,
         $customer,
@@ -37,6 +37,7 @@ class Createquotationwr extends Component
             'package' => '',
             'price' => 0,
             'qty' => 0,
+            'tax' => 0,
             'description' => '',
             'status' => 'Draft',
         ];
@@ -51,7 +52,7 @@ class Createquotationwr extends Component
     public function saveQuotation()
     {
             for ($i = 0; $i < count($this->quotations); $i++) {
-            if ($this->quotations[$i]['package'] == '' || $this->quotations[$i]['price'] <= 0 || $this->quotations[$i]['description'] == '') {
+            if ($this->quotations[$i]['package'] == '' || $this->quotations[$i]['price'] <= 0 || $this->quotations[$i]['qty'] <= 0 || $this->quotations[$i]['tax'] <= 0 || $this->quotations[$i]['description'] == '') {
                 $this->lolos = 0;
                 break;
             } else {
@@ -72,6 +73,8 @@ class Createquotationwr extends Component
                     'customer_id' => $value['customer_id'],
                     'package' => $value['package'],
                     'price' => $value['price'],
+                    'qty' => $value['qty'],
+                    'tax' => $value['tax'],
                     'description' => $value['description'],
                     'status' => $value['status'],
                 ]);
@@ -101,6 +104,8 @@ class Createquotationwr extends Component
         $this->customer_id = '';
         $this->package = '';
         $this->price = '0';
+        $this->qty = '0';
+        $this->tax = '0';
         $this->description = '';
         $this->status = 'Draft';
     }
