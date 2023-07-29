@@ -143,13 +143,13 @@
             <div></div>
             <div>
                 <table  class="w-full mb-10 mr-20 text-xl text-left text-gray-500 table-auto dark:text-gray-400">
-                    @if ($cx>1)
+                    @if ($tax != 0)
                         <tr>
                             <td>Total</td>
                             <td align="right">IDR {{ number_format($total) }}</td>
                         </tr>
-                    @endif
-                    @if ($tax != 0)
+
+
                         <tr>
                             <td>Tax</td>
                             <td align="right">{{ $tax }} %</td>

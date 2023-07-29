@@ -91,6 +91,9 @@
 
                 @php
                     $grandTotal = 0;
+                    $total = 0;
+                    $tax = 0;
+                    $cx = 0;
                 @endphp
                 @foreach ($quotations as $q)
                     <tr>
@@ -111,16 +114,42 @@
                         <td style="font-size: 14px;border: 1px solid #999;padding: 8px 20px; text-align:right;">IDR
                             {{ number_format($q->price) }}</td>
                         @php
-                            $grandTotal = $grandTotal + $q->price;
+                            $total = $total + $q->price;
+                            $tax = $q->tax;
+                            $cx++;
                         @endphp
                     </tr>
                 @endforeach
+                @if ($tax != 0)
+                    <tr>
+                        <td colspan="2"
+                            style="font-size: 14px;border: 1px solid #999;padding: 8px 20px;text-align:left;">
+                            <b>Total</b>
+                        </td>
+                        <td style="font-size: 14px;border: 1px solid #999;padding: 8px 20px; text-align:right;"><b>IDR
+                                {{ number_format($total) }}</b>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td colspan="2"
+                            style="font-size: 14px;border: 1px solid #999;padding: 8px 20px;text-align:left;"><b>Tax</b>
+                        </td>
+                        <td style="font-size: 14px;border: 1px solid #999;padding: 8px 20px; text-align:right;"><b>
+                                {{ $tax }} %</b>
+                        </td>
+                    </tr>
+                @endif
+                @php
+                    $grandTotal = ($total / (100 - $tax)) * 100;
+                @endphp
                 <tr>
                     <td colspan="2"
                         style="font-size: 14px;border: 1px solid #999;padding: 8px 20px;text-align:left;"><b>Grand
                             Total</b></td>
                     <td style="font-size: 14px;border: 1px solid #999;padding: 8px 20px; text-align:right;"><b>IDR
-                            {{ number_format($grandTotal) }}</b>
+                            {{ number_format(roundedThousand($grandTotal)) }}</b>
                     </td>
                 </tr>
             </tbody>
