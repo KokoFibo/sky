@@ -279,8 +279,7 @@
                 function getTotal() {
                     var sum = 0;
                     var amounts = document.getElementsByName("amount");
-                    // var tax = document.getElementsByName("tax").value;
-                    // var discount = document.getElementsByName("discount").value;
+
                     for (let index = 0; index < amounts.length; index++) {
                         var amount = amounts[index].value;
                         sum = +(sum) + +(amount);

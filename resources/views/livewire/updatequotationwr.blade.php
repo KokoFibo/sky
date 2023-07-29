@@ -45,6 +45,20 @@
                         @endforeach
                     </select>
                 </div>
+                {{-- Tax --}}
+                <div class="flex ">
+                    <span
+                        class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                        Tax
+                    </span>
+                    <select wire:model="tax" id="tax" {{ $updateUpper ? '' : 'disabled' }}
+                        class="w-full  bg-gray-50 border  border-gray-300 text-gray-600 rounded-none rounded-r-lg
+            text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
+            dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option value="0" selected>Without Tax</option>
+                        <option value="2.5">2.5%</option>
+                    </select>
+                </div>
 
             </div>
 
@@ -138,6 +152,7 @@
                 @endforeach
             </tbody>
         </table>
+
         <div class="flex justify-between">
             <div></div>
             <button class="w-20 my-3 button button-black" wire:click="back">Back</button>
