@@ -246,6 +246,11 @@ function roundedTotal($subtotal, $discount, $tax)
     }
     return $total = round(((($subtotal - $discount) / (100 - $tax)) * 100) / 1000) * 1000;
 }
+function roundedThousand($value)
+{
+
+    return $total = round($value   / 1000) * 1000;
+}
 function getQuotationData ($number) {
     if($number != null) {
         $data = Quotation::where('number', $number)->get();

@@ -78,7 +78,7 @@
     <h1 class="text-3xl font-semibold tracking-widest text-center">PROVIDED SERVICES</h1>
 </div>
     <div class="relative mt-20 overflow-x-auto">
-        <table class="w-full mb-40 text-left text-gray-500 table-auto dark:text-gray-400">
+        <table class="w-full mb-10 text-left text-gray-500 table-auto dark:text-gray-400">
 
             <thead class="text-xl text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr class="text-xl text-white bg-gray-500 dark:text-white">
@@ -94,6 +94,10 @@
             </thead>
             <tbody>
                 @if (!empty($quotations))
+                @php
+                    $total = 0;
+                    $cx = 0;
+                @endphp
                     @foreach ($quotations as $key => $d)
                         <tr class="text-xl border-b dark:bg-gray-800 dark:border-gray-700 even:bg-gray-200 hover:bg-blue-200">
                             <td class="px-6 py-4">{{ $loop->iteration }}</td>
@@ -120,8 +124,14 @@
                             <td class="px-6 py-4">1 Package</td>
                             <td class="px-6 py-4">IDR {{ number_format($d->price) }}</td>
 
+                            @php
+                            $total = $total + $d->price;
+                                $tax = $d->tax;
+                            $cx++;
+                            @endphp
                         </tr>
-                    @endforeach
+                        @endforeach
+
                 @else
                     <tr class="border-b dark:bg-gray-800 dark:border-gray-700 even:bg-gray-200 hover:bg-blue-200">
                         <td class="px-6 py-4">No Data Found</td>
@@ -129,6 +139,34 @@
                 @endif
             </tbody>
         </table>
+        <div class="flex justify-between px-20 mb-40">
+            <div></div>
+            <div>
+                <table  class="w-full mb-10 mr-20 text-xl text-left text-gray-500 table-auto dark:text-gray-400">
+                    @if ($cx>1)
+                        <tr>
+                            <td>Total</td>
+                            <td align="right">IDR {{ number_format($total) }}</td>
+                        </tr>
+                    @endif
+                    @if ($tax != 0)
+                        <tr>
+                            <td>Tax</td>
+                            <td align="right">{{ $tax }} %</td>
+                        </tr>
+                    @endif
+
+                    @php
+                        $grandTotal = $total / (100 - $tax) * 100;
+                    @endphp
+                    <tr>
+                       <td>Grand Total</td>
+                       <td align="right">IDR {{ number_format(roundedThousand($grandTotal)) }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
 
     </div>
     </div>
