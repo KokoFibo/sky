@@ -30,6 +30,9 @@ class Createquotationwr extends Component
 
     public function add_row()
     {
+        if ($this->tax == null) {
+            $this->tax = 0;
+        }
         $this->quotations[] = [
             'number' => getQuotationRealNumber(),
             'quotation_date' => $this->quotation_date,
@@ -37,7 +40,7 @@ class Createquotationwr extends Component
             'package' => '',
             'price' => 0,
             'qty' => 0,
-            'tax' => 0,
+            'tax' => $this->tax,
             'description' => '',
             'status' => 'Draft',
         ];
@@ -52,7 +55,7 @@ class Createquotationwr extends Component
     public function saveQuotation()
     {
             for ($i = 0; $i < count($this->quotations); $i++) {
-            if ($this->quotations[$i]['package'] == '' || $this->quotations[$i]['price'] <= 0 || $this->quotations[$i]['qty'] <= 0 || $this->quotations[$i]['tax'] <= 0 || $this->quotations[$i]['description'] == '') {
+            if ($this->quotations[$i]['package'] == '' || $this->quotations[$i]['price'] <= 0 || $this->quotations[$i]['qty'] <= 0 || $this->quotations[$i]['description'] == '') {
                 $this->lolos = 0;
                 break;
             } else {
@@ -74,7 +77,8 @@ class Createquotationwr extends Component
                     'package' => $value['package'],
                     'price' => $value['price'],
                     'qty' => $value['qty'],
-                    'tax' => $value['tax'],
+                    // 'tax' => $value['tax'],
+                    'tax' => $this->tax,
                     'description' => $value['description'],
                     'status' => $value['status'],
                 ]);
@@ -104,8 +108,8 @@ class Createquotationwr extends Component
         $this->customer_id = '';
         $this->package = '';
         $this->price = '0';
-        $this->qty = '0';
-        $this->tax = '0';
+        $this->qty = '';
+        $this->tax = '';
         $this->description = '';
         $this->status = 'Draft';
     }
