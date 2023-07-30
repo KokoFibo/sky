@@ -37,11 +37,14 @@
                 text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
                 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
-                        @if ($contract != '')
+                        @if ($contract_list != '')
                             <option value="">Without Contract</option>
-
-                            <option value="{{ $contract }}">{{ contractNumberFormat($contract, $contract_date) }}
-                            </option>
+                            @foreach ($contract_list as $d)
+                                {{-- <option value="{{ $contract }}">{{ contractNumberFormat($contract, $contract_date) }} --}}
+                                <option value="{{ $d->contract_number }}">
+                                    {{ contractNumberFormat($d->contract_number, $d->contract_date) }}
+                                </option>
+                            @endforeach
                         @else
                             <option value="">No Contract</option>
                         @endif
