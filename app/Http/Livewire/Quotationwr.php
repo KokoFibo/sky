@@ -14,7 +14,7 @@ class Quotationwr extends Component
 {
     use WithPagination;
     public $customer, $package, $packageData,  $price, $description, $customer_id, $status;
-    public $perpage = 5, $search = '';
+    public $perpage = 10, $search = '';
     public $detailQuotation;
     public $detailQuotations;
     public $detailCustomer;

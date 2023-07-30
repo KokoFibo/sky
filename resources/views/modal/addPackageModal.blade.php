@@ -27,7 +27,7 @@
             <x-blue-button class="m-3" @click="addPackage=false" wire:click="savePackage">
                 {{ __('Save') }}
             </x-blue-button>
-            <x-primary-button class="m-3" @click="addPackage=false">
+            <x-primary-button class="m-3" @click="addPackage=false" wire:click="clear">
                 {{ __('Cancel') }}
             </x-primary-button>
         </div>

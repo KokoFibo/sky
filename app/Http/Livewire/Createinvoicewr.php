@@ -13,7 +13,7 @@ class Createinvoicewr extends Component
 {
     public $number,  $price,  $qty, $tax,  $invoice_date, $due_date, $status, $package_id, $invoice_id, $paket;
     public $invoices = [], $package, $contract, $contract_date, $customer, $customer_id;
-    public $lolos, $dataContract,$discount, $subtotal, $total, $test;
+    public $lolos, $dataContract,$discount, $subtotal, $total, $test, $contract_list;
 
     public function updatePrice ($index) {
         $data = Package::where('package', $this->invoices[$index]['package'])->first();
@@ -46,7 +46,7 @@ class Createinvoicewr extends Component
     }
 
     public function updatedContract () {
-        $data = Contract::where('customer_id', $this->customer_id)->first();
+        $data = Contract::where('contract_number', $this->contract)->first();
         $this->contract_date = $data->contract_date;
         if($this->contract != null) {
             if ($this->discount == null) {
@@ -55,6 +55,8 @@ class Createinvoicewr extends Component
             if ($this->tax == null) {
                 $this->tax = 0;
             }
+            $this->invoice = [];
+            $this->delete_row(0);
             $this->invoices[] = [
                 'number' => getInvoiceRealNumber(),
                 'invoice_date' => $this->invoice_date,
@@ -79,38 +81,41 @@ class Createinvoicewr extends Component
             $this->contract = '';
             // $this->dataContract = Contract::where('customer_id', $this->customer_id)->first();
             // $this->contract = $this->dataContract->contract_number;
-            $data = Contract::where('customer_id', $this->customer_id)->first();
-            $this->contract_date = $data->contract_date;
+            $this->contract_list = Contract::where('customer_id', $this->customer_id)
+                                    ->where('done','==','0000-00-00')
+                                    ->get();
 
-            $this->contract = $data->contract_number;
-            if($this->contract != null) {
-                $this->delete_row(0);
+            // $this->contract_date = $data->contract_date;
 
-                if ($this->discount == null) {
-                    $this->discount = 0;
-                }
-                if ($this->tax == null) {
-                    $this->tax = 0;
-                }
-                $this->invoices[] = [
-                    'number' => getInvoiceRealNumber(),
-                    'invoice_date' => $this->invoice_date,
-                    'due_date' => $this->due_date,
-                    'customer_id' => $this->customer_id,
-                    'contract' => $this->contract,
-                    'package' => $data->package,
-                    'price' => $data->price,
-                    // 'qty' => $data->qty,
-                    'qty' => 0,
-                    'tax' => $this->tax,
-                    'discount' => $this->discount,
-                    'status' => 'Draft',
-                ];
+            // $this->contract = $data->contract_number;
+            // if($this->contract != null) {
+            //     $this->delete_row(0);
 
-            } else {
-                $this->delete_row(0);
-                $this->contract = '';
-            }
+            //     if ($this->discount == null) {
+            //         $this->discount = 0;
+            //     }
+            //     if ($this->tax == null) {
+            //         $this->tax = 0;
+            //     }
+            //     $this->invoices[] = [
+            //         'number' => getInvoiceRealNumber(),
+            //         'invoice_date' => $this->invoice_date,
+            //         'due_date' => $this->due_date,
+            //         'customer_id' => $this->customer_id,
+            //         'contract' => $this->contract,
+            //         'package' => $data->package,
+            //         'price' => $data->price,
+            //         // 'qty' => $data->qty,
+            //         'qty' => 0,
+            //         'tax' => $this->tax,
+            //         'discount' => $this->discount,
+            //         'status' => 'Draft',
+            //     ];
+
+            // } else {
+            //     $this->delete_row(0);
+            //     $this->contract = '';
+            // }
         } catch (\Exception $e) {
             $this->delete_row(0);
             $this->contract = '';
@@ -124,18 +129,9 @@ class Createinvoicewr extends Component
         unset($this->invoices[$index]);
         $this->invoices = array_values($this->invoices);
     }
-    // public function updated($fields)
-    // {
-    //     $this->validateOnly($fields);
-    // }
+
     public function saveInvoice()
     {
-        //  dd($this->invoices);
-        // $validatedData = $this->validate();
-
-        // $this->validate();
-        //    if($this->invoices != null){
-
         for($i = 0; $i < count($this->invoices); $i++){
             if($this->invoices[$i]['package'] == "" || $this->invoices[$i]['price'] <= 0 ||  $this->invoices[$i]['qty'] <= 0) {
                 $this->lolos = 0; break;
@@ -189,30 +185,9 @@ class Createinvoicewr extends Component
         $this->number = getInvoiceNumber();
         $this->invoice_date = date('Y-m-d');
         $this->due_date = dueDate();
-        // $this->clear();
     }
 
-    // public function deleteConfirmation($id)
-    // {
-    //     $data = Invoice::find($id);
-    //     $name = $data->name;
-    //     $company = $data->company;
-    //     $this->dispatchBrowserEvent('delete_confirmation', [
-    //         'title' => 'Are you sure',
-    //         'text' => 'to delete ' . $name . ' of ' . $company . ' data?',
-    //         'icon' => 'warning',
-    //         'id' => $id,
-    //     ]);
-    // }
 
-    // public function delete($id)
-    // {
-    //     if ($id != null) {
-    //         $data = Customer::find($id);
-    //         $data->delete();
-    //         $this->dispatchBrowserEvent('success', ['message' => 'Data Deleted']);
-    //     }
-    // }
 
     public function updatingSearch()
     {
@@ -221,9 +196,7 @@ class Createinvoicewr extends Component
 
     public function clear()
     {
-        // $this->number = '';
-        // $this->invoice_date = '';
-        // $this->due_date = '';
+
         $this->customer_id = '';
         $this->contract = '';
         $this->package = '';
@@ -234,19 +207,6 @@ class Createinvoicewr extends Component
         $this->status = 'Draft';
     }
 
-    // public function updatedCustomerId()
-    // {
-    //     $this->dataContract = Contract::where('customer_id', $this->customer_id)->get();
-
-    //     try {
-    //         if ($this->dataContract != null) {
-    //             $this->contract = $this->dataContract[0]->contract_number;
-    //         }
-    //     } catch (\Exception $e) {
-    //         $this->contract = '';
-    //         return $e->getMessage();
-    //     }
-    // }
 
     public function mount()
     {
@@ -257,6 +217,8 @@ class Createinvoicewr extends Component
         // $this->clear();
         $this->createInvoice();
     }
+
+
 
     public function render()
     {
