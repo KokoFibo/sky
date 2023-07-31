@@ -7,9 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Quotation PDF</title>
+
     <style>
         body {
-            font-family: poppins;
+            font-family: 'Poppins', sans-serif;
             color: #374151;
             width: 100%;
         }
@@ -76,7 +77,7 @@
             <thead>
                 <tr>
                     <td colspan="3"
-                        style="text-align:center; background-color:#D9EAF7; padding: 5px 0 5px 0; border: 1px solid #999; font-size: 25px">
+                        style="letter-spacing: 5px;text-align:center;font-family: poppins; background-color:#D9EAF7; padding: 15px; border: 1px solid #999; font-size: 15px; font-weight: bold;">
                         PROVIDED
                         SERVICES</td>
                 </tr>
@@ -154,30 +155,16 @@
                 </tr>
             </tbody>
         </table>
-        {{-- <br>
-        <table style="width: 100%">
-            <tr>
-
-                <td style="width: 33%; text-align:left ;  ">
-
-                    <img src="https://sky.blueskycreation.id/web.png" style="width: 15px;"> www.blueskycreation.id
-                </td>
-                <td style="width: 33%; text-align:center"><img src="https://sky.blueskycreation.id/whatsapp.png"
-                        style="width: 15px;"> 087 780 620 632</td>
-                <td style="width: 33%; text-align:right"><img src="https://sky.blueskycreation.id/email.png"
-                        style="width: 15px;"> hello@blueskycreation.id</td>
-            </tr>
-        </table> --}}
 
         <pagebreak />
         {{--  Media Package  --}}
         <table style=" font-size: 13.5px; width:100%; border: 1px solid #999; line-height: 1.1;">
             <tr>
                 <td colspan="2"
-                    style=" border-bottom: 1px solid #999; background-color:#d9eaf7; line-height: 1.6;
-                    width:100%; text-align: center;">
-                    <b>Work Process</b><br>Social
-                    Media Package
+                    style=" border-bottom: 1px solid #999; background-color:#d9eaf7;
+                    width:100%; line-height: 1.6; text-align: center; padding:5px;">
+                    <span style="letter-spacing: 5px; font-weight: bold; font-size:17px;">WORK PROCESS</span> <br><span
+                        style="font-weight: thin; font-size:15px;">SOCIAL MEDIA PACKAGE</span>
                 </td>
             </tr>
 
@@ -241,10 +228,10 @@
         <table style=" font-size: 13.5px; width:100%; border: 1px solid #999; line-height: 1.1;">
             <tr>
                 <td colspan="2"
-                    style=" border-bottom: 1px solid #999; background-color:#d9eaf7; line-height: 1.6;
-                    width:100%; text-align: center;">
-                    <b>Work Process</b><br>Social
-                    PER PROJECT
+                    style=" border-bottom: 1px solid #999; background-color:#d9eaf7;
+                    width:100%; line-height: 1.6; text-align: center; padding:5px;">
+                    <span style="letter-spacing: 5px; font-weight: bold; font-size:17px;">WORK PROCESS</span> <br><span
+                        style="font-weight: thin; font-size:15px;">PER PROJECT</span>
                 </td>
             </tr>
 
@@ -309,43 +296,48 @@
             <tr>
                 <td colspan="2"
                     style=" border-bottom: 1px solid #999; background-color:#d9eaf7; line-height: 3.2;
-                    width:100%; text-align: center;">
-                    <b>TERMS AND CONDITIONS</b>
+                    width:100%; text-align: center;padding:5px;">
+                    <span style="letter-spacing: 5px; font-weight: bold; font-size:17px;">TERMS AND CONDITIONS</span>
                 </td>
             </tr>
 
             <tr>
-                <td style="padding: 10px 7px 5px 7px;"><b>Tax</b></td>
-                <td style="padding: 10px 7px 5px 7px;"><b>Monthly Services</b></td>
+                <td colspan="2" style="padding: 10px 7px 5px 7px"><b>Revisions</b></td>
             </tr>
             <tr>
-                <td style="padding: 2px 7px 1px 7px;">The prices mentioned above does not</td>
-                <td style="padding: 2px 7px 1px 7px;">The services of our social media packages are</td>
+                <td colspan="2" style="padding: 0 7px">The services include 1x major revision and 2x
+                    minor revisions.
+                    No photo/video shoot revisions</td>
             </tr>
             <tr>
-                <td style="padding: 2px 7px 1px 7px;">include tax</td>
-                <td style="padding: 2px 7px 1px 7px;">provided per month & cannot be accumulated</td>
-            </tr>
-            <tr>
-                <td style="padding: 2px 7px 1px 7px;">
-                    <hr>
-                </td>
-                <td style="padding: 2px 7px 1px 7px;">
+                <td colspan="2">
                     <hr>
                 </td>
             </tr>
+
             <tr>
-                <td style="padding: 2px 7px 1px 7px;"><b>Revisions</b></td>
-                <td style="padding: 2px 7px 1px 7px;"><b>Contract Period</b></td>
+                <td colspan="2" style="padding: 0 7px 5px 7px"><b>Monthly Services</b></td>
             </tr>
             <tr>
-                <td style="padding: 2px 7px 1px 7px;">The services include 1x major revision and 2x</td>
-                <td style="padding: 2px 7px 1px 7px;">Our social media packages comes with a</td>
+                <td colspan="2" style="padding: 0 7px">The services of our social media packages are
+                    provided per month & cannot be accumulated.</td>
             </tr>
             <tr>
-                <td style="padding: 5px 7px 10px 7px;">minor revisions. No photo/video shoot revisions</td>
-                <td style="padding: 5px 7px 10px 7px;">minimum of 3 months contract</td>
+                <td colspan="2">
+                    <hr>
+                </td>
             </tr>
+            <tr>
+                <td colspan="2" style="padding: 0 7px 5px 7px"><b>Contract Period</b></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding: 0 7px 10px 7px">Our social media packages comes with a minimum
+                    of 3 months contract.</td>
+
+            </tr>
+
+
+
 
         </table>
     </div>
