@@ -155,20 +155,6 @@
                 </tr>
             </tbody>
         </table>
-        {{-- <br>
-        <table style="width: 100%">
-            <tr>
-
-                <td style="width: 33%; text-align:left ;  ">
-
-                    <img src="https://sky.blueskycreation.id/web.png" style="width: 15px;"> www.blueskycreation.id
-                </td>
-                <td style="width: 33%; text-align:center"><img src="https://sky.blueskycreation.id/whatsapp.png"
-                        style="width: 15px;"> 087 780 620 632</td>
-                <td style="width: 33%; text-align:right"><img src="https://sky.blueskycreation.id/email.png"
-                        style="width: 15px;"> hello@blueskycreation.id</td>
-            </tr>
-        </table> --}}
 
         <pagebreak />
         {{--  Media Package  --}}
@@ -316,37 +302,42 @@
             </tr>
 
             <tr>
-                <td style="padding: 10px 7px 5px 7px;"><b>Tax</b></td>
-                <td style="padding: 10px 7px 5px 7px;"><b>Monthly Services</b></td>
+                <td colspan="2" style="padding: 10px 7px 5px 7px"><b>Revisions</b></td>
             </tr>
             <tr>
-                <td style="padding: 2px 7px 1px 7px;">The prices mentioned above does not</td>
-                <td style="padding: 2px 7px 1px 7px;">The services of our social media packages are</td>
+                <td colspan="2" style="padding: 0 7px">The services include 1x major revision and 2x
+                    minor revisions.
+                    No photo/video shoot revisions</td>
             </tr>
             <tr>
-                <td style="padding: 2px 7px 1px 7px;">include tax</td>
-                <td style="padding: 2px 7px 1px 7px;">provided per month & cannot be accumulated</td>
-            </tr>
-            <tr>
-                <td style="padding: 2px 7px 1px 7px;">
-                    <hr>
-                </td>
-                <td style="padding: 2px 7px 1px 7px;">
+                <td colspan="2">
                     <hr>
                 </td>
             </tr>
+
             <tr>
-                <td style="padding: 2px 7px 1px 7px;"><b>Revisions</b></td>
-                <td style="padding: 2px 7px 1px 7px;"><b>Contract Period</b></td>
+                <td colspan="2" style="padding: 0 7px 5px 7px"><b>Monthly Services</b></td>
             </tr>
             <tr>
-                <td style="padding: 2px 7px 1px 7px;">The services include 1x major revision and 2x</td>
-                <td style="padding: 2px 7px 1px 7px;">Our social media packages comes with a</td>
+                <td colspan="2" style="padding: 0 7px">The services of our social media packages are
+                    provided per month & cannot be accumulated.</td>
             </tr>
             <tr>
-                <td style="padding: 5px 7px 10px 7px;">minor revisions. No photo/video shoot revisions</td>
-                <td style="padding: 5px 7px 10px 7px;">minimum of 3 months contract</td>
+                <td colspan="2">
+                    <hr>
+                </td>
             </tr>
+            <tr>
+                <td colspan="2" style="padding: 0 7px 5px 7px"><b>Contract Period</b></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding: 0 7px 10px 7px">Our social media packages comes with a minimum
+                    of 3 months contract.</td>
+
+            </tr>
+
+
+
 
         </table>
     </div>
