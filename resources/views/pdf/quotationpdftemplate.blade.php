@@ -7,9 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Quotation PDF</title>
+
     <style>
         body {
-            font-family: poppins;
+            font-family: 'Poppins', sans-serif;
             color: #374151;
             width: 100%;
         }
@@ -76,7 +77,7 @@
             <thead>
                 <tr>
                     <td colspan="3"
-                        style="text-align:center; background-color:#D9EAF7; padding: 5px 0 5px 0; border: 1px solid #999; font-size: 25px">
+                        style="letter-spacing: 5px;text-align:center;font-family: poppins; background-color:#D9EAF7; padding: 15px; border: 1px solid #999; font-size: 15px; font-weight: bold;">
                         PROVIDED
                         SERVICES</td>
                 </tr>
@@ -174,10 +175,10 @@
         <table style=" font-size: 13.5px; width:100%; border: 1px solid #999; line-height: 1.1;">
             <tr>
                 <td colspan="2"
-                    style=" border-bottom: 1px solid #999; background-color:#d9eaf7; line-height: 1.6;
-                    width:100%; text-align: center;">
-                    <b>Work Process</b><br>Social
-                    Media Package
+                    style=" border-bottom: 1px solid #999; background-color:#d9eaf7;
+                    width:100%; line-height: 1.6; text-align: center; padding:5px;">
+                    <span style="letter-spacing: 5px; font-weight: bold; font-size:17px;">WORK PROCESS</span> <br><span
+                        style="font-weight: thin; font-size:15px;">SOCIAL MEDIA PACKAGE</span>
                 </td>
             </tr>
 
@@ -241,10 +242,10 @@
         <table style=" font-size: 13.5px; width:100%; border: 1px solid #999; line-height: 1.1;">
             <tr>
                 <td colspan="2"
-                    style=" border-bottom: 1px solid #999; background-color:#d9eaf7; line-height: 1.6;
-                    width:100%; text-align: center;">
-                    <b>Work Process</b><br>Social
-                    PER PROJECT
+                    style=" border-bottom: 1px solid #999; background-color:#d9eaf7;
+                    width:100%; line-height: 1.6; text-align: center; padding:5px;">
+                    <span style="letter-spacing: 5px; font-weight: bold; font-size:17px;">WORK PROCESS</span> <br><span
+                        style="font-weight: thin; font-size:15px;">PER PROJECT</span>
                 </td>
             </tr>
 
@@ -309,8 +310,8 @@
             <tr>
                 <td colspan="2"
                     style=" border-bottom: 1px solid #999; background-color:#d9eaf7; line-height: 3.2;
-                    width:100%; text-align: center;">
-                    <b>TERMS AND CONDITIONS</b>
+                    width:100%; text-align: center;padding:5px;">
+                    <span style="letter-spacing: 5px; font-weight: bold; font-size:17px;">TERMS AND CONDITIONS</span>
                 </td>
             </tr>
 
