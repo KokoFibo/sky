@@ -223,7 +223,7 @@
 
         </table>
         <br>
-        <br>
+        {{-- <br> --}}
         {{--  PER PROJECT  --}}
         <table style=" font-size: 13.5px; width:100%; border: 1px solid #999; line-height: 1.1;">
             <tr>
@@ -290,7 +290,7 @@
         </table>
 
         <br>
-        <br>
+        {{-- <br> --}}
         {{--  TERMS AND CONDITIONS  --}}
         <table style=" font-size: 13.5px; width:100%; border: 1px solid #999; line-height: 1.1;">
             <tr>
