@@ -65,7 +65,8 @@
                 <td style="width:15%; font-size: 15px; font-weight: bold; ">Company</td>
                 <td style="width:35%; font-size: 15px;  ">{{ $customer->company }}</td>
                 <td style="width:15%; font-size: 15px; font-weight: bold; ">Number</td>
-                <td style="width:35%; font-size: 15px;  ">{{ getQuotationNumber($quotation->number) }}</td>
+                <td style="width:35%; font-size: 15px;  ">
+                    {{ quoNumberFormat($quotation->number, $quotation->quotation_date) }}</td>
             </tr>
         </table>
         <br>
