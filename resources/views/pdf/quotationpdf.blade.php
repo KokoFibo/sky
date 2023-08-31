@@ -19,7 +19,7 @@
     <div >
     <div class="flex items-center justify-between">
         <div>
-            <h1 class="font-semibold text-8xl">QUOTATION</h1>
+            <h1 class="font-semibold text-8xl">QUOTATIONqq</h1>
             <p class="mt-3 text-3xl tracking-wide">DETAILED OF PROVIDED SERVICES</p>
         </div>
         <h1><img src="{{ asset('images/Blue Sky Creations.png') }}" alt="" width="300px"></h1>
@@ -69,7 +69,7 @@
                 </div>
                 <div>
                     <p class="text-3xl">{{ tanggal($quotation->quotation_date) }}</p>
-                    <p class="mt-5 text-3xl">{{ getQuotationNumber($quotation->number) }}</p>
+                    <p class="mt-5 text-3xl">{{ quoNumberFormat($quotation->number, $quotation->quotation_date) }}</p>
                 </div>
             </div>
         </div>
