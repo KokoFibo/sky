@@ -19,7 +19,7 @@
     <div >
     <div class="flex items-center justify-between">
         <div>
-            <h1 class="font-semibold text-8xl">QUOTATIONqq</h1>
+            <h1 class="font-semibold text-8xl">QUOTATION</h1>
             <p class="mt-3 text-3xl tracking-wide">DETAILED OF PROVIDED SERVICES</p>
         </div>
         <h1><img src="{{ asset('images/Blue Sky Creations.png') }}" alt="" width="300px"></h1>
