@@ -18,7 +18,7 @@ class Quotationwr extends Component
     public $detailQuotation;
     public $detailQuotations;
     public $detailCustomer;
-    public $dcompany, $dquotation_date, $dpackage, $dprice, $ddescription, $demailed_at, $dstatus, $dquotation_number;
+    public $dcompany, $dquotation_date, $dpackage, $dprice, $ddescription, $demailed_at, $dstatus, $dquotation_number, $dtax, $ddiscount;
     protected $listeners =  ['delete'];
 
     public function viewdata ($number) {
@@ -30,6 +30,8 @@ class Quotationwr extends Component
             $this->dquotation_date = $this->detailQuotation->quotation_date;
             $this->dpackage = $this->detailQuotation->package;
             $this->dprice = $this->detailQuotation->price;
+            $this->dtax = $this->detailQuotation->tax;
+            $this->ddiscount = $this->detailQuotation->discount;
             $this->ddescription = $this->detailQuotation->description;
             $this->demailed_at = $this->detailQuotation->emailed_at;
             $this->dstatus = $this->detailQuotation->status;

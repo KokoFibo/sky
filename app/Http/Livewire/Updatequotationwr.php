@@ -14,7 +14,7 @@ class Updatequotationwr extends Component
     public $current_number, $quotation, $customer, $status;
     public $customer_id, $quotation_date, $number, $quotation_number, $quotation_id, $packages;
     public $updateUpper, $current_id;
-    public $package, $price, $tax, $qty=1;
+    public $package, $price, $discount, $tax, $qty=1;
     protected $listeners =  ['delete'];
 
 
@@ -48,6 +48,7 @@ class Updatequotationwr extends Component
         foreach($this->quotation as $i) {
             $this->customer_id = $i->customer_id;
             $this->quotation_date = $i->quotation_date;
+            $this->discount = $i->discount;
             $this->tax = $i->tax;
             $this->status = $i->status;
 
@@ -72,6 +73,7 @@ class Updatequotationwr extends Component
             foreach($data_id as $d) {
                 $data = Quotation::find($d->id);
                 $data->customer_id = $this->customer_id;
+                $data->discount = $this->discount;
                 $data->tax = $this->tax;
                 $data->qty = $this->qty;
                 $data->quotation_date = $this->quotation_date;
