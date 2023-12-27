@@ -13,34 +13,47 @@ class Packagewr extends Component
     protected $listeners =  ['delete'];
 
 
-    public function clear () {
+    public function clear()
+    {
         $this->package = '';
         $this->price = '';
         $this->description = '';
     }
 
-   
 
-    public function deleteConfirmation ($id) {
+
+    public function deleteConfirmation($id)
+    {
         $data = Package::find($id);
         $package = $data->package;
         $this->dispatchBrowserEvent('delete_confirmation', [
             'title' => 'Are you sure',
-            'text' => "to delete " . $package.  " ?",
+            'text' => "to delete " . $package .  " ?",
             'icon' => 'warning',
             'id' => $id,
         ]);
     }
 
-    public function delete ($id) {
-        if($id != null) {
+    public function delete($id)
+    {
+        if ($id != null) {
             $data = Package::find($id);
             $data->delete();
             $this->dispatchBrowserEvent('success', ['message' => 'Data Deleted']);
         }
     }
 
-    public function savePackage () {
+    protected $rules = [
+
+
+        'package' => 'required',
+        'price' => 'required|numeric',
+        'description' => 'required',
+
+    ];
+
+    public function savePackage()
+    {
         $this->validate();
         $data = new Package();
         $data->package = $this->package;
@@ -51,8 +64,9 @@ class Packagewr extends Component
         $this->dispatchBrowserEvent('success', ['message' => 'Data Saved']);
     }
 
-    public function editPackage ($id) {
-        if($id != null) {
+    public function editPackage($id)
+    {
+        if ($id != null) {
             $data = Package::find($id);
             $this->idPackage = $data->id;
             $this->package = $data->package;
@@ -61,7 +75,8 @@ class Packagewr extends Component
         }
     }
 
-    public function updatePackage () {
+    public function updatePackage()
+    {
         $this->validate();
 
         $data = Package::find($this->idPackage);
@@ -71,8 +86,6 @@ class Packagewr extends Component
         $data->save();
         $this->clear();
         $this->dispatchBrowserEvent('success', ['message' => 'Data Updated']);
-
-
     }
 
     public function render()
