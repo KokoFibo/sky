@@ -1,10 +1,12 @@
 <div class="p-3">
-    <div class="w-full mx-auto mt-3 text-black bg-white shadow lg:w-3/4 rounded-xl border-1">
+    <div
+        class="w-full mx-auto mt-3 text-black bg-white dark:bg-gray-800 dark:text-white shadow lg:w-3/4 rounded-xl border-1">
         <h2 class="py-3 text-2xl font-semibold text-center">Create Invoice</h2>
     </div>
 
     {{-- <div class="w-full mx-auto text-black bg-white lg:w-3/4" style="height: 100vh;"> --}}
-    <div class="w-full p-3 mx-auto mt-3 text-black bg-white shadow lg:w-3/4 rounded-xl border-1">
+    <div
+        class="w-full p-3 mx-auto mt-3 text-black bg-white dark:bg-gray-800 dark:text-white shadow lg:w-3/4 rounded-xl border-1">
 
         <div class="flex flex-col items-start justify-between w-full gap-3 lg:flex-row ">
             <div class="flex flex-col w-full gap-3 lg:w-1/3">
@@ -105,7 +107,7 @@
                         <th class="px-6 py-3 w-60">Amount</th>
                         <th class="w-20 px-6 py-3">
                             @if ($customer_id == '')
-                                <button wire:click="add_row" class="button button-gray" disabled>Add</button>
+                                <button wire:click="add_row" class="button button-teal" disabled>Add</button>
                             @else
                                 <button wire:click="add_row" class="button button-blue">Add</button>
                             @endif

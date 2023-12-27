@@ -1,10 +1,12 @@
 <div class="p-3">
 
-    <div class="flex flex-col w-full gap-3 p-3 mx-auto mt-5 text-center bg-white rounded-lg shadow lg:w-1/3">
+    <div
+        class="flex flex-col w-full gap-3 p-3 mx-auto mt-5 text-center bg-white rounded-lg dark:bg-gray-800 dark:text-white shadow lg:w-1/3">
         Edit Invoice Item
     </div>
 
-    <div class="flex flex-col w-full gap-3 p-3 mx-auto mt-5 bg-white rounded-lg shadow lg:w-1/3" x-data="{ inputManual: false }">
+    <div class="flex flex-col w-full gap-3 p-3 mx-auto mt-5 bg-white rounded-lg dark:bg-gray-800 dark:text-white shadow lg:w-1/3"
+        x-data="{ inputManual: false }">
         {{-- Package --}}
         <div class="flex">
             <span @dblclick="inputManual = !inputManual"
@@ -62,7 +64,7 @@
         </div>
         <div class="flex justify-between">
             <button class="button button-teal" wire:click="updateLower">Update</button>
-            <button class="button button-black" wire:click="cancel">Back</button>
+            <button class="button button-gray" wire:click="cancel">Back</button>
         </div>
     </div>
 

@@ -58,6 +58,9 @@
     .button-black {
         @apply text-white bg-black;
     }
+    .button-white {
+        @apply text-black bg-white;
+    }
     .button-black:hover {
         @apply text-black bg-white;
     }

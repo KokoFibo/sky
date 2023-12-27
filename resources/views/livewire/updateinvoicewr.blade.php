@@ -1,5 +1,6 @@
 <div class="p-3">
-    <div class="w-full mx-auto mt-3 text-black bg-white shadow lg:w-3/4 rounded-xl border-1">
+    <div
+        class="w-full mx-auto mt-3 text-black bg-white dark:bg-gray-800 dark:text-white shadow lg:w-3/4 rounded-xl border-1">
         <h2 class="py-3 text-2xl font-semibold text-center">Update Invoice</h2>
     </div>
     @if (Session::has('message'))
@@ -14,7 +15,8 @@
             })
         </script>
     @endif
-    <div class="w-full p-3 mx-auto mt-3 text-black bg-white shadow lg:w-3/4 rounded-xl border-1">
+    <div
+        class="w-full p-3 mx-auto mt-3 text-black bg-white dark:bg-gray-800 dark:text-white shadow lg:w-3/4 rounded-xl border-1">
         <div class="flex flex-col items-start justify-between w-full gap-3 lg:flex-row">
             <div class="flex flex-col w-full gap-3 lg:w-1/3">
 
@@ -95,7 +97,7 @@
 
                 <div class="flex ">
                     <span
-                        class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                        class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200  border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                         Invoice Number
                     </span>
                     <input type="text" id="invoice_number" type="text" name="invoice_number" disabled
@@ -105,7 +107,7 @@
                 </div>
                 <div class="flex ">
                     <span
-                        class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                        class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md  dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                         Invoice Date
                     </span>
                     {{-- <x-text-input id="invoice_date"  type="text" name="invoice_date"
@@ -147,10 +149,10 @@
                 <div class="flex justify-between">
                     @if ($updateUpper == false)
                         <button class="button button-blue" wire:click="editUpper">Edit</button>
-                        <button class="button button-black" wire:click="back">Back</button>
+                        <button class="button button-gray" wire:click="back">Back</button>
                     @else
                         <button class="button button-teal" wire:click="updateUpper">Update</button>
-                        <button class="button button-black" wire:click="cancel">Back</button>
+                        <button class="button button-gray" wire:click="cancel">Back</button>
                     @endif
                 </div>
 
@@ -180,7 +182,7 @@
                     $subtotal = 0;
                 @endphp
                 @foreach ($invoice as $i)
-                    <tr class="border-b dark:bg-gray-800 dark:border-gray-700 even:bg-gray-200 hover:bg-blue-200">
+                    <tr class="border-b dark:bg-gray-800 dark:border-gray-700  hover:bg-blue-200">
                         <td class="px-6 py-4">{{ $loop->iteration }}</td>
                         <td class="px-6 py-4">{{ $i->package }}</td>
                         <td class="px-6 py-4">{{ number_format($i->price) }}</td>
@@ -254,7 +256,7 @@
                 </div>
             </div>
 
-            <button class="w-20 my-3 button button-black" wire:click="back">Back</button>
+            <button class="w-20 my-3 button button-gray" wire:click="back">Back</button>
         </div>
     </div>
 

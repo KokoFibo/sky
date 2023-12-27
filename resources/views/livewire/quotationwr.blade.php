@@ -47,8 +47,7 @@
                     @if (!empty($data))
 
                         @foreach ($data as $key => $d)
-                            <tr
-                                class="border-b dark:bg-gray-800 dark:border-gray-700 even:bg-gray-200 hover:bg-blue-200">
+                            <tr class="border-b dark:bg-gray-800 dark:border-gray-700  hover:bg-blue-200">
                                 <td @dblclick="openModal=true" wire:click="viewdata({{ $d->number }})"
                                     class="px-6 py-4">{{ $loop->iteration }}</td>
                                 <td @dblclick="openModal=true" wire:click="viewdata({{ $d->number }})"

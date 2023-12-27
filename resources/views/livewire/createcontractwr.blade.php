@@ -1,8 +1,10 @@
 <div class="p-3">
-    <div class="w-full mx-auto mt-3 text-black bg-white shadow lg:w-3/4 rounded-xl border-1">
+    <div
+        class="w-full mx-auto mt-3 text-black bg-white dark:bg-gray-800 dark:text-white shadow lg:w-3/4 rounded-xl border-1">
         <h2 class="py-3 text-2xl font-semibold text-center">Create Contract</h2>
     </div>
-    <div class="w-full p-5 mx-auto mt-3 text-black bg-white shadow lg:w-3/4 rounded-xl border-1">
+    <div
+        class="w-full p-5 mx-auto mt-3 text-black bg-white dark:bg-gray-800 dark:text-white shadow lg:w-3/4 rounded-xl border-1">
         <div class="flex flex-col items-start justify-between w-full gap-3 lg:flex-row ">
             <div class="flex flex-col w-full gap-3 lg:w-1/3">
                 {{-- customer_id --}}
@@ -94,7 +96,7 @@
                 @if (!empty($contracts))
                     @foreach ($contracts as $index => $contract)
                         <tr x-data="{ packageManual: false }" @dblclick="packageManual = !packageManual"
-                            class="border-b dark:bg-gray-800 dark:border-gray-700 even:bg-gray-200 hover:bg-blue-200">
+                            class="border-b dark:bg-gray-800 dark:border-gray-700  hover:bg-blue-200">
                             <td class="px-6 py-4">{{ $loop->iteration }}</td>
                             <td class="px-6 py-4 ">
                                 {{-- <td class="px-6 py-4"> --}}

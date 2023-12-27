@@ -1,5 +1,6 @@
 <div class="p-3">
-    <div class="w-full mx-auto mt-3 text-black bg-white shadow lg:w-3/4 rounded-xl border-1">
+    <div
+        class="w-full mx-auto mt-3 text-black bg-white dark:bg-gray-800 dark:text-white shadow lg:w-3/4 rounded-xl border-1">
         <h2 class="py-3 text-2xl font-semibold text-center">Update Contract</h2>
     </div>
     @if (Session::has('message'))
@@ -14,7 +15,8 @@
             })
         </script>
     @endif
-    <div class="w-full p-3 mx-auto mt-3 text-black bg-white shadow lg:w-3/4 rounded-xl border-1">
+    <div
+        class="w-full p-3 mx-auto mt-3 text-black bg-white dark:bg-gray-800 dark:text-white shadow lg:w-3/4 rounded-xl border-1">
         <div class="flex flex-col items-start justify-between w-full gap-3 lg:flex-row ">
             <div class="flex flex-col w-full gap-3 lg:w-1/3">
                 {{-- customer_id --}}
@@ -115,10 +117,10 @@
                 <div class="flex justify-between">
                     @if ($updateUpper == false)
                         <button class="button button-blue" wire:click="editUpper">Edit</button>
-                        <button class="button button-black" wire:click="back">Back</button>
+                        <button class="button button-gray" wire:click="back">Back</button>
                     @else
                         <button class="button button-teal" wire:click="updateUpper">Update</button>
-                        <button class="button button-black" wire:click="back">Back</button>
+                        <button class="button button-gray" wire:click="back">Back</button>
                     @endif
                 </div>
             </div>
@@ -146,7 +148,7 @@
             </thead>
             <tbody>
                 @foreach ($contract as $i)
-                    <tr class="border-b dark:bg-gray-800 dark:border-gray-700 even:bg-gray-200 hover:bg-blue-200">
+                    <tr class="border-b dark:bg-gray-800 dark:border-gray-700  hover:bg-blue-200">
                         <td class="px-6 py-4">{{ $loop->iteration }}</td>
                         <td class="px-6 py-4">{{ $i->package }}</td>
                         <td class="px-6 py-4">{{ number_format($i->price) }}</td>
@@ -173,7 +175,7 @@
     </div>
     <div class="flex justify-between">
         <div></div>
-        <button class="w-20 my-3 button button-black" wire:click="back">Back</button>
+        <button class="w-20 my-3 button button-gray" wire:click="back">Back</button>
     </div>
 
 

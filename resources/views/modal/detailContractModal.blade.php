@@ -1,5 +1,6 @@
 <div class="p-3" x-show="openModal" mx-auto x-cloak @click="openModal = false">
-    <div class="w-full mx-auto mt-3 text-black bg-white shadow lg:w-3/4 rounded-xl border-1">
+    <div
+        class="w-full mx-auto mt-3 text-black bg-white dark:bg-gray-800 dark:text-white shadow lg:w-3/4 rounded-xl border-1">
         <h2 class="py-3 text-2xl font-semibold text-center">Detail Contract</h2>
     </div>
 
@@ -149,7 +150,7 @@
                     $subtotal = 0;
                 @endphp
                 @foreach ($detailContracts as $d)
-                    <tr class="border-b dark:bg-gray-800 dark:border-gray-700 even:bg-gray-200 hover:bg-blue-200">
+                    <tr class="border-b dark:bg-gray-800 dark:border-gray-700  hover:bg-blue-200">
                         <td class="px-6 py-4"> {{ $loop->iteration }}</td>
                         <td class="px-6 py-4"> {{ $d->package }}</td>
                         <td class="px-6 py-4 text-right"> {{ number_format($d->price) }}</td>
