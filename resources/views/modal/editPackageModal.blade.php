@@ -24,11 +24,12 @@
         </div>
 
         <div class="flex justify-between">
-            <x-blue-button class="m-3" @click="editPackage=false" wire:click="updatePackage">
+            {{-- <x-blue-button class="m-3" @click="editPackage=false" wire:click="updatePackage"> --}}
+            <x-blue-button class="m-3"  wire:click="updatePackage">
                 {{ __('Update') }}
             </x-blue-button>
             <x-primary-button class="m-3" @click="editPackage=false">
-                {{ __('Cancel') }}
+                {{ __('Close') }}
             </x-primary-button>
         </div>
 

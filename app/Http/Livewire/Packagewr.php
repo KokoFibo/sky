@@ -19,6 +19,8 @@ class Packagewr extends Component
         $this->description = '';
     }
 
+   
+
     public function deleteConfirmation ($id) {
         $data = Package::find($id);
         $package = $data->package;
@@ -39,6 +41,7 @@ class Packagewr extends Component
     }
 
     public function savePackage () {
+        $this->validate();
         $data = new Package();
         $data->package = $this->package;
         $data->price = $this->price;
@@ -59,6 +62,8 @@ class Packagewr extends Component
     }
 
     public function updatePackage () {
+        $this->validate();
+
         $data = Package::find($this->idPackage);
         $data->package = $this->package;
         $data->price = $this->price;

@@ -126,7 +126,8 @@
 
                             @php
                             $total = $total + $d->price;
-                                $tax = $d->tax;
+                            $discount = $d->discount;
+                            $tax = $d->tax;
                             $cx++;
                             @endphp
                         </tr>
@@ -143,25 +144,40 @@
             <div></div>
             <div>
                 <table  class="w-full mb-10 mr-20 text-xl text-left text-gray-500 table-auto dark:text-gray-400">
-                    @if ($tax != 0)
+                    @if ($tax != 0 || $discount != 0)
+                    <tr>
+                        <td>Total (IDR)</td>
+                        <td>:</td>
+                        <td align="right">{{ number_format($total) }}</td>
+                    </tr>
+                    @endif
+
+  
+                    @if ($discount != 0)
                         <tr>
-                            <td>Total</td>
-                            <td align="right">IDR {{ number_format($total) }}</td>
+                            <td>Discount (IDR)</td>
+                            <td>:</td>
+                            <td align="right">{{ number_format($discount) }} </td>
                         </tr>
+                    @endif
+                    @if ($tax != 0)
+                        
 
 
                         <tr>
-                            <td>Tax</td>
+                            <td>Tax (%)</td>
+                            <td>:</td>
                             <td align="right">{{ $tax }} %</td>
                         </tr>
                     @endif
 
                     @php
-                        $grandTotal = $total / (100 - $tax) * 100;
+                        $grandTotal = ($total - $discount) / (100 - $tax) * 100;
                     @endphp
                     <tr>
-                       <td>Grand Total</td>
-                       <td align="right">IDR {{ number_format(roundedThousand($grandTotal)) }}</td>
+                       <td>Grand Total (IDR)</td>
+                       <td>:</td>
+                       <td align="right">{{ number_format(roundedThousand($grandTotal)) }}</td>
                     </tr>
                 </table>
             </div>

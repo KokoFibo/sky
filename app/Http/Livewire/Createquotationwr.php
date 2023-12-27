@@ -11,7 +11,7 @@ use Livewire\Component;
 
 class Createquotationwr extends Component
 {
-    public $number, $price, $qty, $tax, $quotation_date, $status, $package_id, $quotation_id, $paket;
+    public $number, $price, $qty, $tax, $quotation_date, $status, $package_id, $quotation_id, $paket, $discount;
     public $quotations = [],
         $package,
         $customer,
@@ -33,6 +33,9 @@ class Createquotationwr extends Component
         if ($this->tax == null) {
             $this->tax = 0;
         }
+        if ($this->discount == null) {
+            $this->discount = 0;
+        }
         $this->quotations[] = [
             'number' => getQuotationRealNumber(),
             'quotation_date' => $this->quotation_date,
@@ -40,6 +43,7 @@ class Createquotationwr extends Component
             'package' => '',
             'price' => 0,
             'qty' => 0,
+            'discount' => $this->discount,
             'tax' => $this->tax,
             'description' => '',
             'status' => 'Draft',
@@ -51,9 +55,15 @@ class Createquotationwr extends Component
         unset($this->quotations[$index]);
         $this->quotations = array_values($this->quotations);
     }
+    protected $rules = [
+        'package' => 'required',
+        'price' => 'required|numeric',
+        'description' => 'required',
+];
 
     public function saveQuotation()
     {
+
             for ($i = 0; $i < count($this->quotations); $i++) {
             if ($this->quotations[$i]['package'] == '' || $this->quotations[$i]['price'] <= 0 || $this->quotations[$i]['qty'] <= 0 || $this->quotations[$i]['description'] == '') {
                 $this->lolos = 0;
@@ -78,6 +88,7 @@ class Createquotationwr extends Component
                     'price' => $value['price'],
                     'qty' => $value['qty'],
                     // 'tax' => $value['tax'],
+                    'discount' => $this->discount,
                     'tax' => $this->tax,
                     'description' => $value['description'],
                     'status' => $value['status'],
@@ -109,6 +120,7 @@ class Createquotationwr extends Component
         $this->package = '';
         $this->price = '0';
         $this->qty = '';
+        $this->discount = '';
         $this->tax = '';
         $this->description = '';
         $this->status = 'Draft';

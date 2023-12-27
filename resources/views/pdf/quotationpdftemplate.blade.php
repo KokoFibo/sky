@@ -117,23 +117,35 @@
                             {{ number_format($q->price) }}</td>
                         @php
                             $total = $total + $q->price;
+                            $discount = $q->discount;
                             $tax = $q->tax;
                             $cx++;
                         @endphp
                     </tr>
                 @endforeach
-                @if ($tax != 0)
+                @if ($tax != 0 || $discount !=0)
+                <tr>
+                    <td colspan="2"
+                        style="font-size: 14px;border: 1px solid #999;padding: 8px 20px;text-align:left;">
+                        <b>Total</b>
+                    </td>
+                    <td style="font-size: 14px;border: 1px solid #999;padding: 8px 20px; text-align:right;"><b>IDR
+                            {{ number_format($total) }}</b>
+                    </td>
+                </tr>
+                @endif
+
+                @if ($discount != 0)
                     <tr>
                         <td colspan="2"
-                            style="font-size: 14px;border: 1px solid #999;padding: 8px 20px;text-align:left;">
-                            <b>Total</b>
+                            style="font-size: 14px;border: 1px solid #999;padding: 8px 20px;text-align:left;"><b>Discount</b>
                         </td>
                         <td style="font-size: 14px;border: 1px solid #999;padding: 8px 20px; text-align:right;"><b>IDR
-                                {{ number_format($total) }}</b>
+                                {{ number_format($discount) }}</b>
                         </td>
                     </tr>
-
-
+                @endif
+                @if ($tax != 0)
                     <tr>
                         <td colspan="2"
                             style="font-size: 14px;border: 1px solid #999;padding: 8px 20px;text-align:left;"><b>Tax</b>
@@ -144,7 +156,7 @@
                     </tr>
                 @endif
                 @php
-                    $grandTotal = ($total / (100 - $tax)) * 100;
+                    $grandTotal = ($total - $discount) / (100 - $tax) * 100;
                 @endphp
                 <tr>
                     <td colspan="2"
