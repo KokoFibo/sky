@@ -3,7 +3,7 @@
         Dashboard
     @endsection
     <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-700">
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
