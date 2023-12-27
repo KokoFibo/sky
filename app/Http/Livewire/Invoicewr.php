@@ -22,13 +22,21 @@ class Invoicewr extends Component
     public $invoice_number, $company, $contract, $discount, $tax, $invoice_date, $due_date, $emailed_at, $status;
     protected $listeners =  ['delete'];
 
-    public function viewdata ($number) {
-        if($number != null) {
+    public function viewdata($number)
+    {
+        if ($number != null) {
             $this->detailInvoices = Invoice::where('number', $number)->get();
             $this->detailInvoice = Invoice::where('number', $number)->first();
             $this->detailCustomer = Customer::find($this->detailInvoice->customer_id);
             $this->company = $this->detailCustomer->company;
-            $this->contract = $this->detailInvoice->contract;
+
+            $data_contract = Contract::where('contract_number', $this->contract)->first();
+            if ($data_contract != null) {
+
+                $this->contract = contractNumberFormat($data_contract->contract_number, $data_contract->contract_date);
+            } else {
+                $this->contract = $this->detailInvoice->contract;
+            }
             $this->discount = $this->detailInvoice->discount;
             $this->tax = $this->detailInvoice->tax;
             $this->invoice_date = $this->detailInvoice->invoice_date;
@@ -39,29 +47,32 @@ class Invoicewr extends Component
         }
     }
 
-    public function mount () {
+    public function mount()
+    {
         $this->detailInvoices = collect();
-        $this->detailCustomer =collect();
+        $this->detailCustomer = collect();
     }
 
-    public function deleteConfirmation ($number) {
-        $data = Invoice::where('number', $number )->first();
+    public function deleteConfirmation($number)
+    {
+        $data = Invoice::where('number', $number)->first();
         $formattedNumber = invNumberFormat($number, $data->invoice_date);
         $company = getCompany($data->customer_id);
         $this->dispatchBrowserEvent('delete_confirmation', [
             'title' => 'Are you sure',
-            'text' => "to delete " . $formattedNumber. " of ". $company. " data?",
+            'text' => "to delete " . $formattedNumber . " of " . $company . " data?",
             'icon' => 'warning',
             'id' => $number,
         ]);
     }
 
-    public function delete ($id) {
+    public function delete($id)
+    {
         $number = $id;
 
-        if($id != null) {
+        if ($id != null) {
             $data = Invoice::where('number', $number)->get();
-            foreach($data as $d) {
+            foreach ($data as $d) {
                 $record = Invoice::find($d->id);
                 $record->delete();
             }
