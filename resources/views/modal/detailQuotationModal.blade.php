@@ -1,5 +1,6 @@
 <div class="p-3" x-show="openModal" mx-auto x-cloak @click="openModal = false">
-    <div class="w-full mx-auto mt-3 text-black bg-white shadow lg:w-3/4 rounded-xl border-1">
+    <div
+        class="w-full mx-auto mt-3 text-black bg-white dark:bg-gray-800 dark:text-white shadow lg:w-3/4 rounded-xl border-1">
         <h2 class="py-3 text-2xl font-semibold text-center">Detail Quotation</h2>
     </div>
 
@@ -45,7 +46,7 @@
                     <p>{{ $dtax }}</p>
                 </div>
             </div>
-           
+
 
         </div>
         <div class="w-full lg:w-1/2">

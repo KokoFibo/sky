@@ -1,9 +1,11 @@
 <div class="p-3">
-    <div class="w-full mt-3 text-black bg-white shadow lg:mx-auto lg:px-0 lg:w-3/4 rounded-xl border-1">
+    <div
+        class="w-full mt-3 dark:text-white text-black dark:bg-gray-800 bg-white shadow lg:mx-auto lg:px-0 lg:w-3/4 rounded-xl border-1">
         <h2 class="py-3 text-2xl font-semibold text-center">Create Quotation</h2>
     </div>
-    {{-- <div class="w-3/4 mx-auto text-black bg-white" style="height: 100vh;"> --}}
-    <div class="w-full p-3 mx-auto mt-3 text-black bg-white shadow lg:w-3/4 rounded-xl border-1">
+    {{-- <div class="w-3/4 mx-auto dark:text-white text-black dark:bg-gray-800 bg-white" style="height: 100vh;"> --}}
+    <div
+        class="w-full p-3 mx-auto mt-3 dark:text-white text-black dark:bg-gray-800 bg-white shadow lg:w-3/4 rounded-xl border-1">
 
         <div class="flex flex-col-reverse items-start justify-between w-full gap-2 px-2 lg:px-10 lg:flex-row ">
             <div class="flex flex-col w-full gap-3">
@@ -166,7 +168,7 @@
                         class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                         Discount
                     </span>
-                    <input type="text"  wire:model="discount" id="discount" onchange="getTotal()"
+                    <input type="text" wire:model="discount" id="discount" onchange="getTotal()"
                         class="text-right rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
 

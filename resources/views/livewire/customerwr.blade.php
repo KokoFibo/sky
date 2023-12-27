@@ -40,7 +40,7 @@
             </thead>
             <tbody>
                 @foreach ($data as $key => $d)
-                    <tr class="border-b dark:bg-gray-800 dark:border-gray-700 even:bg-gray-200 hover:bg-blue-200">
+                    <tr class="border-b dark:bg-gray-800 dark:border-gray-700  hover:bg-blue-200">
                         <td class="px-6 py-4">{{ $loop->iteration }}</td>
                         <td class="px-6 py-4">{{ $d->name }}</td>
                         <td class="px-6 py-4">{{ $d->salutation }}</td>
