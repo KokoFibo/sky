@@ -95,12 +95,9 @@ function dueDate($tgl)
 {
     // Invoice date
     $invoiceDate = Carbon::createFromFormat('Y-m-d', $tgl);
-
     // Calculate due date as the 5th day of the next month
     $dueDate = $invoiceDate->addMonths(1)->startOfMonth()->addDays(4);
-
     // Format the due date as per your requirement
-
     return $dueDate->format('Y-m-d');
 }
 
