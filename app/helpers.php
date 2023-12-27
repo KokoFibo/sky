@@ -19,11 +19,12 @@ use App\Models\Quotation;
 //     }
 // }
 
-function isEmailed($number) {
+function isEmailed($number)
+{
     $isEmailed = Invoice::where('number', $number)->first();
-    if($isEmailed->status == 'Emailed'){
+    if ($isEmailed->status == 'Emailed') {
         return true;
-    }else {
+    } else {
         return false;
     }
 }
@@ -90,15 +91,17 @@ function total($price, $qty, $tax)
     return (($price * $qty) / (100 - $tax)) * 100;
 }
 
-function dueDate()
+function dueDate($tgl)
 {
-    $now = Carbon::now();
-    $year = $now->year;
-    $month = $now->month + 1;
-    $dd = $year . '-' . $month . '-05';
-    $ymd = DateTime::createFromFormat('Y-m-d', $dd)->format('Y-m-d');
-    //   return Carbon::parse($ymd);
-    return $dd;
+    // Invoice date
+    $invoiceDate = Carbon::createFromFormat('Y-m-d', $tgl);
+
+    // Calculate due date as the 5th day of the next month
+    $dueDate = $invoiceDate->addMonths(1)->startOfMonth()->addDays(4);
+
+    // Format the due date as per your requirement
+
+    return $dueDate->format('Y-m-d');
 }
 
 function getInvoiceNumber()
@@ -219,7 +222,7 @@ function contractNumberFormat($number, $date)
         } else {
             $data = (string) $number;
         }
-        return 'C/' . strval((int) $year - 2000) . $month . '/'. $data;
+        return 'C/' . strval((int) $year - 2000) . $month . '/' . $data;
     }
 }
 function quoNumberFormat($number, $quoDate)
@@ -251,8 +254,9 @@ function roundedThousand($value)
 
     return $total = round($value   / 1000) * 1000;
 }
-function getQuotationData ($number) {
-    if($number != null) {
+function getQuotationData($number)
+{
+    if ($number != null) {
         $data = Quotation::where('number', $number)->get();
         return $data;
     }
@@ -262,11 +266,13 @@ function getQuotationData ($number) {
 
 
 
-function tanggal_with_hari($tgl){
+function tanggal_with_hari($tgl)
+{
     return date('D, d M Y', strtotime($tgl));
 }
-function tanggal_with_Jam($tgl){
-    if($tgl == null) {
+function tanggal_with_Jam($tgl)
+{
+    if ($tgl == null) {
         return '-';
     } else {
 
