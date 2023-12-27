@@ -8,6 +8,7 @@
     {{-- <link rel="stylesheet" href="{{ asset('style/invoice.css') }}"> --}}
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" /> --}}
 
+
     <title>Invoice PDF</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
