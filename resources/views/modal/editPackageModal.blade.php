@@ -11,8 +11,8 @@
         </div>
         <div class="p-3">
             <x-input-label for="price" :value="__('Price')" />
-            <x-text-input id="price" class="block w-full mt-1" type="text" name="price" :value="old('price')"
-                required wire:model="price" autofocus autocomplete="price" />
+            <x-text-input id="price" class="block w-full mt-1" type="text" type-currency="IDR" name="price"
+                :value="old('price')" required wire:model="price" autofocus autocomplete="price" />
             <x-input-error :messages="$errors->get('price')" class="mt-2" />
         </div>
         <div class="p-3">
@@ -25,7 +25,7 @@
 
         <div class="flex justify-between">
             {{-- <x-blue-button class="m-3" @click="editPackage=false" wire:click="updatePackage"> --}}
-            <x-blue-button class="m-3"  wire:click="updatePackage">
+            <x-blue-button class="m-3" wire:click="updatePackage">
                 {{ __('Update') }}
             </x-blue-button>
             <x-primary-button class="m-3" @click="editPackage=false">
@@ -35,4 +35,22 @@
 
 
     </x-modalCustom>
+    document.querySelectorAll('input[type-currency="IDR"]').forEach((element) => {
+    element.addEventListener("keyup", function (e) {
+    let cursorPostion = this.selectionStart;
+    let value = parseInt(this.value.replace(/[^,\d]/g, ""));
+    let originalLenght = this.value.length;
+    if (isNaN(value)) {
+    this.value = "";
+    } else {
+    this.value = value.toLocaleString("id-ID", {
+    currency: "IDR",
+    style: "currency",
+    minimumFractionDigits: 0,
+    });
+    cursorPostion = this.value.length - originalLenght + cursorPostion;
+    this.setSelectionRange(cursorPostion, cursorPostion);
+    }
+    });
+    });
 </div>
