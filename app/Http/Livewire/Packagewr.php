@@ -54,8 +54,10 @@ class Packagewr extends Component
 
     public function savePackage()
     {
+        $this->price = convert_numeric($this->price);
         $this->validate();
         $data = new Package();
+
         $data->package = $this->package;
         $data->price = $this->price;
         $data->description = $this->description;

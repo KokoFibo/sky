@@ -19,6 +19,17 @@ use App\Models\Quotation;
 //     }
 // }
 
+function convert_numeric($number)
+{
+    $number = trim($number, "Rp\u{A0}");
+    $arrNumber = explode('.', $number);
+    $numberString = '';
+    for ($i = 0; $i < count($arrNumber); $i++) {
+        $numberString = $numberString . $arrNumber[$i];
+    }
+    return (int) $numberString;
+}
+
 function isEmailed($number)
 {
     $isEmailed = Invoice::where('number', $number)->first();

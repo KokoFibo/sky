@@ -6,6 +6,7 @@ use App\Http\Livewire\Invoicewr;
 use App\Http\Livewire\Packagewr;
 use App\Http\Livewire\Contractwr;
 use App\Http\Livewire\Customerwr;
+use App\Http\Livewire\Dashboardwr;
 use App\Http\Livewire\Quotationwr;
 use App\Http\Livewire\Addinvoicewr;
 use App\Http\Livewire\Addcontractwr;
@@ -41,9 +42,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })
+Route::get('/dashboard', Dashboardwr::class)
     ->middleware(['auth', 'verified', 'admin'])
     ->name('dashboard');
 
