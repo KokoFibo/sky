@@ -79,6 +79,8 @@ class Packagewr extends Component
 
     public function updatePackage()
     {
+        $this->price = convert_numeric($this->price);
+
         $this->validate();
 
         $data = Package::find($this->idPackage);
