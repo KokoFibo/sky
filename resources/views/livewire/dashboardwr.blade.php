@@ -12,12 +12,15 @@
                         <!-- Description -->
                         {{-- <p class="text-sm text-gray-600">Simple Yet Beautiful Card Design with TaiwlindCss. Subscribe to our
                     Youtube channel for more ...</p> --}}
-                        <ul class="px-3 text-sm" x-show="showDetail">
-                            @foreach ($expiring as $index => $d)
-                                {{-- <p class="text-sm my-2">{{ $index + 1 }}. {{ getCompany($d->customer_id) }}</p> --}}
-                                <li class="text-sm my-2 list-disc">{{ getCompany($d->customer_id) }}</li>
-                            @endforeach
-                        </ul>
+                        <div class="w-full" x-show="showDetail">
+                            <ul class="p-3 mt-3  text-purple-400 text-sm ">
+                                @foreach ($expiring as $index => $d)
+                                    {{-- <p class="text-sm my-2">{{ $index + 1 }}. {{ getCompany($d->customer_id) }}</p> --}}
+                                    <li class="border-b-4 p-3  rounded-lg text-sm  bg-purple-400  text-white ">
+                                        {{ getCompany($d->customer_id) }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
                     <!-- CTA -->
                 </div>
