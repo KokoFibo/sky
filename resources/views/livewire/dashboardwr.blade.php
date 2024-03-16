@@ -45,7 +45,7 @@
             <div
                 class="flex justify-between items-start w-72 p-2 h-32 bg-gray-800 text-white rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
                 <div class="flex flex-col gap-6 justify-between items-start">
-                    <h2 class=" px-2 text-5xl text-green-400 font-bold">{{ count($expiring) }}</h2>
+                    <h2 class=" px-2 text-5xl text-green-400 font-bold">{{ $active }}</h2>
                     <div class="px-2">
                         <h2 class="font-bold text">Active Clients</h2>
                     </div>
