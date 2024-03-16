@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('mobile');
             $table->string('email');
             $table->string('notes')->nullable();
+            $table->boolean('is_active')->nullable();
             $table->timestamp('deleted_at')->nullable();
 
             $table->timestamps();

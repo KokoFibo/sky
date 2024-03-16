@@ -31,6 +31,7 @@
                     <th scope="col" class="px-6 py-3">Mobile</th>
                     <th scope="col" class="px-6 py-3">Email</th>
                     <th scope="col" class="px-6 py-3">Notes</th>
+                    <th scope="col" class="px-6 py-3">Active</th>
                     <th scope="col" class="px-6 py-3">
                         <button @click="addCustomer=true"
                             class="px-3 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700">Create
@@ -50,6 +51,7 @@
                         <td class="px-6 py-4">{{ $d->mobile }}</td>
                         <td class="px-6 py-4">{{ $d->email }}</td>
                         <td class="px-6 py-4">{{ $d->notes }}</td>
+                        <td class="px-6 py-4">{{ is_active($d->is_active) }}</td>
                         <td class="px-6 py-4">
                             <div class="flex gap-2">
 

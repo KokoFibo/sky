@@ -19,6 +19,19 @@ use App\Models\Quotation;
 //     }
 // }
 
+function is_active($kode)
+{
+    switch ($kode) {
+        case 0:
+            $status = 'Inactive';
+            break;
+        case 1:
+            $status = 'Active';
+            break;
+    }
+    return $status;
+}
+
 function convert_numeric($number)
 {
     $number = trim($number, "Rp\u{A0}");
