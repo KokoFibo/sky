@@ -4,7 +4,7 @@
             <!-- Expiring Contracts -->
             <div x-data="{ showDetail: false }"
                 class="flex justify-between items-start w-72 p-2 h-32 bg-gray-800 text-white rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
-                <div class="flex flex-col gap-6 justify-between items-start">
+                <div class="flex flex-col gap-7 justify-between items-start">
                     <h2 class=" px-2 text-5xl font-bold text-purple-400">{{ count($expiring) }}</h2>
                     <div class="px-2">
                         <!-- Heading -->
@@ -44,7 +44,7 @@
             <!-- Active Clients -->
             <div
                 class="flex justify-between items-start w-72 p-2 h-32 bg-gray-800 text-white rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
-                <div class="flex flex-col gap-6 justify-between items-start">
+                <div class="flex flex-col gap-7 justify-between items-start">
                     <h2 class=" px-2 text-5xl text-green-400 font-bold">{{ $active }}</h2>
                     <div class="px-2">
                         <h2 class="font-bold text">Active Clients</h2>
@@ -61,8 +61,8 @@
             <!-- MTD Sales turnover -->
             <div
                 class="flex justify-between items-start w-72 p-2 h-32 bg-gray-800 text-white rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
-                <div class="flex flex-col gap-6 justify-between items-start">
-                    <h2 class=" px-2 text-4xl text-green-400 font-bold">{{ number_format($mtd) }}</h2>
+                <div class="flex flex-col gap-10 justify-between items-start">
+                    <h2 class=" px-2 text-3xl text-green-400 font-bold">{{ number_format($mtd) }}</h2>
                     <div class="px-2">
                         <h2 class="font-bold text">MTD Sales turnover</h2>
                     </div>
@@ -78,8 +78,8 @@
             <!-- YTD Sales turnover -->
             <div
                 class="flex justify-between items-start w-72 p-2 h-32 bg-gray-800 text-white rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
-                <div class="flex flex-col gap-6 justify-between items-start">
-                    <h2 class=" px-2 text-4xl text-pink-400 font-bold">{{ number_format($ytd) }}</h2>
+                <div class="flex flex-col gap-10 justify-between items-start">
+                    <h2 class=" px-2 text-3xl text-pink-400 font-bold">{{ number_format($ytd) }}</h2>
                     <div class="px-2">
                         <h2 class="font-bold text">YTD Sales turnover</h2>
                     </div>
