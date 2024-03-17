@@ -3,7 +3,7 @@
         <div class="bg-gray-100 w-full  gap-4 flex-wrap flex justify-center items-center">
             <!-- Expiring Contracts -->
             <div x-data="{ showDetail: false }"
-                class="flex justify-between items-start w-72 p-2 h-32 bg-gray-800 text-white rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
+                class="flex justify-between items-start z-10 w-full mx-3 lg:w-full mx-3 lg:w-72 p-2 h-32 bg-gray-800 text-white rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
                 <div class="flex flex-col gap-7 justify-between items-start">
                     <h2 class=" px-2 text-5xl font-bold text-purple-400">{{ count($expiring) }}</h2>
                     <div class="px-2">
@@ -13,10 +13,10 @@
                         {{-- <p class="text-sm text-gray-600">Simple Yet Beautiful Card Design with TaiwlindCss. Subscribe to our
                     Youtube channel for more ...</p> --}}
                         <div class="w-full" x-show="showDetail">
-                            <ul class="p-3 mt-3  text-purple-400 text-sm ">
+                            <ul class="p-3 mt-3  text-purple-400 text-sm">
                                 @foreach ($expiring as $index => $d)
                                     {{-- <p class="text-sm my-2">{{ $index + 1 }}. {{ getCompany($d->customer_id) }}</p> --}}
-                                    <li class="border-b-4 p-3  rounded-lg text-sm  bg-purple-400  text-white ">
+                                    <li class="border-b-4 p-3  rounded-lg text-sm  bg-purple-400  text-white z-50 ">
                                         {{ getCompany($d->customer_id) }}</li>
                                 @endforeach
                             </ul>
@@ -46,7 +46,7 @@
 
             <!-- Active Clients -->
             <div
-                class="flex justify-between items-start w-72 p-2 h-32 bg-gray-800 text-white rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
+                class="flex justify-between items-start w-full mx-3 lg:w-72 p-2 h-32 bg-gray-800 text-white rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
                 <div class="flex flex-col gap-7 justify-between items-start">
                     <h2 class=" px-2 text-5xl text-green-400 font-bold">{{ $active }}</h2>
                     <div class="px-2">
@@ -63,7 +63,7 @@
 
             <!-- MTD Sales turnover -->
             <div
-                class="flex justify-between items-start w-72 p-2 h-32 bg-gray-800 text-white rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
+                class="flex justify-between items-start w-full mx-3 lg:w-72 p-2 h-32 bg-gray-800 text-white rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
                 <div class="flex flex-col gap-10 justify-between items-start">
                     <h2 class=" px-2 text-3xl text-green-400 font-bold">{{ number_format($mtd) }}</h2>
                     <div class="px-2">
@@ -80,7 +80,7 @@
 
             <!-- YTD Sales turnover -->
             <div
-                class="flex justify-between items-start w-72 p-2 h-32 bg-gray-800 text-white rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
+                class="flex justify-between items-start w-full mx-3 lg:w-72 p-2 h-32 bg-gray-800 text-white rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
                 <div class="flex flex-col gap-10 justify-between items-start">
                     <h2 class=" px-2 text-3xl text-pink-400 font-bold">{{ number_format($ytd) }}</h2>
                     <div class="px-2">
@@ -99,7 +99,7 @@
         <div class="bg-gray-100 w-full  gap-4 flex-wrap flex justify-center items-center">
             <!-- Card -->
             <div
-                class="w-60 p-2 bg-white rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
+                class="w-full mx-3 lg:w-60 p-2 bg-white rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
                 <!-- Image -->
                 <img class="h-40 object-cover rounded-xl" h-40 object-cover rounded-xl"
                     src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
@@ -121,7 +121,7 @@
 
             <!-- Card -->
             <div
-                class="w-60 p-2 bg-white rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
+                class="w-full mx-3 lg:w-60 p-2 bg-white rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
                 <!-- Image -->
                 <img class="h-40 object-cover rounded-xl" h-40 object-cover rounded-xl"
                     src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
@@ -141,7 +141,7 @@
             </div>
             <!-- Card -->
             <div
-                class="w-60 p-2 bg-white rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
+                class="w-full mx-3 lg:w-60 p-2 bg-white rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
                 <!-- Image -->
                 <img class="h-40 object-cover rounded-xl" h-40 object-cover rounded-xl"
                     src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
