@@ -12,9 +12,9 @@
         {{-- per Page --}}
         <div class="flex justify-between px-10">
             <x-text-input id="search" class="block w-full mt-1 lg:w-1/5" type="search" name="search" :value="old('search')"
-                required wire:model.debounce.500ms="search" autofocus autocomplete="search"
+                required wire:model.live.debounce.500ms="search" autofocus autocomplete="search"
                 placeholder="Search Company ..." />
-            <select id="perPage" wire:model="perpage"
+            <select id="perPage" wire:model.live="perpage"
                 class="hidden  w-full lg:w-1/6 bg-gray-50 border rounded-lg border-gray-300 text-gray-600 text-sm  focus:ring-blue-500 focus:border-blue-500 lg:block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option value="5">5 rows</option>
                 <option value="10">10 rows</option>

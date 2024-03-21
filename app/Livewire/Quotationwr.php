@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Models\Quotation;
 use Carbon\Carbon;
@@ -66,7 +66,7 @@ class Quotationwr extends Component
                 $record->delete();
             }
         }
-        $this->dispatchBrowserEvent('success', ['message' => 'Data Deleted']);
+        $this->dispatch('success', ['message' => 'Data Deleted']);
     }
 
     public function updatingSearch()

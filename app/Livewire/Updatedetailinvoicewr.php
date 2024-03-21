@@ -1,39 +1,41 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
+use App\Models\Invoice;
 use App\Models\Package;
 use Livewire\Component;
-use App\Models\Contract;
 use Illuminate\Support\Facades\Session;
 
-class Updatedetailcontractwr extends Component
+class Updatedetailinvoicewr extends Component
 {
-    public $package, $price, $qty, $description, $current_id, $packages, $contract_number;
+    public $package, $price, $qty, $current_id, $packages, $number;
+
+
 
     public function mount ($current_id, $number) {
-        $this->contract_number = $number;
+        $this->number = $number;
         $this->current_id = $current_id;
         $this->packages = Package::all();
         if($current_id) {
-            $data = Contract::find($current_id);
+            $data = Invoice::find($current_id);
             $this->package = $data->package;
             $this->price = $data->price;
             $this->qty = $data->qty;
-            $this->description = $data->description;
+            // dd($this->package,$this->price,$this->qty);
         }
     }
 
     public function updateLower () {
-        $data = Contract::find($this->current_id);
+        $data = Invoice::find($this->current_id);
         $data->package = $this->package;
         $data->price = $this->price;
         $data->qty = $this->qty;
-        $data->description = $this->description;
         $data->save();
+        // $this->dispatch('success', ['message' => 'Data Updated']);
 
-        Session::flash('message', 'Data Updated');
-        $url = 'updatecontract/'.$this->contract_number;
+        Session::flash('message', 'Data Updated mantafff');
+        $url = 'updateinvoice/'.$this->number;
         return redirect()->to($url);
 
     }
@@ -43,7 +45,6 @@ class Updatedetailcontractwr extends Component
         try {
             $data = Package::where('package', $this->package)->first();
             $this->price = $data->price;
-            $this->description = $data->description;
         } catch (\Exception $e) {
             return $e->getMessage();
         }
@@ -51,12 +52,11 @@ class Updatedetailcontractwr extends Component
 
     public function cancel () {
 
-        $url = 'updatecontract/'.$this->contract_number;
+        $url = 'updateinvoice/'.$this->number;
         return redirect()->to($url);
     }
-
     public function render()
     {
-        return view('livewire.updatedetailcontractwr');
+        return view('livewire.updatedetailinvoicewr');
     }
 }

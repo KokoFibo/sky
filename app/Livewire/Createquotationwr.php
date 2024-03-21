@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use Carbon\Carbon;
 use App\Models\Package;
@@ -95,10 +95,10 @@ class Createquotationwr extends Component
                 ]);
             }
             $this->quotations = [];
-            $this->dispatchBrowserEvent('success', ['message' => 'Data Saved']);
+            $this->dispatch('success', ['message' => 'Data Saved']);
             return redirect()->to('/quotation');
         } else {
-            $this->dispatchBrowserEvent('error', ['message' => 'Data incomplete']);
+            $this->dispatch('error', ['message' => 'Data incomplete']);
         }
     }
 

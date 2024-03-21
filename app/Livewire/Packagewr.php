@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Models\Package;
 use Livewire\Component;
@@ -9,7 +9,7 @@ use Livewire\WithPagination;
 class Packagewr extends Component
 {
     use WithPagination;
-    public $package, $price, $description, $idPackage;
+    public $package, $price, $description, $idPackage, $description1;
     protected $listeners =  ['delete'];
 
 
@@ -18,6 +18,7 @@ class Packagewr extends Component
         $this->package = '';
         $this->price = '';
         $this->description = '';
+        $this->description1 = '';
     }
 
 
@@ -39,7 +40,7 @@ class Packagewr extends Component
         if ($id != null) {
             $data = Package::find($id);
             $data->delete();
-            $this->dispatchBrowserEvent('success', ['message' => 'Data Deleted']);
+            $this->dispatch('success', ['message' => 'Data Deleted']);
         }
     }
 
@@ -63,7 +64,7 @@ class Packagewr extends Component
         $data->description = $this->description;
         $data->save();
         $this->clear();
-        $this->dispatchBrowserEvent('success', ['message' => 'Data Saved']);
+        $this->dispatch('success', ['message' => 'Data Saved']);
     }
 
     public function editPackage($id)
@@ -73,7 +74,7 @@ class Packagewr extends Component
             $this->idPackage = $data->id;
             $this->package = $data->package;
             $this->price = $data->price;
-            $this->description = $data->description;
+            $this->description1 = $data->description;
         }
     }
 
@@ -86,10 +87,10 @@ class Packagewr extends Component
         $data = Package::find($this->idPackage);
         $data->package = $this->package;
         $data->price = $this->price;
-        $data->description = $this->description;
+        $data->description = $this->description1;
         $data->save();
         $this->clear();
-        $this->dispatchBrowserEvent('success', ['message' => 'Data Updated']);
+        $this->dispatch('success', ['message' => 'Data Updated']);
     }
 
     public function render()

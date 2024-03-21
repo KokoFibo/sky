@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Models\Invoice;
 use App\Models\Package;
@@ -33,7 +33,7 @@ class Updateinvoicewr extends Component
             $data->delete();
             $this->invoice = Invoice::where('number', $this->current_number)->get();
 
-            $this->dispatchBrowserEvent('success', ['message' => 'Data Deleted']);
+            $this->dispatch('success', ['message' => 'Data Deleted']);
         }
     }
 
@@ -108,7 +108,7 @@ class Updateinvoicewr extends Component
                 $data->status = $this->status;
                 $data->save();
             }
-            $this->dispatchBrowserEvent('success', ['message' => 'Data Updated']);
+            $this->dispatch('success', ['message' => 'Data Updated']);
         }
 
 

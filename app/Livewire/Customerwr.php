@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Customer;
@@ -37,7 +37,7 @@ class Customerwr extends Component
         if ($id != null) {
             $data = Customer::find($id);
             $data->delete();
-            $this->dispatchBrowserEvent('success', ['message' => 'Data Deleted']);
+            $this->dispatch('success', ['message' => 'Data Deleted']);
         }
     }
 
@@ -73,7 +73,7 @@ class Customerwr extends Component
         $data->is_active = $this->is_active;
         $data->save();
         $this->clear();
-        $this->dispatchBrowserEvent('success', ['message' => 'Data Updated']);
+        $this->dispatch('success', ['message' => 'Data Updated']);
     }
 
     public function clear()
@@ -117,7 +117,7 @@ class Customerwr extends Component
         $data->is_active = true;
         $data->save();
         $this->clear();
-        $this->dispatchBrowserEvent('success', ['message' => 'Data Saved']);
+        $this->dispatch('success', ['message' => 'Data Saved']);
     }
 
     public function render()

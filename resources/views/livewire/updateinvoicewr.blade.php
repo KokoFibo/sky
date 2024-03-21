@@ -26,7 +26,7 @@
                         class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                         Customer
                     </span>
-                    <input id="discount" type="text" name="discount" disabled wire:model="company"
+                    <input id="discount" type="text" name="discount" disabled wire:model.live="company"
                         {{ $updateUpper ? '' : 'disabled' }}
                         class="w-full rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
@@ -39,7 +39,7 @@
                         class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                         Contract
                     </span>
-                    <select wire:model="contract" {{ $updateUpper ? '' : 'disabled' }}
+                    <select wire:model.live="contract" {{ $updateUpper ? '' : 'disabled' }}
                         class="w-full rounded-none rounded-r-lg bg-gray-50 border  border-gray-300 text-gray-600
                 text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
                 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -60,7 +60,7 @@
                     </span>
 
                     <input id="discount" type="text" name="discount" :value="old('discount')" required
-                        wire:model="discount" autocomplete="discount" {{ $updateUpper ? '' : 'disabled' }}
+                        wire:model.live="discount" autocomplete="discount" {{ $updateUpper ? '' : 'disabled' }}
                         class="w-full rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                 </div>
@@ -74,11 +74,11 @@
                         Tax
                     </span>
 
-                    {{-- <input id="tax" type="text" name="tax" :value="old('tax')" required wire:model="tax"
+                    {{-- <input id="tax" type="text" name="tax" :value="old('tax')" required wire:model.live="tax"
                         autocomplete="tax" {{ $updateUpper ? '' : 'disabled' }}
                         class="w-full rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"> --}}
 
-                    <select wire:model="tax" {{ $updateUpper ? '' : 'disabled' }}
+                    <select wire:model.live="tax" {{ $updateUpper ? '' : 'disabled' }}
                         class="w-full rounded-none rounded-r-lg bg-gray-50 border  border-gray-300 text-gray-600
                 text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
                 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -101,7 +101,7 @@
                         Invoice Number
                     </span>
                     <input type="text" id="invoice_number" type="text" name="invoice_number" disabled
-                        :value="old('invoice_number')" required wire:model="invoice_number"
+                        :value="old('invoice_number')" required wire:model.live="invoice_number"
                         autocomplete="invoice_number"
                         class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
@@ -111,9 +111,9 @@
                         Invoice Date
                     </span>
                     {{-- <x-text-input id="invoice_date"  type="text" name="invoice_date"
-                        :value="old('invoice_date')" required wire:model="invoice_date"  autocomplete="invoice_date" /> --}}
+                        :value="old('invoice_date')" required wire:model.live="invoice_date"  autocomplete="invoice_date" /> --}}
                     <input id="invoice_date" type="text" name="invoice_date" :value="old('invoice_date')" required
-                        wire:model="invoice_date" autocomplete="invoice_date" {{ $updateUpper ? '' : 'disabled' }}
+                        wire:model.live="invoice_date" autocomplete="invoice_date" {{ $updateUpper ? '' : 'disabled' }}
                         class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
                 <div class="flex ">
@@ -122,9 +122,9 @@
                         Due Date
                     </span>
                     {{-- <x-text-input id="due_date" type="text" name="due_date" :value="old('due_date')" required
-                        wire:model="due_date"  autocomplete="due_date" /> --}}
+                        wire:model.live="due_date"  autocomplete="due_date" /> --}}
                     <input id="due_date" type="text" name="due_date" :value="old('due_date')" required
-                        wire:model="due_date" autocomplete="due_date" {{ $updateUpper ? '' : 'disabled' }}
+                        wire:model.live="due_date" autocomplete="due_date" {{ $updateUpper ? '' : 'disabled' }}
                         class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
 
@@ -134,7 +134,7 @@
                         class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                         Status
                     </span>
-                    <select wire:model="status" {{ $updateUpper ? '' : 'disabled' }}
+                    <select wire:model.live="status" {{ $updateUpper ? '' : 'disabled' }}
                         class="w-full rounded-none rounded-r-lg bg-gray-50 border  border-gray-300 text-gray-600
                 text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
                 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">

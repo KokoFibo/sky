@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Contract;
@@ -74,7 +74,7 @@ class Contractwr extends Component
                 $record->delete();
             }
         }
-        $this->dispatchBrowserEvent('success', ['message' => 'Data Deleted']);
+        $this->dispatch('success', ['message' => 'Data Deleted']);
     }
 
     public function render()

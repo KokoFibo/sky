@@ -15,7 +15,7 @@
             </span>
             <div x-show="inputManual" class="w-full">
 
-                <select wire:model="package"
+                <select wire:model.live="package"
                     class="w-full rounded-none rounded-r-lg bg-gray-50 border  border-gray-300 text-gray-600
                 text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
                 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -30,7 +30,7 @@
             </div>
             <div x-show="!inputManual" @dblclick="inputManual = !inputManual" class="w-full">
 
-                <input type="text" required wire:model="package"
+                <input type="text" required wire:model.live="package"
                     class="w-full rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             </div>
 
@@ -45,7 +45,7 @@
                 Price
             </span>
 
-            <input required wire:model="price"
+            <input required wire:model.live="price"
                 class="w-full rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
         </div>
@@ -58,7 +58,7 @@
                 Quantity
             </span>
 
-            <input required wire:model="qty" autocomplete="qty"
+            <input required wire:model.live="qty" autocomplete="qty"
                 class="w-full rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
         </div>

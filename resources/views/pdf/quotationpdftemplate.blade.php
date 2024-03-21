@@ -102,14 +102,15 @@
                         <td
                             style="font-size: 14px;border: 1px solid #999; padding: 8px 20px; text-align:left; line-height: 1.6;">
                             <b>{{ $q->package }}</b>
-                            @php
+                            {!! $q->description !!}
+                            {{-- @php
                                 $desc = getDetail($q->description);
                             @endphp
                             <ul>
                                 @foreach ($desc as $d)
-                                    <li> <em> {{ $d }}</em></li>
+                                    <li> <em> {!! $d !!}</em></li>
                                 @endforeach
-                            </ul>
+                            </ul> --}}
                         </td>
                         <td style="font-size: 14px;border: 1px solid #999;padding: 8px 20px; text-align:center;">1
                             Package</td>
@@ -123,22 +124,23 @@
                         @endphp
                     </tr>
                 @endforeach
-                @if ($tax != 0 || $discount !=0)
-                <tr>
-                    <td colspan="2"
-                        style="font-size: 14px;border: 1px solid #999;padding: 8px 20px;text-align:left;">
-                        <b>Total</b>
-                    </td>
-                    <td style="font-size: 14px;border: 1px solid #999;padding: 8px 20px; text-align:right;"><b>IDR
-                            {{ number_format($total) }}</b>
-                    </td>
-                </tr>
+                @if ($tax != 0 || $discount != 0)
+                    <tr>
+                        <td colspan="2"
+                            style="font-size: 14px;border: 1px solid #999;padding: 8px 20px;text-align:left;">
+                            <b>Total</b>
+                        </td>
+                        <td style="font-size: 14px;border: 1px solid #999;padding: 8px 20px; text-align:right;"><b>IDR
+                                {{ number_format($total) }}</b>
+                        </td>
+                    </tr>
                 @endif
 
                 @if ($discount != 0)
                     <tr>
                         <td colspan="2"
-                            style="font-size: 14px;border: 1px solid #999;padding: 8px 20px;text-align:left;"><b>Discount</b>
+                            style="font-size: 14px;border: 1px solid #999;padding: 8px 20px;text-align:left;">
+                            <b>Discount</b>
                         </td>
                         <td style="font-size: 14px;border: 1px solid #999;padding: 8px 20px; text-align:right;"><b>IDR
                                 {{ number_format($discount) }}</b>
@@ -156,7 +158,7 @@
                     </tr>
                 @endif
                 @php
-                    $grandTotal = ($total - $discount) / (100 - $tax) * 100;
+                    $grandTotal = (($total - $discount) / (100 - $tax)) * 100;
                 @endphp
                 <tr>
                     <td colspan="2"

@@ -45,6 +45,8 @@
             {{ $data->links() }}
         </div>
     </div>
+
     @include('modal.addPackageModal')
     @include('modal.editPackageModal')
+
 </div>

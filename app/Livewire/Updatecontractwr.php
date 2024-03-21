@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use Carbon\Carbon;
 use App\Models\Package;
@@ -41,7 +41,7 @@ class Updatecontractwr extends Component
             $data->delete();
             $this->contract = Contract::where('contract_number', $this->current_number)->get();
 
-            $this->dispatchBrowserEvent('success', ['message' => 'Data Deleted']);
+            $this->dispatch('success', ['message' => 'Data Deleted']);
         }
     }
 
@@ -120,7 +120,7 @@ class Updatecontractwr extends Component
                 }
                 $data->save();
             }
-            $this->dispatchBrowserEvent('success', ['message' => 'Data Updated']);
+            $this->dispatch('success', ['message' => 'Data Updated']);
         }
         $this->updateUpper = false;
     }

@@ -8,9 +8,9 @@
             <div class="p-3 ">
                 <x-input-label for="customer" :value="__('Customer')" />
                 {{-- <x-text-input id="customer" class="block w-full mt-1" type="text" name="customer" :value="old('customer')" required
-                wire:model="customer_id" autofocus autocomplete="customer" /> --}}
+                wire:model.live="customer_id" autofocus autocomplete="customer" /> --}}
 
-                <select wire:model="customer_id"
+                <select wire:model.live="customer_id"
                     class="w-full  bg-gray-50 border rounded-lg border-gray-300 text-gray-600
             text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
             dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -25,7 +25,7 @@
             <div class="p-3 ">
                 <x-input-label for="contract" :value="__('Contract ')" />
 
-                <select wire:model="contract"
+                <select wire:model.live="contract"
                     class="w-full  bg-gray-50 border rounded-lg border-gray-300 text-gray-600
             text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
             dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -43,7 +43,7 @@
             </div>
             <div class="p-3">
                 <x-input-label for="tax" :value="__('Tax')" />
-                <select wire:model="tax"
+                <select wire:model.live="tax"
                     class="w-full  bg-gray-50 border rounded-lg border-gray-300 text-gray-600
                     text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
                     dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -55,7 +55,7 @@
             <div class="p-3">
                 <x-input-label for="discount" :value="__('Discount')" />
                 <x-text-input id="discount" class="block w-full mt-1" type="text" name="discount" :value="old('discount')"
-                    required wire:model="discount" autofocus autocomplete="discount" />
+                    required wire:model.live="discount" autofocus autocomplete="discount" />
                 <x-input-error :messages="$errors->get('discount')" class="mt-2" />
             </div>
         </div>
@@ -64,17 +64,17 @@
             <div class="p-3">
                 <x-input-label for="invoice_number" :value="__('Invoice Number')" />
                 <x-text-input id="invoice_number" class="block w-full mt-1" type="text" name="invoice_number"
-                    :value="old('invoice_number')" required wire:model="number" autofocus autocomplete="invoice_number" />
+                    :value="old('invoice_number')" required wire:model.live="number" autofocus autocomplete="invoice_number" />
             </div>
             <div class="p-3">
                 <x-input-label for="invoice_date" :value="__('Invoice Date')" />
                 <x-text-input id="invoice_date" class="block w-full mt-1" type="text" name="invoice_date"
-                    :value="old('invoice_date')" required wire:model="invoice_date" autofocus autocomplete="invoice_date" />
+                    :value="old('invoice_date')" required wire:model.live="invoice_date" autofocus autocomplete="invoice_date" />
             </div>
             <div class="p-3">
                 <x-input-label for="due_date" :value="__('Due Date')" />
                 <x-text-input id="due_date" class="block w-full mt-1" type="text" name="due_date" :value="old('due_date')"
-                    required wire:model="due_date" autofocus autocomplete="due_date" />
+                    required wire:model.live="due_date" autofocus autocomplete="due_date" />
             </div>
 
         </div>
@@ -91,20 +91,20 @@
         </div>
     </div>
 
-    {{-- <input type="hidden" wire:model="invoices.{{ $index }}.customer_id" value="{{ $customer_id }}">
-            <input type="hidden" wire:model="invoices.{{ $index }}.contract" value="{{ $contract }}">
-            <input type="hidden" wire:model="invoices.{{ $index }}.tax" value="{{ $tax }}">
-            <input type="hidden" wire:model="invoices.{{ $index }}.discount" value="{{ $discount }}">
-            <input type="hidden" wire:model="invoices.{{ $index }}.number" value="{{ $number }}">
-            <input type="hidden" wire:model="invoices.{{ $index }}.invoice_date" value="{{ $invoice_date }}">
-            <input type="hidden" wire:model="invoices.{{ $index }}.due_date" value="{{ $due_date }}"> --}}
+    {{-- <input type="hidden" wire:model.live="invoices.{{ $index }}.customer_id" value="{{ $customer_id }}">
+            <input type="hidden" wire:model.live="invoices.{{ $index }}.contract" value="{{ $contract }}">
+            <input type="hidden" wire:model.live="invoices.{{ $index }}.tax" value="{{ $tax }}">
+            <input type="hidden" wire:model.live="invoices.{{ $index }}.discount" value="{{ $discount }}">
+            <input type="hidden" wire:model.live="invoices.{{ $index }}.number" value="{{ $number }}">
+            <input type="hidden" wire:model.live="invoices.{{ $index }}.invoice_date" value="{{ $invoice_date }}">
+            <input type="hidden" wire:model.live="invoices.{{ $index }}.due_date" value="{{ $due_date }}"> --}}
     @if (!empty($invoices))
         @foreach ($invoices as $index => $invoice)
             <div class="flex items-center w-full px-10 mx-auto justify-evenly" x-cloak>
                 <div class="w-1/2 p-3" x-data="{ packageManual: false }" @dblclick="packageManual = !packageManual ">
                     <div class="w-full " x-show="!packageManual">
                         <x-input-label for="package" :value="__('Package')" />
-                        <select wire:model="invoices.{{ $index }}.package"
+                        <select wire:model.live="invoices.{{ $index }}.package"
                             class="w-full  bg-gray-50 border rounded-lg border-gray-300 text-gray-600
             text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
             dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -114,7 +114,7 @@
                             @endforeach
                         </select>
                         {{-- <x-text-input id="package" class="block w-full mt-1" type="text" name="package" :value="old('package')"
-                required wire:model="package" autofocus autocomplete="package" /> --}}
+                required wire:model.live="package" autofocus autocomplete="package" /> --}}
                         <x-input-error :messages="$errors->get('package')" class="mt-2" />
                     </div>
                     {{-- input package manual --}}
@@ -122,7 +122,7 @@
                         <x-input-label for="package" :value="__('Package')" />
 
                         <x-text-input id="package" class="block w-full mt-1" type="text" name="package"
-                            :value="old('package')" required wire:model.debounce.500ms="invoices.{{ $index }}.package"
+                            :value="old('package')" required wire:model.live.debounce.500ms="invoices.{{ $index }}.package"
                             autofocus autocomplete="package" />
 
                         <x-input-error :messages="$errors->get('package')" class="mt-2" />
@@ -133,7 +133,7 @@
                     <x-input-label for="price" :value="__('Price')" />
 
                     <x-text-input id="price" class="block w-full mt-1" type="text" name="price"
-                        :value="old('price')" required wire:model.debounce.500ms="invoices.{{ $index }}.price"
+                        :value="old('price')" required wire:model.live.debounce.500ms="invoices.{{ $index }}.price"
                         autofocus autocomplete="price" />
 
                     <x-input-error :messages="$errors->get('price')" class="mt-2" />
@@ -142,7 +142,7 @@
                 <div class="w-1/4 p-3">
                     <x-input-label for="qty" :value="__('Qty')" />
                     <x-text-input id="qty" class="block w-full mt-1" type="text" name="qty"
-                        :value="old('qty')" required wire:model="invoices.{{ $index }}.qty" autofocus
+                        :value="old('qty')" required wire:model.live="invoices.{{ $index }}.qty" autofocus
                         autocomplete="qty" />
                     <x-input-error :messages="$errors->get('qty')" class="mt-2" />
                 </div>
@@ -168,10 +168,10 @@
                 @foreach ($invoices as $index => $invoice)
                     <tr class="border-b dark:bg-gray-800 dark:border-gray-700 even:bg-gray-200 hover:bg-blue-200">
                         <td class="px-6 py-4">{{ $loop->iteration }}</td>
-                        <td class="px-6 py-4"><input wire:model="invoices.{{ $index }}.customer"></td>
-                        <td class="px-6 py-4"><input wire:model="invoices.{{ $index }}.package"></td>
-                        <td class="px-6 py-4"><input wire:model="invoices.{{ $index }}.price"></td>
-                        <td class="px-6 py-4"><input wire:model="invoices.{{ $index }}.qty"></td>
+                        <td class="px-6 py-4"><input wire:model.live="invoices.{{ $index }}.customer"></td>
+                        <td class="px-6 py-4"><input wire:model.live="invoices.{{ $index }}.package"></td>
+                        <td class="px-6 py-4"><input wire:model.live="invoices.{{ $index }}.price"></td>
+                        <td class="px-6 py-4"><input wire:model.live="invoices.{{ $index }}.qty"></td>
                     </tr>
                 @endforeach
 

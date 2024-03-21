@@ -17,7 +17,7 @@
                         class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                         Customer
                     </span>
-                    <select wire:model="customer_id"
+                    <select wire:model.live="customer_id"
                         class=" w-full bg-gray-50 border  border-gray-300 text-gray-600 rounded-none rounded-r-lg
         text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
         dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -34,7 +34,7 @@
                         class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                         Contract
                     </span>
-                    <select wire:model="contract"
+                    <select wire:model.live="contract"
                         class="w-full  bg-gray-50 border  border-gray-300 text-gray-600 rounded-none rounded-r-lg
                 text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
                 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -64,7 +64,7 @@
                         Invoice Number
                     </span>
                     <input type="text" id="invoice_number" type="text" name="invoice_number" disabled
-                        :value="old('invoice_number')" required wire:model="number" autocomplete="invoice_number"
+                        :value="old('invoice_number')" required wire:model.live="number" autocomplete="invoice_number"
                         class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
                 <div class="flex ">
@@ -73,9 +73,9 @@
                         Invoice Date
                     </span>
                     {{-- <x-text-input id="invoice_date"  type="text" name="invoice_date"
-                        :value="old('invoice_date')" required wire:model="invoice_date"  autocomplete="invoice_date" /> --}}
+                        :value="old('invoice_date')" required wire:model.live="invoice_date"  autocomplete="invoice_date" /> --}}
                     <input id="invoice_date" type="text" name="invoice_date" :value="old('invoice_date')" required
-                        wire:model="invoice_date" autocomplete="invoice_date"
+                        wire:model.live="invoice_date" autocomplete="invoice_date"
                         class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
                 <div class="flex ">
@@ -84,9 +84,9 @@
                         Due Date
                     </span>
                     {{-- <x-text-input id="due_date" type="text" name="due_date" :value="old('due_date')" required
-                        wire:model="due_date"  autocomplete="due_date" /> --}}
+                        wire:model.live="due_date"  autocomplete="due_date" /> --}}
                     <input id="due_date" type="text" name="due_date" :value="old('due_date')" required
-                        wire:model="due_date" autocomplete="due_date"
+                        wire:model.live="due_date" autocomplete="due_date"
                         class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
 
@@ -124,14 +124,14 @@
                                     <td class="px-6 py-4">
                                         <div class="w-full ">
                                             <x-text-input class="w-full mt-1 marker:block" type="text" name="package"
-                                                wire:model.lazy="invoices.{{ $index }}.package" />
+                                                wire:model.blur="invoices.{{ $index }}.package" />
                                         </div>
                                     </td>
                                 @else
                                     <td class="px-6 py-4">
 
                                         <div class="w-full " x-show="!packageManual">
-                                            <select wire:model="invoices.{{ $index }}.package"
+                                            <select wire:model.live="invoices.{{ $index }}.package"
                                                 wire:change="updatePrice({{ $index }})"
                                                 class="w-72  bg-gray-50 border rounded-lg border-gray-300 text-gray-600
                     text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
@@ -147,7 +147,7 @@
                                         <div class="w-full " x-show="packageManual">
                                             <x-text-input class="w-full mt-1 marker:block" type="text" name="package"
                                                 :value="old('package')" required
-                                                wire:model.lazy="invoices.{{ $index }}.package"
+                                                wire:model.blur="invoices.{{ $index }}.package"
                                                 autocomplete="package" />
                                         </div>
                                         {{-- </div> --}}
@@ -158,9 +158,9 @@
                                     <div>
                                         <x-text-input class="block w-full mt-1 text-right" type="text" name="price"
                                             onchange="Calc(this);" :value="old('price')"
-                                            wire:model.lazy="invoices.{{ $index }}.price"
+                                            wire:model.blur="invoices.{{ $index }}.price"
                                             autocomplete="price" />
-                                        {{-- <input type="text" wire:model.lazy="invoices.{{ $index }}.price"> --}}
+                                        {{-- <input type="text" wire:model.blur="invoices.{{ $index }}.price"> --}}
 
                                     </div>
                                 </td>
@@ -169,7 +169,7 @@
                                     <div>
                                         <x-text-input class="block w-full mt-1 text-right" type="number" name="qty"
                                             onchange="Calc(this);" :value="old('qty')" required
-                                            wire:model.lazy="invoices.{{ $index }}.qty" autocomplete="qty" />
+                                            wire:model.blur="invoices.{{ $index }}.qty" autocomplete="qty" />
                                     </div>
                                 </td>
                                 <td class="px-6 py-4">
@@ -214,7 +214,7 @@
                         Discount
                     </span>
                     <input type="text" id="discount" :value="old('discount')" onchange="getTotal()" required
-                        wire:model="discount" autocomplete="discount"
+                        wire:model.live="discount" autocomplete="discount"
                         class="text-right rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
 
@@ -224,7 +224,7 @@
                         class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                         Tax
                     </span>
-                    <select wire:model="tax" id="tax" onchange="getTotal()"
+                    <select wire:model.live="tax" id="tax" onchange="getTotal()"
                         class="w-full  bg-gray-50 border  border-gray-300 text-gray-600 rounded-none rounded-r-lg
                         text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
                         dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">

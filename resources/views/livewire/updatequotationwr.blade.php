@@ -26,7 +26,7 @@
 
                     </span>
                     <input type="text" id="quotation_number" type="text" name="quotation_number" disabled
-                        :value="old('quotation_number')" required wire:model="quotation_number"
+                        :value="old('quotation_number')" required wire:model.live="quotation_number"
                         autocomplete="quotation_number"
                         class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
@@ -37,7 +37,7 @@
                         class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                         Customer
                     </span>
-                    <select wire:model="customer_id" {{ $updateUpper ? '' : 'disabled' }}
+                    <select wire:model.live="customer_id" {{ $updateUpper ? '' : 'disabled' }}
                         class="rounded-none rounded-r-lg w-full  bg-gray-50 border  border-gray-300 text-gray-600
         text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
         dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -53,7 +53,7 @@
                         class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                         Discount
                     </span>
-                    <input type="number" wire:model="discount" {{ $updateUpper ? '' : 'disabled' }}
+                    <input type="number" wire:model.live="discount" {{ $updateUpper ? '' : 'disabled' }}
                         class="rounded-none rounded-r-lg w-full  bg-gray-50 border  border-gray-300 text-gray-600
         text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
         dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -67,7 +67,7 @@
                         class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                         Tax
                     </span>
-                    <select wire:model="tax" id="tax" {{ $updateUpper ? '' : 'disabled' }}
+                    <select wire:model.live="tax" id="tax" {{ $updateUpper ? '' : 'disabled' }}
                         class="w-full  bg-gray-50 border  border-gray-300 text-gray-600 rounded-none rounded-r-lg
             text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
             dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -89,9 +89,9 @@
                         Quotation Date
                     </span>
                     {{-- <x-text-input id="quotation_date"  type="text" name="quotation_date"
-                        :value="old('quotation_date')" required wire:model="quotation_date"  autocomplete="quotation_date" /> --}}
+                        :value="old('quotation_date')" required wire:model.live="quotation_date"  autocomplete="quotation_date" /> --}}
                     <input id="quotation_date" type="text" name="quotation_date" :value="old('quotation_date')"
-                        required wire:model="quotation_date" autocomplete="quotation_date"
+                        required wire:model.live="quotation_date" autocomplete="quotation_date"
                         {{ $updateUpper ? '' : 'disabled' }}
                         class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
@@ -103,7 +103,7 @@
                         class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                         Status
                     </span>
-                    <select wire:model="status" {{ $updateUpper ? '' : 'disabled' }}
+                    <select wire:model.live="status" {{ $updateUpper ? '' : 'disabled' }}
                         class="w-full rounded-none rounded-r-lg bg-gray-50 border  border-gray-300 text-gray-600
                 text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
                 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use Carbon\Carbon;
 use App\Models\Package;
@@ -91,10 +91,10 @@ class Createcontractwr extends Component
                 ]);
             }
             $this->contracts = [];
-            $this->dispatchBrowserEvent('success', ['message' => 'Data Saved']);
+            $this->dispatch('success', ['message' => 'Data Saved']);
             return  redirect()->to('/contract');
         } else {
-            $this->dispatchBrowserEvent('error', ['message' => 'Data incomplete']);
+            $this->dispatch('error', ['message' => 'Data incomplete']);
         }
 
 

@@ -9,7 +9,7 @@
                     class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                     Name
                 </span>
-                <input type="text" id="name" type="text" name="name" required wire:model="name"
+                <input type="text" id="name" type="text" name="name" required wire:model.live="name"
                     autocomplete="name"
                     class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block  min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             </div>
@@ -19,7 +19,7 @@
                     class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                     Salutation
                 </span>
-                <select wire:model="salutation"
+                <select wire:model.live="salutation"
                     class="w-full text-sm text-gray-600 border border-gray-300 rounded-none rounded-r-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 lg:block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                     <option value="">Select Salutation</option>
@@ -34,7 +34,7 @@
                     class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                     Brand
                 </span>
-                <input type="text" id="company" type="text" name="company" required wire:model="company"
+                <input type="text" id="company" type="text" name="company" required wire:model.live="company"
                     autocomplete="company"
                     class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block  min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             </div>
@@ -44,7 +44,7 @@
                     class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                     Title
                 </span>
-                <input type="text" id="company" type="text" name="company" required wire:model="title"
+                <input type="text" id="company" type="text" name="company" required wire:model.live="title"
                     autocomplete="company"
                     class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block  min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
@@ -55,7 +55,7 @@
                     class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                     Address
                 </span>
-                <input type="text" id="address" type="text" name="address" required wire:model="address"
+                <input type="text" id="address" type="text" name="address" required wire:model.live="address"
                     autocomplete="address"
                     class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block  min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
@@ -68,7 +68,7 @@
                     class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                     Mobile
                 </span>
-                <input type="text" id="mobile" type="text" name="mobile" required wire:model="mobile"
+                <input type="text" id="mobile" type="text" name="mobile" required wire:model.live="mobile"
                     autocomplete="mobile"
                     class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block  min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             </div>
@@ -78,7 +78,7 @@
                     class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                     Email
                 </span>
-                <input type="text" id="email" type="text" name="email" required wire:model="email"
+                <input type="text" id="email" type="text" name="email" required wire:model.live="email"
                     autocomplete="email"
                     class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block  min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             </div>
@@ -88,7 +88,7 @@
                     class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                     Notes
                 </span>
-                <input type="text" id="notes" type="text" name="notes" required wire:model="notes"
+                <input type="text" id="notes" type="text" name="notes" required wire:model.live="notes"
                     autocomplete="notes"
                     class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block  min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             </div>
@@ -98,7 +98,7 @@
                     class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                     Active
                 </span>
-                <select wire:model="is_active"
+                <select wire:model.live="is_active"
                     class="w-full text-sm text-gray-600 border border-gray-300 rounded-none rounded-r-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 lg:block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                     <option value="">Select Active</option>

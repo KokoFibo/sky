@@ -25,7 +25,7 @@
                         class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                         Company
                     </span>
-                    <select wire:model="customer_id" {{ $updateUpper ? '' : 'disabled' }}
+                    <select wire:model.live="customer_id" {{ $updateUpper ? '' : 'disabled' }}
                         class=" w-full  bg-gray-50 border  border-gray-300 text-gray-600 rounded-none rounded-r-lg
         text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
         dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -43,7 +43,7 @@
                         Contract Number
                     </span>
                     <input type="text" id="contract_number_full" type="text" name="contract_number_full" disabled
-                        {{ $updateUpper ? '' : 'disabled' }} required wire:model="contract_number_full"
+                        {{ $updateUpper ? '' : 'disabled' }} required wire:model.live="contract_number_full"
                         autocomplete="contract_number_full"
                         class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
@@ -58,14 +58,14 @@
                             <p>yellow {{ $prevPdf }} </p>
                         </div>
                         <div x-show="fileUpload">
-                            <input type="file" wire:model="pdf" {{ $updateUpper ? '' : 'disabled' }}
+                            <input type="file" wire:model.live="pdf" {{ $updateUpper ? '' : 'disabled' }}
                                 class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             @error('pdf')
                                 <span class="error">{{ $message }}</span>
                             @enderror
                         </div>
                     @else
-                        <input type="file" wire:model="pdf" {{ $updateUpper ? '' : 'disabled' }}
+                        <input type="file" wire:model.live="pdf" {{ $updateUpper ? '' : 'disabled' }}
                             class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         @error('pdf')
                             <span class="error">{{ $message }}</span>
@@ -81,7 +81,7 @@
                         Contract Begin
                     </span>
                     <input id="contract_begin" type="date" name="contract_begin" :value="old('contract_begin')"
-                        {{ $updateUpper ? '' : 'disabled' }} required wire:model="contract_begin"
+                        {{ $updateUpper ? '' : 'disabled' }} required wire:model.live="contract_begin"
                         autocomplete="contract_begin"
                         class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
@@ -91,7 +91,7 @@
                         Contract End
                     </span>
                     <input id="contract_end" type="date" name="contract_end" :value="old('contract_end')" required
-                        {{ $updateUpper ? '' : 'disabled' }} wire:model="contract_end" autocomplete="contract_end"
+                        {{ $updateUpper ? '' : 'disabled' }} wire:model.live="contract_end" autocomplete="contract_end"
                         class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 </div>
                 <div class="flex ">
@@ -99,7 +99,7 @@
                         class="inline-flex items-center w-32 px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                         Status
                     </span>
-                    <select wire:model="status" {{ $updateUpper ? '' : 'disabled' }}
+                    <select wire:model.live="status" {{ $updateUpper ? '' : 'disabled' }}
                         class=" w-full  bg-gray-50 border  border-gray-300 text-gray-600 rounded-none rounded-r-lg
         text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
         dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">

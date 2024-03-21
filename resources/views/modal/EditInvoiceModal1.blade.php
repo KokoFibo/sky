@@ -7,9 +7,9 @@
         <div class="p-3">
             <x-input-label for="customer" :value="__('Customer')" />
             {{-- <x-text-input id="customer" class="block w-full mt-1" type="text" name="customer" :value="old('customer')" required
-                wire:model="customer_id" autofocus autocomplete="customer" /> --}}
+                wire:model.live="customer_id" autofocus autocomplete="customer" /> --}}
 
-            <select wire:model="customer_id"
+            <select wire:model.live="customer_id"
                 class="w-full  bg-gray-50 border rounded-lg border-gray-300 text-gray-600
             text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
             dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -22,7 +22,7 @@
         </div>
         <div class="p-3">
             <x-input-label for="package" :value="__('Package')" />
-            <select wire:model="package_id"
+            <select wire:model.live="package_id"
                 class="w-full  bg-gray-50 border rounded-lg border-gray-300 text-gray-600
             text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
             dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -32,25 +32,25 @@
                 @endforeach
             </select>
             {{-- <x-text-input id="package" class="block w-full mt-1" type="text" name="package" :value="old('package')"
-                required wire:model="package" autofocus autocomplete="package" /> --}}
+                required wire:model.live="package" autofocus autocomplete="package" /> --}}
             <x-input-error :messages="$errors->get('package')" class="mt-2" />
         </div>
         <div class="p-3">
             <x-input-label for="price" :value="__('Price')" />
 
             <x-text-input id="price" class="block w-full mt-1" type="text" name="price" :value="old('price')"
-                required wire:model="price" autofocus autocomplete="price" />
+                required wire:model.live="price" autofocus autocomplete="price" />
             <x-input-error :messages="$errors->get('price')" class="mt-2" />
         </div>
         <div class="p-3">
             <x-input-label for="qty" :value="__('Qty')" />
             <x-text-input id="qty" class="block w-full mt-1" type="text" name="qty" :value="old('qty')"
-                required wire:model="qty" autofocus autocomplete="qty" />
+                required wire:model.live="qty" autofocus autocomplete="qty" />
             <x-input-error :messages="$errors->get('qty')" class="mt-2" />
         </div>
         <div class="p-3">
             <x-input-label for="tax" :value="__('Tax')" />
-            <select wire:model="tax"
+            <select wire:model.live="tax"
                 class="w-full  bg-gray-50 border rounded-lg border-gray-300 text-gray-600
             text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
             dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -61,7 +61,7 @@
         </div>
         <div class="p-3">
             <x-input-label for="status" :value="__('Status')" />
-            <select wire:model="status"
+            <select wire:model.live="status"
                 class="w-full  bg-gray-50 border rounded-lg border-gray-300 text-gray-600
             text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
             dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">

@@ -12,7 +12,7 @@
                         Package
                     </span>
 
-                    <select wire:model="package"
+                    <select wire:model.live="package"
                         class="w-full rounded-none rounded-r-lg bg-gray-50 border  border-gray-300 text-gray-600
                     text-sm focus:ring-blue-500 focus:border-blue-500 lg:block p-2.5 dark:bg-gray-700 dark:border-gray-600
                     dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -35,7 +35,7 @@
                     </span>
 
                     <input id="price" type="text" name="price" :value="old('price')" required
-                        wire:model="price" autocomplete="price"
+                        wire:model.live="price" autocomplete="price"
                         class="w-full rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                 </div>
@@ -48,7 +48,7 @@
                         Quantity
                     </span>
 
-                    <input id="qty" type="text" name="qty" :value="old('qty')" required wire:model="qty"
+                    <input id="qty" type="text" name="qty" :value="old('qty')" required wire:model.live="qty"
                         autocomplete="qty"
                         class="w-full rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 

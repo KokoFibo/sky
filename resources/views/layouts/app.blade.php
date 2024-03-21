@@ -29,6 +29,8 @@
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
         <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script>
+
         @livewireStyles
     </head>
 
@@ -49,6 +51,7 @@
 
             <!-- Page Content -->
             <main>
+
                 {{ $slot }}
             </main>
         </div>
@@ -91,6 +94,7 @@
                 })
             });
         </script>
+
 
 
     </body>
