@@ -3,7 +3,7 @@
         <div class="bg-gray-100 w-full  gap-4 flex-wrap flex justify-center items-center">
             <!-- Expiring Contracts -->
             <div x-data="{ showDetail: false }"
-                class="flex justify-between items-start z-10 w-full mx-3 lg:w-full mx-3 lg:w-72 p-2 h-32 bg-gray-800 text-white rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
+                class="flex justify-between items-start z-10 w-full mx-3  lg:w-72 p-2 h-32 bg-gray-800 text-white rounded-xl transform transition-all hover:-translate-y-2 duration-300 shadow-lg hover:shadow-2xl">
                 <div class="flex flex-col gap-7 justify-between items-start">
                     <h2 class=" px-2 text-5xl font-bold text-purple-400">{{ count($expiring) }}</h2>
                     <div class="px-2">
