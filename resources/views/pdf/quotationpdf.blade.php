@@ -8,8 +8,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+        rel="stylesheet">
 
     <title>Quotation</title>
 </head>
@@ -18,176 +19,181 @@
         font-family: poppins;
     }
 </style>
+
 <body class="w-5/6 mx-auto mt-10 text-gray-700 ">
-    <div >
-    <div class="flex items-center justify-between">
-        <div>
-            <h1 class="font-semibold text-8xl">QUOTATION</h1>
-            <p class="mt-3 text-3xl tracking-wide">DETAILED OF PROVIDED SERVICES</p>
-        </div>
-        <h1><img src="{{ asset('images/Blue Sky Creations.png') }}" alt="" width="300px"></h1>
-    </div>
-    <div class="flex gap-16 mt-12">
-        <div class="w-1/2">
-            <p class="text-3xl font-semibold">Created for</p>
-            <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
-
-            <div class="flex gap-20">
-                <div>
-                    <p class="text-3xl font-semibold">Name</p>
-                    <p class="mt-5 text-3xl font-semibold">Company</p>
-                </div>
-                <div>
-                    <p class="text-3xl">{{ $customer->name }}</p>
-                    <p class="mt-5 text-3xl">{{ $customer->company }}</p>
-                </div>
+    <div>
+        <div class="flex items-center justify-between">
+            <div>
+                <h1 class="font-semibold text-8xl">QUOTATION</h1>
+                <p class="mt-3 text-3xl tracking-wide">DETAILED OF PROVIDED SERVICES</p>
             </div>
-
+            <h1><img src="{{ asset('images/Blue Sky Creations.png') }}" alt="" width="300px"></h1>
         </div>
-        <div class="w-1/2">
-            <div class="flex justify-between">
-                <div>
-                    <p class="text-3xl font-semibold">Created on</p>
-                </div>
-                <div class="flex gap-2">
-                    <div x-data="{ buttonDisabled: false }">
-                        <a href="/quotationEmail/{{ $quotation->number }}"><button x-on:click="buttonDisabled = true"
-                            x-bind:disabled="buttonDisabled" class="px-2 py-1 text-sm text-white bg-teal-500 rounded-lg hover:bg-teal-700">Email</button></a>
+        <div class="flex gap-16 mt-12">
+            <div class="w-1/2">
+                <p class="text-3xl font-semibold">Created for</p>
+                <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+
+                <div class="flex gap-20">
+                    <div>
+                        <p class="text-3xl font-semibold">Name</p>
+                        <p class="mt-5 text-3xl font-semibold">Company</p>
                     </div>
-                    <div x-data="{ buttonDisabled: false }">
-
-                        <a href="/quotationpdf/{{ $quotation->number }}"><button x-on:click="buttonDisabled = true"
-                        x-bind:disabled="buttonDisabled" class="px-2 py-1 text-sm text-white bg-red-500 rounded-lg hover:bg-red-700">PDF</button></a>
+                    <div>
+                        <p class="text-3xl">{{ $customer->name }}</p>
+                        <p class="mt-5 text-3xl">{{ $customer->company }}</p>
                     </div>
-
-                    <a href="/quotation"><button class="px-2 py-1 text-sm text-white bg-black rounded-lg hover:bg-gray-600 hover:text-white ">Back</button></a>
                 </div>
+
             </div>
-            <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
-            <div class="flex gap-20">
-                <div>
-                    <p class="text-3xl font-semibold">Date</p>
-                    <p class="mt-5 text-3xl font-semibold">Number</p>
+            <div class="w-1/2">
+                <div class="flex justify-between">
+                    <div>
+                        <p class="text-3xl font-semibold">Created on</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <div x-data="{ buttonDisabled: false }">
+                            {{-- <a href="/quotationEmail/{{ $quotation->number }}"> --}}
+                            <a href="/quotationEmail/{{ $quotation->number }}">
+                                <button x-on:click="buttonDisabled = true" x-bind:disabled="buttonDisabled"
+                                    class="px-2 py-1 text-sm text-white bg-teal-500 rounded-lg hover:bg-teal-700">Email</button></a>
+                        </div>
+                        <div x-data="{ buttonDisabled: false }">
 
+                            <a href="/quotationpdf/{{ $quotation->number }}"><button x-on:click="buttonDisabled = true"
+                                    x-bind:disabled="buttonDisabled"
+                                    class="px-2 py-1 text-sm text-white bg-red-500 rounded-lg hover:bg-red-700">PDF</button></a>
+                        </div>
+
+                        <a href="/quotation"><button
+                                class="px-2 py-1 text-sm text-white bg-black rounded-lg hover:bg-gray-600 hover:text-white ">Back</button></a>
+                    </div>
                 </div>
-                <div>
-                    <p class="text-3xl">{{ tanggal($quotation->quotation_date) }}</p>
-                    <p class="mt-5 text-3xl">{{ quoNumberFormat($quotation->number, $quotation->quotation_date) }}</p>
+                <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+                <div class="flex gap-20">
+                    <div>
+                        <p class="text-3xl font-semibold">Date</p>
+                        <p class="mt-5 text-3xl font-semibold">Number</p>
+
+                    </div>
+                    <div>
+                        <p class="text-3xl">{{ tanggal($quotation->quotation_date) }}</p>
+                        <p class="mt-5 text-3xl">{{ quoNumberFormat($quotation->number, $quotation->quotation_date) }}
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-<div class="py-5 mt-20 rounded-lg bg-sky-100">
-    <h1 class="text-3xl font-semibold tracking-widest text-center">PROVIDED SERVICES</h1>
-</div>
-    <div class="relative mt-20 overflow-x-auto">
-        <table class="w-full mb-10 text-left text-gray-500 table-auto dark:text-gray-400">
+        <div class="py-5 mt-20 rounded-lg bg-sky-100">
+            <h1 class="text-3xl font-semibold tracking-widest text-center">PROVIDED SERVICES</h1>
+        </div>
+        <div class="relative mt-20 overflow-x-auto">
+            <table class="w-full mb-10 text-left text-gray-500 table-auto dark:text-gray-400">
 
-            <thead class="text-xl text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr class="text-xl text-white bg-gray-500 dark:text-white">
+                <thead class="text-xl text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr class="text-xl text-white bg-gray-500 dark:text-white">
 
-                    <th scope="col" class="px-6 py-3">#</th>
-                    <th scope="col" class="px-6 py-3">Package</th>
-                    <th scope="col" class="px-6 py-3">Description</th>
-                    <th scope="col" class="px-6 py-3">Quantity</th>
-                    <th scope="col" class="px-6 py-3">Price</th>
+                        <th scope="col" class="px-6 py-3">#</th>
+                        <th scope="col" class="px-6 py-3">Package</th>
+                        <th scope="col" class="px-6 py-3">Description</th>
+                        <th scope="col" class="px-6 py-3">Quantity</th>
+                        <th scope="col" class="px-6 py-3">Price</th>
 
 
-                </tr>
-            </thead>
-            <tbody>
-                @if (!empty($quotations))
-                @php
-                    $total = 0;
-                    $cx = 0;
-                @endphp
-                    @foreach ($quotations as $key => $d)
-                        <tr class="text-xl border-b dark:bg-gray-800 dark:border-gray-700 even:bg-gray-200 hover:bg-blue-200">
-                            <td class="px-6 py-4">{{ $loop->iteration }}</td>
-                            <td class="px-6 py-4">{{ $d->package }}</td>
-                            <td class="px-6 py-4">
-                                @php
-                                    $desc = getDetail($d->description);
-                                @endphp
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!empty($quotations))
+                        @php
+                            $total = 0;
+                            $cx = 0;
+                        @endphp
+                        @foreach ($quotations as $key => $d)
+                            <tr
+                                class="text-xl border-b dark:bg-gray-800 dark:border-gray-700 even:bg-gray-200 hover:bg-blue-200">
+                                <td class="px-6 py-4">{{ $loop->iteration }}</td>
+                                <td class="px-6 py-4">{{ $d->package }}</td>
+                                {{-- <td class="px-6 py-4">
+                                    @php
+                                        $desc = getDetail($d->description);
+                                    @endphp
                                     <ul>
                                         @php
-                                        foreach ($desc as $de) {
-                                            @endphp
-                                            <li class="list-disc">
-                                                @php
-                                                echo $de;
-                                                @endphp
-                                            </li>
+                                                                                    foreach ($desc as $de) {
+                                                                                    @endphp
+                                        <li class="list-disc">
                                             @php
-                                        }
-                                        @endphp
+                                                echo $de;
+                                            @endphp
+                                        </li>
+                                        @php
+                                                                                    }
+                                                                                @endphp
 
                                     </ul>
-                            </td>
-                            <td class="px-6 py-4">1 Package</td>
-                            <td class="px-6 py-4">IDR {{ number_format($d->price) }}</td>
+                                </td> --}}
 
-                            @php
-                            $total = $total + $d->price;
-                            $discount = $d->discount;
-                            $tax = $d->tax;
-                            $cx++;
-                            @endphp
-                        </tr>
+                                <td class="px-6 py-4 list-disc">{!! $d->description !!}</td>
+                                <td class="px-6 py-4">1 Package</td>
+                                <td class="px-6 py-4">IDR {{ number_format($d->price) }}</td>
+
+                                @php
+                                    $total = $total + $d->price;
+                                    $discount = $d->discount;
+                                    $tax = $d->tax;
+                                    $cx++;
+                                @endphp
+                            </tr>
                         @endforeach
-
-                @else
-                    <tr class="border-b dark:bg-gray-800 dark:border-gray-700 even:bg-gray-200 hover:bg-blue-200">
-                        <td class="px-6 py-4">No Data Found</td>
-                    </tr>
-                @endif
-            </tbody>
-        </table>
-        <div class="flex justify-between px-20 mb-40">
-            <div></div>
-            <div>
-                <table  class="w-full mb-10 mr-20 text-xl text-left text-gray-500 table-auto dark:text-gray-400">
-                    @if ($tax != 0 || $discount != 0)
-                    <tr>
-                        <td>Total (IDR)</td>
-                        <td>:</td>
-                        <td align="right">{{ number_format($total) }}</td>
-                    </tr>
-                    @endif
-
-  
-                    @if ($discount != 0)
-                        <tr>
-                            <td>Discount (IDR)</td>
-                            <td>:</td>
-                            <td align="right">{{ number_format($discount) }} </td>
+                    @else
+                        <tr class="border-b dark:bg-gray-800 dark:border-gray-700 even:bg-gray-200 hover:bg-blue-200">
+                            <td class="px-6 py-4">No Data Found</td>
                         </tr>
                     @endif
-                    @if ($tax != 0)
-                        
+                </tbody>
+            </table>
+            <div class="flex justify-between px-20 mb-40">
+                <div></div>
+                <div>
+                    <table class="w-full mb-10 mr-20 text-xl text-left text-gray-500 table-auto dark:text-gray-400">
+                        @if ($tax != 0 || $discount != 0)
+                            <tr>
+                                <td>Total (IDR)</td>
+                                <td>:</td>
+                                <td align="right">{{ number_format($total) }}</td>
+                            </tr>
+                        @endif
 
 
+                        @if ($discount != 0)
+                            <tr>
+                                <td>Discount (IDR)</td>
+                                <td>:</td>
+                                <td align="right">{{ number_format($discount) }} </td>
+                            </tr>
+                        @endif
+                        @if ($tax != 0)
+                            <tr>
+                                <td>Tax (%)</td>
+                                <td>:</td>
+                                <td align="right">{{ $tax }} %</td>
+                            </tr>
+                        @endif
+
+                        @php
+                            $grandTotal = (($total - $discount) / (100 - $tax)) * 100;
+                        @endphp
                         <tr>
-                            <td>Tax (%)</td>
+                            <td>Grand Total (IDR)</td>
                             <td>:</td>
-                            <td align="right">{{ $tax }} %</td>
+                            <td align="right">{{ number_format(roundedThousand($grandTotal)) }}</td>
                         </tr>
-                    @endif
-
-                    @php
-                        $grandTotal = ($total - $discount) / (100 - $tax) * 100;
-                    @endphp
-                    <tr>
-                       <td>Grand Total (IDR)</td>
-                       <td>:</td>
-                       <td align="right">{{ number_format(roundedThousand($grandTotal)) }}</td>
-                    </tr>
-                </table>
+                    </table>
+                </div>
             </div>
+
+
         </div>
-
-
-    </div>
     </div>
 
 

@@ -8,6 +8,8 @@ use App\Models\Quotation;
 use App\Mail\quotationMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\App;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class QuotationEmailController extends Controller
 {
@@ -26,6 +28,24 @@ class QuotationEmailController extends Controller
         $quotations = Quotation::where('number', $number)->get();
         $quotation = Quotation::where('number', $number)->first();
         $customer = Customer::find($quotation->customer_id);
+
+        $data['email'] = 'kokonacci@gmail.com';
+        $data['title'] = 'ini adalah title';
+        $data['subject'] = 'ini adalah subject';
+        $data['body'] = 'ini adalah body atau isi dari emailnya';
+        $pdf = Pdf::loadView('pdf.quotationpdftemplate', compact(['quotations', 'quotation', 'customer', 'data']));
+        Mail::send('pdf.quotationpdftemplate', $data, function ($message) use ($data, $pdf, $customer) {
+            $message->to($data["email"], $data["email"])
+                ->subject($data["title"])
+                ->attachData($pdf->output(), "text.pdf");
+        });
+    }
+
+    public function pdf1($number)
+    {
+        $quotations = Quotation::where('number', $number)->get();
+        $quotation = Quotation::where('number', $number)->first();
+        $customer = Customer::find($quotation->customer_id);
         // $saveLocation = 'public/storage/pdf/';
         $pdfFileName = 'BlueSkyCreation_' . quoNumberFormat($number, $quotation->quotation_date) . '.pdf';
         $footer = '<table style="width: 100%">
@@ -40,41 +60,37 @@ class QuotationEmailController extends Controller
                     width="30px" style="width: 15px;"> hello@blueskycreation.id</td>
         </tr>
     </table>';
-        // $mpdf = new \Mpdf\Mpdf();
-        $mpdf = new \Mpdf\Mpdf();
-        $mpdf->SetFooter($footer);
-        ob_get_clean();
+
         $data['email'] = 'testaja@testaja.com';
         $data['subject'] = 'ini adalah title atau judulnya';
         $data['body'] = 'ini adalah body atau isi dari emailnya';
 
-        $html = view('pdf.quotationpdftemplate', compact(['quotations', 'quotation', 'customer']));
-        $mpdf->WriteHTML($html);
 
-        $mpdf->Output($pdfFileName,\Mpdf\Output\Destination::DOWNLOAD);
+
+        $pdf = Pdf::loadView('pdf.quotationpdftemplate', compact(['quotations', 'quotation', 'customer']));
         // $request->session()->flash('message', 'PDF Generated');
         // return back();
-        return back()->with('message' , 'PDF Generated');
+        return $pdf->download('template.pdf');
+        // return back()->with('message', 'PDF Generated');
     }
 
 
-    public function quotationEmail ($number) {
+    public function quotationEmail($number)
+    {
         // Mail::to('kokonaci@gmail.com')->send(new InvoiceMail($number));
         try {
             Mail::send(new quotationMail($number));
             $data = Quotation::where('number', $number)->get();
-            foreach($data as $d){
+            foreach ($data as $d) {
 
-                 $d->emailed_at = Carbon::parse(Carbon::now())->format('Y-m-d H:i:s');
+                $d->emailed_at = Carbon::parse(Carbon::now())->format('Y-m-d H:i:s');
                 $d->status = 'Emailed';
                 $d->save();
             }
-            return redirect( route('quotation'))->with('success', 'Email sent');
-
+            return redirect(route('quotation'))->with('success', 'Email sent');
         } catch (\Exception $e) {
-             return $e->getMessage();
-            return redirect( route('quotation'))->with('error', 'Fail Sending Email');
-
+            return $e->getMessage();
+            return redirect(route('quotation'))->with('error', 'Fail Sending Email');
         }
     }
 }

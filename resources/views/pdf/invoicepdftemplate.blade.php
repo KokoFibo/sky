@@ -146,8 +146,8 @@
                 {{ invNumberFormat($invoice->number, $invoice->invoice_date) }}
             </td>
             <td style="text-align: right;">
-                <img style="width:150px; " src="https://blueskycreation.id/images/logobsc.png" alt="logobsc"
-                    border="0" /></a>
+                <img style="width:150px; " src="https://sky.blueskycreation.id/images/logobsc.png" alt="logobsc">
+                {{-- <img style="width:150px; " src="{{ asset('images/logobsc.png') }}" alt="logobsc"> --}}
             </td>
         </tr>
     </table>
@@ -266,7 +266,8 @@
                     to continue the ongoing project. Proof of<br>
                     payment could be sent via Whatsapp or email</p>
             </td>
-            <td style="text-align: right;"><img src="https://blueskycreation.id/images/mich-signs.png" alt="">
+            <td style="text-align: right;"><img src="https://sky.blueskycreation.id/images/mich-signs.png"
+                    alt="">
             </td>
         </tr>
         <tr>

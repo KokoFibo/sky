@@ -9,7 +9,9 @@
         @yield('title')
     </title>
     {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
+    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     <style>
         [x-cloak] {
             display: none !important;
@@ -24,11 +26,12 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
-            crossorigin="anonymous"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
         <script src="https://cdn.tailwindcss.com"></script>
+        {{-- <script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script> --}}
+        <script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
+
         @livewireStyles
     </head>
 

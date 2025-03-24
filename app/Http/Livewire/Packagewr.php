@@ -9,10 +9,14 @@ use Livewire\WithPagination;
 class Packagewr extends Component
 {
     use WithPagination;
-    public $package, $price, $description, $idPackage;
+    public $package, $price, $description, $idPackage, $description2;
     protected $listeners =  ['delete'];
 
-
+    public function mount()
+    {
+        $data = Package::find(1);
+        $description = $data->description;
+    }
     public function clear()
     {
         $this->package = '';
@@ -68,6 +72,7 @@ class Packagewr extends Component
 
     public function editPackage($id)
     {
+
         if ($id != null) {
             $data = Package::find($id);
             $this->idPackage = $data->id;

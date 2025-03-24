@@ -5,42 +5,70 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    {{-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet"> --}}
+
+
 
     <title>Quotation PDF</title>
 
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: "Poppins";
+            /* font-weight: 400;
+            font-style: normal; */
             color: #374151;
             width: 100%;
+        }
+
+        .page-break {
+            page-break-after: always;
+        }
+
+        footer {
+            position: fixed;
+            /* bottom: -60px; */
+            bottom: -40px;
+            left: 0px;
+            right: 0px;
+
+            /** Extra personal styles **/
+
+            text-align: center;
+            line-height: 35px;
         }
     </style>
 
 </head>
 
+
 <body>
     <div>
-
-
-        <table style="width: 100%;">
+        <table style="width: 100%; margin-top: -75px;">
             <tr>
-                <td style="width:50%">
+                <td style="width:50%; height: 200px; ">
                     <h1 style="font-size:50px">QUOTATION</h1>
-                    <p style="font-size:15px">DETAILED OF PROVIDED SERVICES</p>
+                    <h3 style="font-size:15px; margin-top: -50px;">DETAILED OF PROVIDED SERVICES</h3>
                 </td>
                 <td style="width:50%;  text-align: right">
-                    <img style="width:175px;  " src="https://kokofibo.com/images/logobsc.png" alt="logobsc"
-                        border="0" /></a>
+                    <img style="width:175px;  " src="https://blueskycreation.id/images/logobsc.png"
+                        alt="logobsc" /></a>
                 </td>
             </tr>
         </table>
-        <br>
+
+
+
         <br>
 
         <table style="width:100%">
             <tr>
-                <td style="width:50%; font-size: 15px; font-weight: bold; ">Created for</td>
-                <td style="width:50%; font-size: 15px; font-weight: bold; ">Created on</td>
+                <td style="width:50%; font-size: 15px;  font-weight: 700; ">Created for</td>
+                <td style="width:50%; font-size: 15px;  font-weight: 700; ">Created on</td>
             </tr>
 
             <tr>
@@ -78,7 +106,7 @@
             <thead>
                 <tr>
                     <td colspan="3"
-                        style="letter-spacing: 5px;text-align:center;font-family: poppins; background-color:#D9EAF7; padding: 15px; border: 1px solid #999; font-size: 15px; font-weight: bold;">
+                        style="letter-spacing: 5px;text-align:center;font-family: poppins; background-color:#D9EAF7; padding: 15px; border: 1px solid #999; font-size: 18px; font-weight: bold;">
                         PROVIDED
                         SERVICES</td>
                 </tr>
@@ -97,23 +125,17 @@
                     $tax = 0;
                     $cx = 0;
                 @endphp
+
                 @foreach ($quotations as $q)
                     <tr>
-                        <td
-                            style="font-size: 14px;border: 1px solid #999; padding: 8px 20px; text-align:left; line-height: 1.6;">
-                            <b>{{ $q->package }}</b>
-                            @php
-                                $desc = getDetail($q->description);
-                            @endphp
-                            <ul>
-                                @foreach ($desc as $d)
-                                    <li> <em> {{ $d }}</em></li>
-                                @endforeach
-                            </ul>
-                        </td>
-                        <td style="font-size: 14px;border: 1px solid #999;padding: 8px 20px; text-align:center;">1
+
+                        <td style="font-size: 14px;border: 1px solid #999;padding: 0 20px; ">
+                            {!! $q->description !!}</td>
+                        <td style="font-size: 14px;border: 1px solid #999;padding: 0 20px; text-align:center;">
+                            1
                             Package</td>
-                        <td style="font-size: 14px;border: 1px solid #999;padding: 8px 20px; text-align:right;">IDR
+                        <td style="font-size: 14px;border: 1px solid #999;padding: 0 20px; text-align:right;">
+                            IDR
                             {{ number_format($q->price) }}</td>
                         @php
                             $total = $total + $q->price;
@@ -123,22 +145,24 @@
                         @endphp
                     </tr>
                 @endforeach
-                @if ($tax != 0 || $discount !=0)
-                <tr>
-                    <td colspan="2"
-                        style="font-size: 14px;border: 1px solid #999;padding: 8px 20px;text-align:left;">
-                        <b>Total</b>
-                    </td>
-                    <td style="font-size: 14px;border: 1px solid #999;padding: 8px 20px; text-align:right;"><b>IDR
-                            {{ number_format($total) }}</b>
-                    </td>
-                </tr>
+
+                @if ($tax != 0 || $discount != 0)
+                    <tr>
+                        <td colspan="2"
+                            style="font-size: 14px;border: 1px solid #999;padding: 8px 20px;text-align:left;">
+                            <b>Total</b>
+                        </td>
+                        <td style="font-size: 14px;border: 1px solid #999;padding: 8px 20px; text-align:right;"><b>IDR
+                                {{ number_format($total) }}</b>
+                        </td>
+                    </tr>
                 @endif
 
                 @if ($discount != 0)
                     <tr>
                         <td colspan="2"
-                            style="font-size: 14px;border: 1px solid #999;padding: 8px 20px;text-align:left;"><b>Discount</b>
+                            style="font-size: 14px;border: 1px solid #999;padding: 8px 20px;text-align:left;">
+                            <b>Discount</b>
                         </td>
                         <td style="font-size: 14px;border: 1px solid #999;padding: 8px 20px; text-align:right;"><b>IDR
                                 {{ number_format($discount) }}</b>
@@ -156,7 +180,7 @@
                     </tr>
                 @endif
                 @php
-                    $grandTotal = ($total - $discount) / (100 - $tax) * 100;
+                    $grandTotal = (($total - $discount) / (100 - $tax)) * 100;
                 @endphp
                 <tr>
                     <td colspan="2"
@@ -167,9 +191,22 @@
                     </td>
                 </tr>
             </tbody>
+
         </table>
 
-        <pagebreak />
+
+
+        <footer>
+            <div>
+                <img src="https://sky.blueskycreation.id/web.png" style="width: 15px;">
+                <span style="margin-right: 40px;">www.blueskycreation.id</span>
+                <img src="https://sky.blueskycreation.id/whatsapp.png" style="width: 15px;">
+                <span style="margin-right: 40px;">087 780 620 632</span>
+                <img src="https://sky.blueskycreation.id/email.png" style="width: 15px;">
+                <span style="margin-right: 40px;">hello@blueskycreation.id</span>
+            </div>
+        </footer>
+        <div class="page-break"></div>
         {{--  Media Package  --}}
         <table style=" font-size: 13.5px; width:100%; border: 1px solid #999; line-height: 1.1;">
             <tr>
@@ -301,7 +338,17 @@
                 <td style="padding: 5px 7px 10px 7px;">of the project to the client</td>
             </tr>
         </table>
-
+        <footer>
+            <div>
+                <img src="https://sky.blueskycreation.id/web.png" style="width: 15px;">
+                <span style="margin-right: 40px;">www.blueskycreation.id</span>
+                <img src="https://sky.blueskycreation.id/whatsapp.png" style="width: 15px;">
+                <span style="margin-right: 40px;">087 780 620 632</span>
+                <img src="https://sky.blueskycreation.id/email.png" style="width: 15px;">
+                <span style="margin-right: 40px;">hello@blueskycreation.id</span>
+            </div>
+        </footer>
+        <div class="page-break"></div>
         <br>
         {{-- <br> --}}
         {{--  TERMS AND CONDITIONS  --}}
@@ -353,6 +400,16 @@
 
 
         </table>
+        <footer>
+            <div>
+                <img src="https://sky.blueskycreation.id/web.png" style="width: 15px;">
+                <span style="margin-right: 40px;">www.blueskycreation.id</span>
+                <img src="https://sky.blueskycreation.id/whatsapp.png" style="width: 15px;">
+                <span style="margin-right: 40px;">087 780 620 632</span>
+                <img src="https://sky.blueskycreation.id/email.png" style="width: 15px;">
+                <span style="margin-right: 40px;">hello@blueskycreation.id</span>
+            </div>
+        </footer>
     </div>
 </body>
 

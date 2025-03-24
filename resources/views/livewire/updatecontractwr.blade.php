@@ -153,7 +153,7 @@
                         <td class="px-6 py-4">{{ $i->package }}</td>
                         <td class="px-6 py-4">{{ number_format($i->price) }}</td>
                         <td class="px-6 py-4">{{ number_format($i->qty) }}</td>
-                        <td class="px-6 py-4">{{ $i->description }}</td>
+                        <td class="px-6 py-4">{!! $i->description !!}</td>
 
                         <td>
                             <div class="flex gap-2">

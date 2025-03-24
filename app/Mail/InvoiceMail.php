@@ -40,7 +40,7 @@ class InvoiceMail extends Mailable
         $invoice_number = invNumberFormat($this->number, $invoice->invoice_date);
         // $month = month($invoice->due_date);
         $month = getMonthName($invoice->due_date);
-        $subject = 'Invoice '.$invoice_number. ' '.$customer->company .' for ' . $month;
+        $subject = 'Invoice ' . $invoice_number . ' ' . $customer->company . ' for ' . $month;
 
         return new Envelope(
             subject: $subject,
@@ -64,8 +64,12 @@ class InvoiceMail extends Mailable
         return new Content(
             // view: 'pdf.invoiceEmailTemplate',
             view: 'pdf.invoiceEmailTemplate',
-            with: ['title' => $customer->salutation,  'custName' => $customer->name, 'invoice_number' => $invoice_number,
-             'company' => $customer->company, 'due_date' => tanggal($invoice->due_date)
+            with: [
+                'title' => $customer->salutation,
+                'custName' => $customer->name,
+                'invoice_number' => $invoice_number,
+                'company' => $customer->company,
+                'due_date' => tanggal($invoice->due_date)
             ],
         );
     }
@@ -82,7 +86,7 @@ class InvoiceMail extends Mailable
         $invoice = Invoice::where('number', $this->number)->first();
         $customer = Customer::find($invoice->customer_id);
         $contract = Contract::where('contract_number', $invoice->contract)->first();
-        if( $contract != ''){
+        if ($contract != '') {
             $contract_number = contractNumberFormat($contract->contract_number, $contract->contract_date);
             // dd($contract_number);
         } else {
@@ -111,8 +115,8 @@ class InvoiceMail extends Mailable
         $mpdf->WriteHTML($html);
         $pdf = $mpdf->Output('', 'S');
         return [
-            Attachment::fromData(fn () => $pdf, $pdfFileName)
-            ->withMime('application/pdf'),
+            Attachment::fromData(fn() => $pdf, $pdfFileName)
+                ->withMime('application/pdf'),
         ];
     }
 }

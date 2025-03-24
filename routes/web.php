@@ -7,6 +7,7 @@ use App\Http\Livewire\Packagewr;
 use App\Http\Livewire\Contractwr;
 use App\Http\Livewire\Customerwr;
 use App\Http\Livewire\Dashboardwr;
+use App\Http\Livewire\EditPackage;
 use App\Http\Livewire\Quotationwr;
 use App\Http\Livewire\Addinvoicewr;
 use App\Http\Livewire\Addcontractwr;
@@ -26,6 +27,7 @@ use App\Http\Livewire\Updatedetailcontractwr;
 use App\Http\Livewire\Updatedetailquotationwr;
 use App\Http\Controllers\InvoiceEmailController;
 use App\Http\Controllers\QuotationEmailController;
+use App\Http\Livewire\Test as LivewireTest;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +67,8 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/customer', Customerwr::class)->name('customer');
         Route::get('/package', Packagewr::class)->name('package');
+        Route::get('/editpackage/{param}', EditPackage::class)->name('editpackage');
+
         Route::get('/invoice', Invoicewr::class)->name('invoice');
         Route::get('/createinvoice', Createinvoicewr::class)->name('createinvoice');
         Route::get('/updateinvoice/{current_number}', Updateinvoicewr::class)->name('updateinvoice');
@@ -84,7 +88,8 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/quotationtemplate/{number}', [QuotationEmailController::class, 'index']);
         Route::get('/quotationpdf/{number}', [QuotationEmailController::class, 'pdf']);
-        Route::get('/quotationEmail/{number}', [QuotationEmailController::class, 'quotationEmail']);
+        // Route::get('/quotationEmail/{number}', [QuotationEmailController::class, 'quotationEmail']);
+        Route::get('/quotationEmail/{number}', [QuotationEmailController::class, 'pdf']);
 
         Route::get('/contract', Contractwr::class)->name('contract');
         Route::get('/createcontract', Createcontractwr::class)->name('createcontract');
@@ -101,9 +106,11 @@ Route::middleware('auth')->group(function () {
         });
     });
 
-    Route::get('/test', function () {
-        return view('test');
-    });
+    // Route::get('/test', function () {
+    //     return view('test');
+    // });
+
+    Route::get('/test', LivewireTest::class);
 });
 
 require __DIR__ . '/auth.php';

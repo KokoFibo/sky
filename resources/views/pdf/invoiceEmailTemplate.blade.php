@@ -28,7 +28,15 @@
         overflow: hidden;
         margin: 0 auto;
       ">
-        <img src="https://sky.blueskycreation.id/invoice-header.jpg" style="display: block; width: 100%; height: auto" />
+        <img src="https://sky.blueskycreation.id/images/invoice-header.jpg"
+            style="display: block; width: 100%; height: auto" />
+        {{-- <img src="/images/invoice-header.jpg" style="display: block; width: 100%; height: auto" /> --}}
+        {{-- <img src="{{ asset('images/invoice-header.jpg') }}" style="display: block; width: 100%; height: auto;" /> --}}
+        {{-- <img src="{{ asset('images/invoice-header.jpg') }}" class="w-14" alt=""> --}}
+        {{-- <img src="{{ asset('images/invoice-header.jpg') }}" style="display: block; width: 100%; height: auto"> --}}
+
+
+
         <div class="card-content" style="padding: 50px; text-align: left; ">
             <div>
                 <p
