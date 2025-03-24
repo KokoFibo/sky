@@ -203,7 +203,7 @@
                 <img src="https://sky.blueskycreation.id/images/whatsapp.png" style="width: 15px;">
                 <span style="margin-right: 40px;">087 780 620 632</span>
                 <img src="https://sky.blueskycreation.id/images/email.png" style="width: 15px;">
-                <span style="margin-right: 40px;">hello@blueskycreation.id</span>
+                <span style="margin-right: 40px;">hello@blueskycreations.id</span>
             </div>
         </footer>
         <div class="page-break"></div>
