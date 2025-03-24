@@ -55,7 +55,7 @@
                     <h3 style="font-size:15px; margin-top: -50px;">DETAILED OF PROVIDED SERVICES</h3>
                 </td>
                 <td style="width:50%;  text-align: right">
-                    <img style="width:175px;  " src="https://blueskycreation.id/images/logobsc.png"
+                    <img style="width:175px;  " src="https://sky.blueskycreation.id/images/logobsc.png"
                         alt="logobsc" /></a>
                 </td>
             </tr>
@@ -198,11 +198,11 @@
 
         <footer>
             <div>
-                <img src="https://sky.blueskycreation.id/web.png" style="width: 15px;">
+                <img src="https://sky.blueskycreation.id/images/web.png" style="width: 15px;">
                 <span style="margin-right: 40px;">www.blueskycreation.id</span>
-                <img src="https://sky.blueskycreation.id/whatsapp.png" style="width: 15px;">
+                <img src="https://sky.blueskycreation.id/images/whatsapp.png" style="width: 15px;">
                 <span style="margin-right: 40px;">087 780 620 632</span>
-                <img src="https://sky.blueskycreation.id/email.png" style="width: 15px;">
+                <img src="https://sky.blueskycreation.id/images/email.png" style="width: 15px;">
                 <span style="margin-right: 40px;">hello@blueskycreation.id</span>
             </div>
         </footer>
@@ -340,11 +340,11 @@
         </table>
         <footer>
             <div>
-                <img src="https://sky.blueskycreation.id/web.png" style="width: 15px;">
+                <img src="https://sky.blueskycreation.id/images/web.png" style="width: 15px;">
                 <span style="margin-right: 40px;">www.blueskycreation.id</span>
-                <img src="https://sky.blueskycreation.id/whatsapp.png" style="width: 15px;">
+                <img src="https://sky.blueskycreation.id/images/whatsapp.png" style="width: 15px;">
                 <span style="margin-right: 40px;">087 780 620 632</span>
-                <img src="https://sky.blueskycreation.id/email.png" style="width: 15px;">
+                <img src="https://sky.blueskycreation.id/images/email.png" style="width: 15px;">
                 <span style="margin-right: 40px;">hello@blueskycreation.id</span>
             </div>
         </footer>
@@ -402,11 +402,11 @@
         </table>
         <footer>
             <div>
-                <img src="https://sky.blueskycreation.id/web.png" style="width: 15px;">
+                <img src="https://sky.blueskycreation.id/images/web.png" style="width: 15px;">
                 <span style="margin-right: 40px;">www.blueskycreation.id</span>
-                <img src="https://sky.blueskycreation.id/whatsapp.png" style="width: 15px;">
+                <img src="https://sky.blueskycreation.id/images/whatsapp.png" style="width: 15px;">
                 <span style="margin-right: 40px;">087 780 620 632</span>
-                <img src="https://sky.blueskycreation.id/email.png" style="width: 15px;">
+                <img src="https://sky.blueskycreation.id/images/email.png" style="width: 15px;">
                 <span style="margin-right: 40px;">hello@blueskycreation.id</span>
             </div>
         </footer>

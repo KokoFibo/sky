@@ -28,7 +28,7 @@
         overflow: hidden;
         margin: 0 auto;
       ">
-        <img src="https://sky.blueskycreation.id/quotation-header.jpg"
+        <img src="https://sky.blueskycreation.id/images/quotation-header.jpg"
             style="display: block; width: 100%; height: auto" />
         <div class="card-content" style="padding: 50px; text-align: left; ">
             <div>
