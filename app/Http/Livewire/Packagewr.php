@@ -49,7 +49,6 @@ class Packagewr extends Component
 
     protected $rules = [
 
-
         'package' => 'required',
         'price' => 'required|numeric',
         'description' => 'required',
@@ -60,6 +59,8 @@ class Packagewr extends Component
     {
         $this->price = convert_numeric($this->price);
         $this->validate();
+        // dd('asdasd', $this->description);
+
         $data = new Package();
 
         $data->package = $this->package;

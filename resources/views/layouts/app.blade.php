@@ -30,7 +30,11 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
         <script src="https://cdn.tailwindcss.com"></script>
         {{-- <script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script> --}}
-        <script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
+        {{-- <script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script> --}}
+
+
+
+
 
         @livewireStyles
     </head>
@@ -94,6 +98,7 @@
                 })
             });
         </script>
+
 
 
     </body>

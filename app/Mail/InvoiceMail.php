@@ -95,16 +95,22 @@ class InvoiceMail extends Mailable
         }
         $pdfFileName = 'BlueSkyCreation_' . invNumberFormat($this->number, $invoice->invoice_date) . '.pdf';
         $footer = '<table style="width: 100%">
-        <tr>
-            <td style="width: 33%; text-align:left ;  ">
-                <img src="https://sky.blueskycreation.id/web.png" width="30px" style="width: 15px;">
-                www.blueskycreation.id
-            </td>
-            <td style="width: 33%; text-align:center"><img src="https://sky.blueskycreation.id/whatsapp.png"
-                    width="30px" style="width: 15px;"> 087 780 620 632</td>
-            <td style="width: 33%; text-align:right"><img src="https://sky.blueskycreation.id/email.png"
-                    width="30px" style="width: 15px;"> hello@blueskycreation.id</td>
-        </tr>
+       
+        <tr style="vertical-align: bottom;" >
+    <td style="width: 33%; text-align: left;">
+        <img src="https://sky.blueskycreation.id/images/web.png" width="30px" style="vertical-align: bottom;">
+        www.blueskycreation.id
+    </td>
+    <td style="width: 33%; text-align: center;">
+        <img src="https://sky.blueskycreation.id/images/whatsapp.png" width="30px" style="vertical-align: bottom;">
+        087 780 620 632
+    </td>
+    <td style="width: 33%; text-align: right;">
+        <img src="https://sky.blueskycreation.id/images/email.png" width="30px" style="vertical-align: bottom;">
+        hello@blueskycreation.id
+    </td>
+</tr>
+
     </table>';
         $mpdf = new \Mpdf\Mpdf();
         $mpdf->SetFooter($footer);
