@@ -48,9 +48,11 @@
 
 <body>
     <div>
-        <table style="width: 100%; margin-top: -75px;">
+        {{-- <table style="width: 100%; margin-top: -300px;"> --}}
+        {{-- <table style="width: 100%; margin-top: -75px;"> --}}
+        <table style="width: 100%; ">
             <tr>
-                <td style="width:50%; height: 200px; ">
+                <td style="width:50%; height: 50px; ">
                     <h1 style="font-size:50px">QUOTATION</h1>
                     <h3 style="font-size:15px; margin-top: -50px;">DETAILED OF PROVIDED SERVICES</h3>
                 </td>
@@ -129,20 +131,40 @@
                 @foreach ($quotations as $q)
                     <tr>
 
-                        <td style="font-size: 14px;border: 1px solid #999;padding: 0 20px; ">
-                            {!! $q->description !!}</td>
-                        <td style="font-size: 14px;border: 1px solid #999;padding: 0 20px; text-align:center;">
-                            1
-                            Package</td>
-                        <td style="font-size: 14px;border: 1px solid #999;padding: 0 20px; text-align:right;">
-                            IDR
-                            {{ number_format($q->price) }}</td>
-                        @php
-                            $total = $total + $q->price;
-                            $discount = $q->discount;
-                            $tax = $q->tax;
-                            $cx++;
-                        @endphp
+                        {{-- <td style="font-size: 14px;border: 1px solid #999;padding: 0 20px; ">
+                            {!! $q->description !!}</td> --}}
+
+                        {{-- <td style="font-size: 14px; border: 1px solid #999; padding: 10px;"> --}}
+                    <tr>
+
+                        <td style="font-size: 14px; font-weight: bold; border: 1px solid #999; padding: 10px;">
+                            {{ $quotation->package }}
+                        </td>
+                    </tr>
+                    <table style="width: 100%; font-style: italic; font-size: 14px;">
+
+
+                        @foreach (explode(',', $q->description) as $item)
+                            <tr>
+                                <td style="vertical-align: top; width: 10px;">•</td>
+                                <td style="padding-bottom: 4px;">{{ trim($item) }}</td>
+                            </tr>
+                        @endforeach
+                    </table>
+                    </td>
+
+                    <td style="font-size: 14px;border: 1px solid #999;padding: 0 20px; text-align:center;">
+                        1
+                        Package</td>
+                    <td style="font-size: 14px;border: 1px solid #999;padding: 0 20px; text-align:right;">
+                        IDR
+                        {{ number_format($q->price) }}</td>
+                    @php
+                        $total = $total + $q->price;
+                        $discount = $q->discount;
+                        $tax = $q->tax;
+                        $cx++;
+                    @endphp
                     </tr>
                 @endforeach
 
@@ -196,7 +218,7 @@
 
 
 
-        <footer>
+        {{-- <footer>
             <div>
                 <img src="https://sky.blueskycreation.id/images/web.png" style="width: 15px;">
                 <span style="margin-right: 40px;">www.blueskycreation.id</span>
@@ -205,7 +227,7 @@
                 <img src="https://sky.blueskycreation.id/images/email.png" style="width: 15px;">
                 <span style="margin-right: 40px;">hello@blueskycreation.id</span>
             </div>
-        </footer>
+        </footer> --}}
         <div class="page-break"></div>
         {{--  Media Package  --}}
         <table style=" font-size: 13.5px; width:100%; border: 1px solid #999; line-height: 1.1;">
@@ -338,7 +360,7 @@
                 <td style="padding: 5px 7px 10px 7px;">of the project to the client</td>
             </tr>
         </table>
-        <footer>
+        {{-- <footer>
             <div>
                 <img src="https://sky.blueskycreation.id/images/web.png" style="width: 15px;">
                 <span style="margin-right: 40px;">www.blueskycreation.id</span>
@@ -347,8 +369,8 @@
                 <img src="https://sky.blueskycreation.id/images/email.png" style="width: 15px;">
                 <span style="margin-right: 40px;">hello@blueskycreation.id</span>
             </div>
-        </footer>
-        <div class="page-break"></div>
+        </footer> --}}
+        {{-- <div class="page-break"></div> --}}
         <br>
         {{-- <br> --}}
         {{--  TERMS AND CONDITIONS  --}}
@@ -400,7 +422,7 @@
 
 
         </table>
-        <footer>
+        {{-- <footer>
             <div>
                 <img src="https://sky.blueskycreation.id/images/web.png" style="width: 15px;">
                 <span style="margin-right: 40px;">www.blueskycreation.id</span>
@@ -409,7 +431,7 @@
                 <img src="https://sky.blueskycreation.id/images/email.png" style="width: 15px;">
                 <span style="margin-right: 40px;">hello@blueskycreation.id</span>
             </div>
-        </footer>
+        </footer> --}}
     </div>
 </body>
 

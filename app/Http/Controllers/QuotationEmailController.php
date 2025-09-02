@@ -8,8 +8,6 @@ use App\Models\Quotation;
 use App\Mail\quotationMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\App;
-use Barryvdh\DomPDF\Facade\Pdf;
 
 class QuotationEmailController extends Controller
 {
@@ -28,24 +26,6 @@ class QuotationEmailController extends Controller
         $quotations = Quotation::where('number', $number)->get();
         $quotation = Quotation::where('number', $number)->first();
         $customer = Customer::find($quotation->customer_id);
-
-        $data['email'] = 'kokonacci@gmail.com';
-        $data['title'] = 'ini adalah title';
-        $data['subject'] = 'ini adalah subject';
-        $data['body'] = 'ini adalah body atau isi dari emailnya';
-        $pdf = Pdf::loadView('pdf.quotationpdftemplate', compact(['quotations', 'quotation', 'customer', 'data']));
-        Mail::send('pdf.quotationpdftemplate', $data, function ($message) use ($data, $pdf, $customer) {
-            $message->to($data["email"], $data["email"])
-                ->subject($data["title"])
-                ->attachData($pdf->output(), "text.pdf");
-        });
-    }
-
-    public function pdf1($number)
-    {
-        $quotations = Quotation::where('number', $number)->get();
-        $quotation = Quotation::where('number', $number)->first();
-        $customer = Customer::find($quotation->customer_id);
         // $saveLocation = 'public/storage/pdf/';
         $pdfFileName = 'BlueSkyCreation_' . quoNumberFormat($number, $quotation->quotation_date) . '.pdf';
         $footer = '<table style="width: 100%">
@@ -60,18 +40,39 @@ class QuotationEmailController extends Controller
                     width="30px" style="width: 15px;"> hello@blueskycreation.id</td>
         </tr>
     </table>';
+        // $mpdf = new \Mpdf\Mpdf();
+        $defaultConfig = (new \Mpdf\Config\ConfigVariables())->getDefaults();
+        $fontDirs = $defaultConfig['fontDir'];
 
+        $defaultFontConfig = (new \Mpdf\Config\FontVariables())->getDefaults();
+        $fontData = $defaultFontConfig['fontdata'];
+        $mpdf = new \Mpdf\Mpdf([
+            'fontDir' => array_merge($fontDirs, [
+                resource_path('fonts'),
+            ]),
+            'fontdata' => $fontData + [
+                'poppins' => [
+                    'R' => 'Poppins-Regular.ttf',
+                    // 'B' => 'Poppins-Bold.ttf',
+                    // 'I' => 'Poppins-Italic.ttf',
+                    // 'BI' => 'Poppins-BoldItalic.ttf',
+                ]
+            ],
+            'default_font' => 'poppins'
+        ]);
+        $mpdf->SetFooter($footer);
+        ob_get_clean();
         $data['email'] = 'testaja@testaja.com';
         $data['subject'] = 'ini adalah title atau judulnya';
         $data['body'] = 'ini adalah body atau isi dari emailnya';
 
+        $html = view('pdf.quotationpdftemplate', compact(['quotations', 'quotation', 'customer']));
+        $mpdf->WriteHTML($html);
 
-
-        $pdf = Pdf::loadView('pdf.quotationpdftemplate', compact(['quotations', 'quotation', 'customer']));
+        $mpdf->Output($pdfFileName, \Mpdf\Output\Destination::DOWNLOAD);
         // $request->session()->flash('message', 'PDF Generated');
         // return back();
-        return $pdf->download('template.pdf');
-        // return back()->with('message', 'PDF Generated');
+        return back()->with('message', 'PDF Generated');
     }
 
 

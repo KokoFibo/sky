@@ -17,11 +17,9 @@
                 <x-input-error :messages="$errors->get('price')" class="mt-2" />
             </div>
             <div class="p-3" wire:ignore>
-                <x-input-label for="description" :value="__('Description')" />
-                <textarea id="description" rows="4" name="description"
+                <x-input-label for="description" :value="__('Descriptions')" />
+                <textarea id="description" rows="4" name="description" wire:model="description"
                     class="block mt-1 p-2.5 w-full text-sm text-gray-900  rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">{!! $description !!}</textarea>
-
-                {{-- <textarea id="description" wire:model="description" name="description">{{ $description }}</textarea> --}}
 
             </div>
             <x-input-error :messages="$errors->get('description')" class="mt-2" />
@@ -58,7 +56,15 @@
                 });
             });
         </script>
+        {{-- <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
         <script>
+            ClassicEditor
+                .create(document.querySelector('#description'))
+                .catch(error => {
+                    console.error(error);
+                });
+        </script> --}}
+        {{-- <script>
             $(document).ready(function() {
                 const editor = CKEDITOR.replace('description');
                 editor.on('change', function(event) {
@@ -66,36 +72,8 @@
                     @this.set('description', event.editor.getData());
                 })
             })
+        </script> --}}
 
-            // $(document).ready(function() {
-            //     const editor2 = CKEDITOR.replace('description2');
-            //     editor2.on('change', function(event) {
-            //         console.log(event.editor.getData());
-            //         @this.set('description2', event.editor.getData());
-            //     })
-            // })
-
-
-            // CKEDITOR.replace('description');
-            // ClassicEditor
-            //     .create(document.querySelector('#description'), {
-            //         toolbar: {
-            //             items: [
-            //                 'undo', 'redo',
-            //                 '|', 'bold', 'italic', 'blockQuote',
-            //             ],
-            //             shouldNotGroupWhenFull: false
-            //         }
-            //     })
-            //     .then(editor => {
-            //         editor.model.document.on('change:data', () => {
-            //             @this.set('description', editor.getData());
-            //         })
-            //     })
-            //     .catch(error => {
-            //         console.error(error);
-            //     });
-        </script>
     </div>
 
 </div>

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    
+
     <link rel="stylesheet" href="{{ asset('style/invoice.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -42,22 +42,23 @@
             </div>
             <div class="flex flex-row gap-2">
                 @php
-                    if(isEmailed($invoice->number) == false) {
-                @endphp
+                                                            if(isEmailed($invoice->number) == false) {
+                                                @endphp
                 <div x-data="{ buttonDisabled: false }">
                     <a href="/invoiceEmail/{{ $invoice->number }}"><button x-on:click="buttonDisabled = true"
                             x-bind:disabled="buttonDisabled"
                             class="px-2 py-1 text-sm text-white bg-blue-500 rounded hover:bg-blue-700">Email</button></a>
                 </div>
                 @php
-                    }
-                @endphp
+                                                            }
+                                                @endphp
 
                 <div x-data="{ buttonDisabled: false }">
 
                     <a href="/pdfNoSignature/{{ $invoice->number }}"><button x-on:click="buttonDisabled = true"
                             x-bind:disabled="buttonDisabled"
-                            class="px-2 py-1 text-sm text-white bg-green-500 rounded hover:bg-red-700">PDF No Signature</button></a>
+                            class="px-2 py-1 text-sm text-white bg-green-500 rounded hover:bg-red-700">PDF No
+                            Signature</button></a>
                 </div>
                 <div x-data="{ buttonDisabled: false }">
 

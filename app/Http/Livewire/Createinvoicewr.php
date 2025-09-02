@@ -85,12 +85,14 @@ class Createinvoicewr extends Component
     }
     public function updatedCustomerId()
     {
+        // dd($this->customer_id);
         try {
             $this->contract = '';
             // $this->dataContract = Contract::where('customer_id', $this->customer_id)->first();
             // $this->contract = $this->dataContract->contract_number;
             $this->contract_list = Contract::where('customer_id', $this->customer_id)
                 ->where('done', '==', '0000-00-00')->select('contract_number', 'contract_date')->distinct()
+                // ->select('contract_number', 'contract_date')->distinct()
                 ->get();
 
             // $this->contract_date = $data->contract_date;
