@@ -113,7 +113,8 @@
                         SERVICES</td>
                 </tr>
                 <tr style="border: 1px solid #999">
-                    <th style="width: 55%; font-size: 15px; border: 1px solid #999;padding: 8px 20px;">Item Description
+                    <th style="width: 55%; font-size: 15px; border: 1px solid #999;padding: 8px 20px;">Item
+                        Description
                     </th>
                     <th style="width: 20%; font-size: 15px; border: 1px solid #999;padding: 8px 20px;">Quantity</th>
                     <th style="width: 25%; font-size: 15px; border: 1px solid #999;padding: 8px 20px;">Total</th>
@@ -137,8 +138,11 @@
                         {{-- <td style="font-size: 14px; border: 1px solid #999; padding: 10px;"> --}}
                     <tr>
 
-                        <td style="font-size: 14px; font-weight: bold; border: 1px solid #999; padding: 10px;">
+                        {{-- <td style="font-size: 14px; font-weight: bold; border: 1px solid #999; padding: 10px;">
                             {{ $quotation->package }}
+                        </td> --}}
+                        <td style="font-size: 14px; font-weight: bold; border: 1px solid #999; padding: 10px;">
+                            {{ $q->package }}
                         </td>
                     </tr>
                     <table style="width: 100%; font-style: italic; font-size: 14px;">
