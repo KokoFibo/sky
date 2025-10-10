@@ -65,7 +65,6 @@ class QuotationEmailController extends Controller
         $data['email'] = 'testaja@testaja.com';
         $data['subject'] = 'ini adalah title atau judulnya';
         $data['body'] = 'ini adalah body atau isi dari emailnya';
-
         $html = view('pdf.quotationpdftemplate', compact(['quotations', 'quotation', 'customer']));
         $mpdf->WriteHTML($html);
 
