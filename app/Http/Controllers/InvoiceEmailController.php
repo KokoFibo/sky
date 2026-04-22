@@ -61,7 +61,7 @@ class InvoiceEmailController extends Controller
         } else {
             $template =  view('pdf.invoicepdftemplateNoSignature', compact(['invoices', 'invoice', 'customer', 'contract_number']))->render();
         }
-        
+
         $footerHtml = view('pdf.footer')->render();
 
         $pdf = Browsershot::html($template)
@@ -139,8 +139,8 @@ class InvoiceEmailController extends Controller
             return redirect(route('invoice'))->with('success', 'Email sent');
         } catch (\Exception $e) {
             // dd('ada kesalahan email');
-            //  return $e->getMessage();
-            return redirect(route('invoice'))->with('error', 'Fail Sending Email');
+            return $e->getMessage();
+            // return redirect(route('invoice'))->with('error', 'Fail Sending Email');
         }
     }
 }
