@@ -98,7 +98,6 @@ class quotationMail extends Mailable
             ->showBackground()
             ->noSandbox()
             ->addChromiumArguments([
-                '--no-sandbox',
                 '--disable-setuid-sandbox',
                 '--disable-dev-shm-usage',
                 '--disable-gpu',
