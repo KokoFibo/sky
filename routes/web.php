@@ -1,9 +1,12 @@
 <?php
 
 use App\Mail\Test;
+use App\Models\Customer;
 use App\Mail\InvoiceMail;
+use App\Models\Quotation;
 use App\Http\Livewire\Invoicewr;
 use App\Http\Livewire\Packagewr;
+use App\Http\Livewire\Addpackage;
 use App\Http\Livewire\Contractwr;
 use App\Http\Livewire\Customerwr;
 use App\Http\Livewire\Dashboardwr;
@@ -14,22 +17,23 @@ use App\Http\Livewire\Addcontractwr;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Livewire\Addquotationwr;
 use Illuminate\Support\Facades\Route;
+
+
 use App\Http\Livewire\Createinvoicewr;
 use App\Http\Livewire\Editquotationwr;
 use App\Http\Livewire\Updateinvoicewr;
-
-
 use App\Http\Livewire\Createcontractwr;
 use App\Http\Livewire\Updatecontractwr;
 use App\Http\Livewire\Createquotationwr;
 use App\Http\Livewire\Updatequotationwr;
 use App\Http\Controllers\ProfileController;
+use App\Http\Livewire\Test as LivewireTest;
 use App\Http\Livewire\Updatedetailinvoicewr;
 use App\Http\Livewire\Updatedetailcontractwr;
 use App\Http\Livewire\Updatedetailquotationwr;
 use App\Http\Controllers\InvoiceEmailController;
 use App\Http\Controllers\QuotationEmailController;
-use App\Http\Livewire\Test as LivewireTest;
+use App\Http\Controllers\ShowPdfController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,15 +87,15 @@ Route::middleware('auth')->group(function () {
         Route::get('/addquotation/{number}', Addquotationwr::class)->name('addquotation');
 
         Route::get('/pdftemplate/{number}', [InvoiceEmailController::class, 'index']);
-        Route::get('/pdf/{number}', [InvoiceEmailController::class, 'pdf']);
-        Route::get('/pdfNoSignature/{number}', [InvoiceEmailController::class, 'pdfNoSignature']);
+        Route::get('/pdf/{number}/{signature}', [InvoiceEmailController::class, 'pdf']);
         Route::get('/emailinvoice/{number}', [InvoiceEmailController::class, 'emailinvoice']);
         Route::get('/invoiceEmail/{number}', [InvoiceEmailController::class, 'invoiceEmail']);
 
         Route::get('/quotationtemplate/{number}', [QuotationEmailController::class, 'index']);
         Route::get('/quotationpdf/{number}', [QuotationEmailController::class, 'pdf']);
         // Route::get('/quotationEmail/{number}', [QuotationEmailController::class, 'quotationEmail']);
-        Route::get('/quotationEmail/{number}', [QuotationEmailController::class, 'pdf']);
+        // Route::get('/quotationEmail/{number}', [QuotationEmailController::class, 'pdf']);
+        Route::get('/quotationEmail/{number}', [QuotationEmailController::class, 'quotationEmail']);
 
         Route::get('/contract', Contractwr::class)->name('contract');
         Route::get('/createcontract', Createcontractwr::class)->name('createcontract');
@@ -113,6 +117,8 @@ Route::middleware('auth')->group(function () {
     // });
 
     Route::get('/test', LivewireTest::class);
+
+    Route::get('/show/{number}', [ShowPdfController::class, 'showPdfTemplate']);
 });
 
 require __DIR__ . '/auth.php';

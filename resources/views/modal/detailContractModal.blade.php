@@ -154,7 +154,10 @@
                         <td class="px-6 py-4"> {{ $loop->iteration }}</td>
                         <td class="px-6 py-4"> {{ $d->package }}</td>
                         <td class="px-6 py-4 text-right"> {{ number_format($d->price) }}</td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 text-right"> {{ number_format($d->price) }}</td>
+                        <td class="px-6 py-4 ql-editor">{!! $d->description !!}</td>
+
+                        {{-- <td class="px-6 py-4">
                             @php
                                 $desc = getDetail($d->description);
                             @endphp
@@ -165,7 +168,7 @@
                                     </li>
                                 @endforeach
                             </ul>
-                        </td>
+                        </td> --}}
                     </tr>
                 @endforeach
             </tbody>

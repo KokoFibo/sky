@@ -3,283 +3,175 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {{-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> --}}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {{-- <link rel="stylesheet" href="{{ asset('style/invoice.css') }}"> --}}
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" /> --}}
-
-
     <title>Invoice PDF</title>
+
+    {{-- google fonts poppins --}}
+    {{-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> --}}
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+        rel="stylesheet">
+
     <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
         body {
             font-family: 'Poppins', sans-serif;
             color: #3e3e3f;
-            /* font-size: 10px; */
+
         }
 
-        .container {
-            /* width: 100vw; */
-            width: 100%;
-            margin: auto;
-        }
-
-        tbody tr td {
-            padding-top: 15px;
-        }
-
-        .first-row {
-            flex-basis: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 100px;
-            /* width: 70%; */
-        }
-
-        .invoice {
-            font-size: 50px;
-            font-weight: 600;
-            text-align: center;
-        }
-
-        .table1 {
-            color: #3e3e3f;
-            border-collapse: collapse;
-            margin: 25px 0;
-            margin: auto;
-        }
-
-        thead tr th {
-            height: 45px;
-        }
-
-        .table1,
-        th,
-        .garis {
-            /* border: 1px solid #999; */
-            border-right: 1px solid #999;
-            border-left: 1px solid #999;
-        }
-
-        .left,
-        .right,
-        .main {
-            display: flex;
-            padding: 10px;
-        }
-
-        .term,
-        .tiffany {
-            font-weight: 600;
-        }
-
-        .flex {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .thankyou {
-            font-weight: 600;
-            font-size: 22px;
-            font-style: italic;
-        }
-
-        .main {
-            justify-content: space-between;
-            align-items: end;
-            margin-top: 30px;
-        }
+        /* @page {
+            size: A4;
+            margin: 2cm;
+        } */
 
         table {
+            border-collapse: collapse;
             width: 100%;
         }
 
-        .rupiah,
-        .discount,
-        .tax,
-        .total {
-            text-align: right;
+        th,
+        td {
+            padding: 6px 10px;
         }
-
-        .package {
-            text-align: center;
-        }
-
-        .bold {
-            font-weight: 600;
-        }
-
-        /* td {
-            padding: 8px 20px;
-        } */
 
         thead tr {
             background-color: #D9EAF7;
-            /* height: 25px; */
             border: 1px solid #999;
         }
 
-        .footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 50px;
-            margin-top: 20px;
+        .border-mid {
+            border-left: 1px solid #999;
+            border-right: 1px solid #999;
         }
     </style>
 </head>
 
-<body>
-    <div class="container">
+<body class="leading-relaxed p-10">
+    <div class="w-full mx-auto">
 
-    </div>
-    </div>
-    <table style="width:100%">
-        <tr>
-            <td>
-                <span>
-                    <b>Invoice No.</b>
-                </span>
+
+        <div class="flex justify-between items-center ">
+            <div>
+                <span class="font-semibold ">Invoice No.</span>
                 {{ invNumberFormat($invoice->number, $invoice->invoice_date) }}
-            </td>
-            <td style="text-align: right;">
-                <img style="width:150px; " src="https://blueskycreation.id/images/logobsc.png" alt="logobsc"
-                    border="0" /></a>
-            </td>
-        </tr>
-    </table>
+            </div>
+            <img src="https://sky.blueskycreation.id/images/logobsc.png" alt="logobsc" class="w-[150px] inline-block">
+        </div>
+
+        <h1 class="text-center text-2xl font-bold mt-4 mb-6">INVOICE</h1>
+        <div class="flex justify-between">
+            <div class="flex gap-5">
+                <div class="font-semibold">
+                    <h5>Name</h5>
+                    <h5>Company</h5>
+                    <h5>Contract No.</h5>
+                    <h5>Address</h5>
+                </div>
+                <div>
+                    <h5>{{ $customer->salutation }} {{ $customer->name }}</h5>
+                    <h5>{{ $customer->company }}</h5>
+                    <h5>{{ $contract_number }}</h5>
+                    <h5>{{ $customer->address }}</h5>
+                </div>
+            </div>
+            <div class="flex gap-5">
+                <div class="font-semibold">
+                    <h5>Invoice Date</h5>
+                    <h5>Due Date</h5>
+                    <h5>Payment to</h5>
+                    <h5></h5>
+                </div>
+                <div>
+                    <h5>{{ tanggal($invoice->invoice_date) }}</h5>
+                    <h5>{{ tanggal($invoice->due_date) }}</h5>
+                    <h5>Tiffany Mareta</h5>
+                    <h5>BCA (Bank Central Asia)</h5>
+                    <h5>6600 356 117</h5>
+                </div>
+            </div>
+        </div>
 
 
-    <h1 style="text-align: center;">INVOICE</h1>
-    <table style="margin-bottom: 25px">
-        <tr>
-            <td style="width: 15%"><b>Name</b></td>
-            <td style="width: 30%">{{ $customer->salutation }} {{ $customer->name }}</td>
-            <td style="width: 15%"><b>Invoice Date</b></td>
-            <td style="width: 15%">{{ tanggal($invoice->invoice_date) }}</td>
-        </tr>
-        <tr>
-            <td style="width: 15%"><b>Company</b></td>
-            <td style="width: 30%">{{ $customer->company }}</td>
-            <td style="width: 15%"><b>Due Date</b></td>
-            <td style="width: 30%">{{ tanggal($invoice->due_date) }}</td>
-        </tr>
-        <tr>
-            @if ($contract_number != '-')
-                <td style="width: 15%"><b>Contract No.</b></td>
-                <td style="width: 30%">{{ $contract_number }}</td>
-            @else
-                <td style="width: 15%"><b>Contract No.</b></td>
-                <td style="width: 30%">None</td>
-            @endif
 
-            <td style="width: 15%"><b>Payment to</b></td>
-            <td style="width: 30%">Tiffany Mareta</td>
-        </tr>
-        <tr>
-            <td style="vertical-align: top;"><b>Address</b></td>
-            <td style="vertical-align: top;">{{ $customer->address }}</td>
-            <td> </td>
-            <td>
-                <p>BCA (Bank Central Asia)<br>6600 356 117</p>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td> </td>
-            <td></td>
-            {{-- <td>6600 356 117</td> --}}
-        </tr>
-    </table>
+        <div class="mt-5">
+            <table class="w-full text-left border border-gray-400">
+                <thead>
+                    <tr class="bg-[#D9EAF7] border border-gray-400">
+                        <th class="w-[55%] text-center px-3 py-2">Item Description</th>
+                        <th class="w-[20%] text-center px-3 py-2">Qty</th>
+                        <th class="w-[25%] text-center px-3 py-2">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php
+                        $subtotal = 0;
+                    @endphp
+                    @foreach ($invoices as $i)
+                        <tr class="border-x border-gray-400">
+                            <td class="px-3 py-2 border-mid">{{ $i->package }}</td>
+                            <td class="text-center border-mid">{{ $i->qty }}
+                                {{ $i->qty > 1 ? 'Packages' : 'Package' }}</td>
+                            <td class="text-right px-3 py-2 border-mid">IDR {{ number_format($i->qty * $i->price) }}
+                            </td>
+                            @php
+                                $subtotal = $subtotal + $i->qty * $i->price;
+                            @endphp
+                        </tr>
+                    @endforeach
 
-    <div>
-        <table class="table1">
-            <thead>
-                <tr>
-                    <th style="width: 55%;">Item Description</th>
-                    <th style="width: 20%;">Qty</th>
-                    <th style="width: 25%;">Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                @php
-                    $subtotal = 0;
-                @endphp
-                @foreach ($invoices as $i)
-                    <tr>
-                        <td style="padding: 15 15px 0 15px" class="garis">{{ $i->package }}</td>
-                        <td class="garis package">{{ $i->qty }} {{ $i->qty > 1 ? 'Packages' : 'Package' }}
+                    <tr class="border-x border-gray-400 h-[300px]">
+                        <td class="border-mid"></td>
+                        <td class="border-mid"></td>
+                        <td class="border-mid"></td>
+                    </tr>
+
+                    @if ($invoice->discount != 0)
+                        <tr class="border border-gray-400">
+                            <td class="px-3 py-2">Discount</td>
+                            <td></td>
+                            <td class="text-right px-3 py-2 border-l border-gray-400">IDR
+                                {{ number_format($invoice->discount) }}</td>
+                        </tr>
+                    @endif
+
+                    @if ($invoice->tax != 0)
+                        <tr class="border border-gray-400">
+                            <td class="px-3 py-2">Tax</td>
+                            <td></td>
+                            <td class="text-right px-3 py-2 border-l border-gray-400">{{ $invoice->tax }} %</td>
+                        </tr>
+                    @endif
+
+                    <tr class="border border-gray-400 font-semibold">
+                        <td class="px-3 py-2">Grand Total</td>
+                        <td></td>
+                        <td class="text-right px-3 py-2 border-l border-gray-400">
+                            IDR {{ number_format(roundedTotal($subtotal, $invoice->discount, $invoice->tax)) }}
                         </td>
-                        <td style="padding: 15 15px 0 15px" class="garis rupiah">IDR
-                            {{ number_format($i->qty * $i->price) }}</td>
-                        @php
-                            $subtotal = $subtotal + $i->qty * $i->price;
-                        @endphp
                     </tr>
-                @endforeach
-                <tr style="height:300px">
-                    <td class="garis"> </td>
-                    <td class="garis"> </td>
-                    <td class="garis"> </td>
+                </tbody>
+            </table>
+        </div>
+        <div class="flex justify-between mt-5 items-end  ">
+            <div class="w-2/3">
+                <h5 class="font-semibold text-lg">Terms & Conditions</h5>
+                <p class="w-2/3 my-3">
+                    Kindly make the transfer before the due date
+                    to continue the ongoing project. Proof of
+                    payment could be sent via Whatsapp or email
+                </p>
+                <h5 class="italic font-semibold text-xl"><i>Thank you for your support!</i></h5>
+            </div>
+            <div>
 
-                </tr>
-                @if ($invoice->discount != 0)
-                    <tr style=" border: 1px solid #999">
-                        <td style="padding: 8 15px 7 15px">Discount</td>
-                        <td></td>
-                        <td class="discount" style="padding: 8 15px 7 15px; border-left: 1px solid #999">IDR
-                            {{ number_format($invoice->discount) }}</td>
-                    </tr>
-                @endif
-                @if ($invoice->tax != 0)
-                    <tr style=" border: 1px solid #999">
-                        <td style="padding: 8 15px 7 15px">Tax</td>
-                        <td></td>
-                        <td class="tax" style="padding: 8 15px 7 15px; border-left: 1px solid #999">
-                            {{ $invoice->tax }} %</td>
-                    </tr>
-                @endif
+                <h5 class="font-semibold">Michelle Velicia</h5>
+                <h5>Blue Sky Creation</h5>
+            </div>
+        </div>
 
-                <tr style=" border: 1px solid #999">
-                    <td style="padding: 8 15px 7 15px"><b>Grand Total</b></td>
-                    <td></td>
-                    <td class="total" style=" padding: 8 15px 7 15px;  border-left: 1px solid #999"><b>IDR
-                            {{ number_format(roundedTotal($subtotal, $invoice->discount, $invoice->tax)) }}</b></td>
-        </table>
-    </div>
-
-
-    <table style=" width: 100%; margin-top: 50px;">
-        <tr>
-            <td style="width: 50%;"><b>Terms & Conditions</b></td>
-        </tr>
-        <tr>
-            <td></td>
-        </tr>
-        <tr>
-            <td style="width: 50%;">
-                <p> Kindly make the transfer before the due date<br>
-                    to continue the ongoing project. Proof of<br>
-                    payment could be sent via Whatsapp or email</p>
-            </td>
-            {{-- <td style="text-align: right;"><img src="https://blueskycreation.id/images/mich-signs.png" alt="">
-            </td> --}}
-        </tr>
-        <tr>
-            <td style="vertical-align: bottom;">
-                <h2><b><i>Thank you for your support!</i></b></h2>
-            </td>
-            <td style="vertical-align: bottom; text-align: right;">
-                <p style="text-align: center"><b>Michelle Velicia</b> <br>
-                    Blue Sky Creation</p>
-            </td>
-        </tr>
-    </table>
-
-    <div>
-    </div>
 
 
     </div>

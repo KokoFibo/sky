@@ -6,6 +6,59 @@ use App\Models\Contract;
 use App\Models\Customer;
 use App\Models\Quotation;
 
+function addDays($dateString, $days)
+{
+    // Ubah string tanggal jadi DateTime object
+    $date = new DateTime($dateString);
+
+    // Tambahkan hari (bisa positif atau negatif)
+    $date->modify("+{$days} days");
+
+    // Kembalikan dalam format standar (YYYY-MM-DD)
+    return $date->format('Y-m-d');
+}
+
+function formatDate($dateString)
+{
+    // Pastikan input berupa string yang bisa di-parse oleh strtotime()
+    $timestamp = strtotime($dateString);
+
+    // Format: Saturday, Nov 8 2025
+    return date('l, M j Y', $timestamp);
+}
+
+// function cleanQuillHtmlForPdf($html)
+// {
+//     // Ubah semua <ol> jadi <ul>
+//     $html = str_replace('<ol>', '<ul style="list-style-type: disc;
+//                 margin-left: 20px;
+//                 margin-top: 5px;
+//                 margin-bottom: 5px;">', $html);
+//     $html = str_replace('</ol>', '</ul>', $html);
+//     $html = str_replace('<li>', '<li style=" margin-bottom: 4px;
+//                 line-height: 1.4;">', $html);
+
+//     $html = str_replace(
+//         [
+//             '<p>',
+//             '<ol',
+//             '<li>'
+//         ],
+//         [
+//             '<p style="font-family: Arial, sans-serif; font-size: 14px; color: #374151; margin: 0 0 10px 0;">',
+//             '<ol style="font-family: Arial, sans-serif; font-size: 14px; color: #374151; padding-left: 20px; margin: 10px 0; list-style-type: decimal;"',
+//             '<li style="font-family: Arial, sans-serif; font-size: 14px; color: #374151; margin-bottom: 15px; line-height: 1.4;">'
+//         ],
+//         $html
+//     );
+
+
+//     return  $html;
+// }
+
+
+
+
 // function getContractNumber($id) {
 //     try {
 //         $data = Contract::where('customer_id', $id)->first();

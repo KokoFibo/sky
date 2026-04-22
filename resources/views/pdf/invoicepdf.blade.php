@@ -41,28 +41,36 @@
 
             </div>
             <div class="flex flex-row gap-2">
-                @php
-                                                            if(isEmailed($invoice->number) == false) {
-                                                @endphp
-                <div x-data="{ buttonDisabled: false }">
-                    <a href="/invoiceEmail/{{ $invoice->number }}"><button x-on:click="buttonDisabled = true"
-                            x-bind:disabled="buttonDisabled"
-                            class="px-2 py-1 text-sm text-white bg-blue-500 rounded hover:bg-blue-700">Email</button></a>
-                </div>
-                @php
-                                                            }
-                                                @endphp
+
+                @if ($is_emailed)
+                    <div x-data="{ buttonDisabled: false }">
+                        <a href="/invoiceEmail/{{ $invoice->number }}"><button x-on:click="buttonDisabled = true"
+                                x-bind:disabled="buttonDisabled"
+                                class="px-2 py-1 text-sm text-white bg-blue-500 rounded hover:bg-blue-700">Resend
+                                Email</button></a>
+                    </div>
+                @else
+                    <div x-data="{ buttonDisabled: false }">
+                        <a href="/invoiceEmail/{{ $invoice->number }}"><button x-on:click="buttonDisabled = true"
+                                x-bind:disabled="buttonDisabled"
+                                class="px-2 py-1 text-sm text-white bg-blue-500 rounded hover:bg-blue-700">Send
+                                Email</button></a>
+                    </div>
+                @endif
+
+
+
 
                 <div x-data="{ buttonDisabled: false }">
 
-                    <a href="/pdfNoSignature/{{ $invoice->number }}"><button x-on:click="buttonDisabled = true"
+                    <a href="/pdf/{{ $invoice->number }}/no-signature"><button x-on:click="buttonDisabled = true"
                             x-bind:disabled="buttonDisabled"
                             class="px-2 py-1 text-sm text-white bg-green-500 rounded hover:bg-red-700">PDF No
                             Signature</button></a>
                 </div>
                 <div x-data="{ buttonDisabled: false }">
 
-                    <a href="/pdf/{{ $invoice->number }}"><button x-on:click="buttonDisabled = true"
+                    <a href="/pdf/{{ $invoice->number }}/signature"><button x-on:click="buttonDisabled = true"
                             x-bind:disabled="buttonDisabled"
                             class="px-2 py-1 text-sm text-white bg-red-500 rounded hover:bg-red-700">PDF</button></a>
                 </div>

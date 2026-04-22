@@ -12,6 +12,9 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\App;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class quotationMail extends Mailable
 {
@@ -39,6 +42,7 @@ class quotationMail extends Mailable
         // $month = month($invoice->due_date);
         $month = getMonthName($quotation->due_date);
         $subject = 'Quotation ' . $quotation_number . ' for ' . $customer->company;
+
         return new Envelope(
             subject: $subject,
             // cc: 'tiffany.blueskycreation@gmail.com',
@@ -59,7 +63,9 @@ class quotationMail extends Mailable
         return new Content(
             view: 'pdf.quotationEmailTemplate',
             with: [
-                'title' => $customer->salutation,  'custName' => $customer->name, 'quotation_number' => $quotation_number,
+                'title' => $customer->salutation,
+                'custName' => $customer->name,
+                'quotation_number' => $quotation_number,
                 'company' => $customer->company,
             ],
         );
@@ -76,20 +82,12 @@ class quotationMail extends Mailable
         $quotation = Quotation::where('number', $this->number)->first();
         $customer = Customer::find($quotation->customer_id);
         $pdfFileName = 'BlueSkyCreation_' . quoNumberFormat($this->number, $quotation->quotation_date) . '.pdf';
-        $footer = '<table style="width: 100%">
-        <tr>
-            <td style="width: 33%; text-align:left ;  ">
-                <img src="https://sky.blueskycreation.id/web.png" width="30px" style="width: 15px;">
-                www.blueskycreation.id
-            </td>
-            <td style="width: 33%; text-align:center"><img src="https://sky.blueskycreation.id/whatsapp.png"
-                    width="30px" style="width: 15px;"> 087 780 620 632</td>
-            <td style="width: 33%; text-align:right"><img src="https://sky.blueskycreation.id/email.png"
-                    width="30px" style="width: 15px;"> hello@blueskycreation.id</td>
-        </tr>
-    </table>';
+
+
+        // start dompdf
+        // $pdf = Pdf::loadView('pdf.quotationpdftemplate', compact(['quotations', 'quotation', 'customer']));
         $mpdf = new \Mpdf\Mpdf();
-        $mpdf->SetFooter($footer);
+        // $mpdf->SetFooter($footer);
 
         ob_get_clean();
 
@@ -97,8 +95,13 @@ class quotationMail extends Mailable
         $mpdf->WriteHTML($html);
         $pdf = $mpdf->Output('', 'S');
         return [
-            Attachment::fromData(fn () => $pdf, $pdfFileName)
+            Attachment::fromData(fn() => $pdf, $pdfFileName)
                 ->withMime('application/pdf'),
         ];
+
+        // return [
+        //     Attachment::fromData(fn () => $pdf, $pdfFileName)
+        //         ->withMime('application/pdf'),
+        // ];
     }
 }

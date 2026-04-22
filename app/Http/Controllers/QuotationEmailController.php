@@ -7,6 +7,8 @@ use App\Models\Customer;
 use App\Models\Quotation;
 use App\Mail\quotationMail;
 use Illuminate\Http\Request;
+use Spatie\LaravelPdf\Facades\Pdf;
+use Spatie\Browsershot\Browsershot;
 use Illuminate\Support\Facades\Mail;
 
 class QuotationEmailController extends Controller
@@ -17,9 +19,20 @@ class QuotationEmailController extends Controller
         $quotations = Quotation::where('number', $number)->get();
         $quotation = Quotation::where('number', $number)->first();
         $customer = Customer::find($quotation->customer_id);
+        $is_email_sent = false;
+        if ($quotation->status == "Emailed") $is_email_sent = true;
 
-        return view('pdf.quotationpdf', compact(['quotations', 'quotation', 'customer']));
+
+
+        return view('pdf.quotationpdf', [
+            'quotations' => $quotations,
+            'quotation' => $quotation,
+            'customer' => $customer,
+            'is_email_sent' => $is_email_sent,
+        ]);
     }
+
+
 
     public function pdf($number)
     {
@@ -27,52 +40,30 @@ class QuotationEmailController extends Controller
         $quotation = Quotation::where('number', $number)->first();
         $customer = Customer::find($quotation->customer_id);
         // $saveLocation = 'public/storage/pdf/';
+
         $pdfFileName = 'BlueSkyCreation_' . quoNumberFormat($number, $quotation->quotation_date) . '.pdf';
-        $footer = '<table style="width: 100%">
-        <tr>
-            <td style="width: 33%; text-align:left ;  ">
-                <img src="https://sky.blueskycreation.id/web.png" width="30px" style="width: 15px;">
-                www.blueskycreation.id
-            </td>
-            <td style="width: 33%; text-align:center"><img src="https://sky.blueskycreation.id/whatsapp.png"
-                    width="30px" style="width: 15px;"> 087 780 620 632</td>
-            <td style="width: 33%; text-align:right"><img src="https://sky.blueskycreation.id/email.png"
-                    width="30px" style="width: 15px;"> hello@blueskycreation.id</td>
-        </tr>
-    </table>';
-        // $mpdf = new \Mpdf\Mpdf();
-        $defaultConfig = (new \Mpdf\Config\ConfigVariables())->getDefaults();
-        $fontDirs = $defaultConfig['fontDir'];
 
-        $defaultFontConfig = (new \Mpdf\Config\FontVariables())->getDefaults();
-        $fontData = $defaultFontConfig['fontdata'];
-        $mpdf = new \Mpdf\Mpdf([
-            'fontDir' => array_merge($fontDirs, [
-                resource_path('fonts'),
-            ]),
-            'fontdata' => $fontData + [
-                'poppins' => [
-                    'R' => 'Poppins-Regular.ttf',
-                    // 'B' => 'Poppins-Bold.ttf',
-                    // 'I' => 'Poppins-Italic.ttf',
-                    // 'BI' => 'Poppins-BoldItalic.ttf',
-                ]
-            ],
-            'default_font' => 'poppins'
-        ]);
-        $mpdf->SetFooter($footer);
-        ob_get_clean();
-        $data['email'] = 'testaja@testaja.com';
-        $data['subject'] = 'ini adalah title atau judulnya';
-        $data['body'] = 'ini adalah body atau isi dari emailnya';
-        $html = view('pdf.quotationpdftemplate', compact(['quotations', 'quotation', 'customer']));
-        $mpdf->WriteHTML($html);
+        $template =  view('pdf.quotationpdftemplate', compact('quotations', 'quotation', 'customer'))->render();
+        $footerHtml = view('pdf.footer')->render();
 
-        $mpdf->Output($pdfFileName, \Mpdf\Output\Destination::DOWNLOAD);
-        // $request->session()->flash('message', 'PDF Generated');
-        // return back();
+        $pdf = Browsershot::html($template)
+            ->showBackground()
+            ->noSandbox()
+            ->showBrowserHeaderAndFooter()
+            ->footerHtml($footerHtml)
+            ->format('A4')
+            ->pdf(); // hasil binary
+
+        // Kirim langsung ke browser untuk di-download
+        return response($pdf)
+            ->header('Content-Type', 'application/pdf')
+            ->header('Content-Disposition', 'attachment; filename="' . $pdfFileName . '"');
+
         return back()->with('message', 'PDF Generated');
     }
+
+
+
 
 
     public function quotationEmail($number)
