@@ -114,7 +114,6 @@ class InvoiceMail extends Mailable
             ->addChromiumArguments([
                 '--disable-crash-reporter',
             ])
-            ->fo
             ->format('A4')
             ->pdf(); // hasil binary
 
