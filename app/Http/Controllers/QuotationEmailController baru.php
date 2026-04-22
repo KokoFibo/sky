@@ -25,7 +25,6 @@ class QuotationEmailController extends Controller
 
     public function pdf($number)
     {
-
         $quotations = Quotation::where('number', $number)->get();
         $quotation = Quotation::where('number', $number)->first();
         $customer = Customer::find($quotation->customer_id);
