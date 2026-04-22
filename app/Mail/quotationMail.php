@@ -101,10 +101,18 @@ class quotationMail extends Mailable
         $pdf = Browsershot::html($template)
             ->setNodeBinary('/usr/bin/node')
             ->setChromePath('/usr/bin/google-chrome')
+            ->setEnvironmentOptions([
+                'HOME' => '/tmp',
+                'XDG_CONFIG_HOME' => '/tmp',
+                'XDG_CACHE_HOME' => '/tmp',
+            ])
             ->showBackground()
             ->noSandbox()
             // ->showBrowserHeaderAndFooter()
             // ->footerHtml($footerHtml)
+            ->addChromiumArguments([
+                '--disable-crash-reporter',
+            ])
             ->format('A4')
             ->pdf();
 
