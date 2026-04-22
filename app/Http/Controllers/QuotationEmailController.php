@@ -36,6 +36,7 @@ class QuotationEmailController extends Controller
 
     public function pdf($number)
     {
+
         $quotations = Quotation::where('number', $number)->get();
         $quotation = Quotation::where('number', $number)->first();
         $customer = Customer::find($quotation->customer_id);
@@ -47,6 +48,16 @@ class QuotationEmailController extends Controller
         $footerHtml = view('pdf.footer')->render();
 
         $pdf = Browsershot::html($template)
+            ->setNodeBinary('/usr/bin/node')
+            ->setChromePath('/usr/bin/google-chrome')
+            ->setEnvironmentOptions([
+                'HOME' => '/tmp',
+                'XDG_CONFIG_HOME' => '/tmp',
+                'XDG_CACHE_HOME' => '/tmp',
+            ])
+            ->addChromiumArguments([
+                '--disable-crash-reporter',
+            ])
             ->showBackground()
             ->noSandbox()
             ->showBrowserHeaderAndFooter()
