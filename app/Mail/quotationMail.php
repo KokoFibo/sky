@@ -94,7 +94,7 @@ class quotationMail extends Mailable
         // ✅ Render ke PDF pakai Browsershot (binary)
         $pdf = Browsershot::html($template)
             ->setNodeBinary('/usr/bin/node')
-            ->setNpmBinary('/usr/bin/npm')
+            // ->setNpmBinary('/usr/bin/npm')
             ->setChromePath('/usr/bin/google-chrome')
             ->showBackground()
             ->noSandbox()
