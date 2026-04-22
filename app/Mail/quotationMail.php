@@ -89,13 +89,13 @@ class quotationMail extends Mailable
         $template = view('pdf.quotationpdftemplate', compact('quotations', 'quotation', 'customer'))->render();
 
         // ✅ Tambahkan footer HTML
-        // $footerHtml = view('pdf.footer')->render();
+        $footerHtml = view('pdf.footer')->render();
 
-        $footerHtml = '
-<div style="font-size:10px; width:100%; text-align:center;">
-    Page <span class="pageNumber"></span> of <span class="totalPages"></span>
-</div>
-';
+        //         $footerHtml = '
+        // <div style="font-size:10px; width:100%; text-align:center;">
+        //     Page <span class="pageNumber"></span> of <span class="totalPages"></span>
+        // </div>
+        // ';
 
         // ✅ Render ke PDF pakai Browsershot (binary)
         $pdf = Browsershot::html($template)
@@ -108,8 +108,8 @@ class quotationMail extends Mailable
             ])
             ->showBackground()
             ->noSandbox()
-            // ->showBrowserHeaderAndFooter()
-            // ->footerHtml($footerHtml)
+            ->showBrowserHeaderAndFooter()
+            ->footerHtml($footerHtml)
             ->addChromiumArguments([
                 '--disable-crash-reporter',
             ])
