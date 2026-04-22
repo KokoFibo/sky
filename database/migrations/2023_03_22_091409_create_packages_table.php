@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('package');
             $table->integer('price');
-            $table->string('description', 500);
+            $table->text('description');
             $table->timestamp('deleted_at')->nullable();
 
             $table->timestamps();

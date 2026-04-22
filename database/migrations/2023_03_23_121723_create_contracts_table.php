@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('package');
             $table->integer('price');
             $table->integer('qty');
-            $table->string('description', 500);
+            $table->text('description');
             $table->date('contract_date');
             $table->date('contract_begin');
             $table->date('contract_end');
