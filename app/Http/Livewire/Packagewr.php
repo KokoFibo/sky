@@ -51,7 +51,7 @@ class Packagewr extends Component
 
         'package' => 'required',
         'price' => 'required|numeric',
-        'description' => 'required',
+        // 'description' => 'required',
 
     ];
 

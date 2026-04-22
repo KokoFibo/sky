@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name') }} | @yield('title')</title>
-
-    <!-- jQuery & Alpine -->
+    <title>{{ config('app.name') }} |
+        @yield('title')
+    </title>
+    {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
     <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
@@ -18,40 +18,31 @@
         }
     </style>
 
-    <!-- Fonts & Icons -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    {{-- @push('styles')
+        <link rel="stylesheet" href="https://unpkg.com/trix/dist/trix.css">
+    @endpush --}}
 
-    <!-- Vite -->
+    <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-    <!-- SweetAlert & Toastr -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-
-    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
+    {{-- <script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script> --}}
+    {{-- <script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script> --}}
 
-    <!-- Quill Editor -->
+
+
+
+
+
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.core.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.core.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
-
-    <style>
-        .ql-editor ol {
-            list-style-type: decimal !important;
-            margin-left: 1.5rem;
-        }
-
-        .ql-editor ul {
-            list-style-type: disc !important;
-            margin-left: 1.5rem;
-        }
-    </style>
-
     @livewireStyles
+    {{-- <link rel="stylesheet" href="{{ asset('node_modules/trix/dist/trix.css') }}"> --}}
 </head>
 
 <body class="font-sans antialiased dark:text-white">
@@ -61,7 +52,8 @@
 
         <!-- Page Heading -->
         @if (isset($header))
-            <header class="bg-white shadow">
+            {{-- <header class="bg-white shadow dark:bg-gray-800"> --}}
+            <header class="bg-white shadow ">
                 <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>
@@ -73,12 +65,10 @@
             {{ $slot }}
         </main>
     </div>
-
     @livewireScripts
-
-    <!-- Toastr -->
+    {{-- <script src="{{ asset('node_modules/trix/dist/trix.umd.min.js') }}"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
     @stack('script')
 
     <script>
@@ -86,14 +76,20 @@
             toastr.options = {
                 "progressBar": true,
                 "timeOut": "1500",
+                "progressBar": true,
                 "positionClass": "toast-top-right"
             }
-            window.addEventListener('success', event => toastr.success(event.detail.message));
-            window.addEventListener('warning', event => toastr.warning(event.detail.message));
-            window.addEventListener('error', event => toastr.error(event.detail.message));
+            window.addEventListener('success', event => {
+                toastr.success(event.detail.message);
+            });
+            window.addEventListener('warning', event => {
+                toastr.warning(event.detail.message);
+            });
+            window.addEventListener('error', event => {
+                toastr.error(event.detail.message);
+            });
         });
     </script>
-
     <script>
         window.addEventListener('delete_confirmation', function(e) {
             Swal.fire({
@@ -111,6 +107,8 @@
             })
         });
     </script>
+
+
 
 </body>
 

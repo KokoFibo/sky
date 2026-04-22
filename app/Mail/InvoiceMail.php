@@ -8,6 +8,7 @@ use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Spatie\Browsershot\Browsershot;
 use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Queue\SerializesModels;
@@ -44,8 +45,8 @@ class InvoiceMail extends Mailable
 
         return new Envelope(
             subject: $subject,
-            cc: 'tiffany.blueskycreation@gmail.com',
-            bcc: 'info.blueskycreation@gmail.com',
+            // cc: 'tiffany.blueskycreation@gmail.com',
+            // bcc: 'info.blueskycreation@gmail.com',
             from: new Address('info@blueskycreation.id', 'Blue Sky Creation'),
             to: $customer->email,
         );
@@ -94,32 +95,25 @@ class InvoiceMail extends Mailable
             // dd($contract_number);
         }
         $pdfFileName = 'BlueSkyCreation_' . invNumberFormat($this->number, $invoice->invoice_date) . '.pdf';
-        $footer = '<table style="width: 100%">
-       
-        <tr style="vertical-align: bottom;" >
-    <td style="width: 33%; text-align: left;">
-        <img src="https://sky.blueskycreation.id/images/web.png" width="30px" style="vertical-align: bottom;">
-        www.blueskycreation.id
-    </td>
-    <td style="width: 33%; text-align: center;">
-        <img src="https://sky.blueskycreation.id/images/whatsapp.png" width="30px" style="vertical-align: bottom;">
-        087 780 620 632
-    </td>
-    <td style="width: 33%; text-align: right;">
-        <img src="https://sky.blueskycreation.id/images/email.png" width="30px" style="vertical-align: bottom;">
-        hello@blueskycreation.id
-    </td>
-</tr>
+        $template =  view('pdf.invoicepdftemplate', compact(['invoices', 'invoice', 'customer', 'contract_number']))->render();
 
-    </table>';
-        $mpdf = new \Mpdf\Mpdf();
-        $mpdf->SetFooter($footer);
+        $footerHtml = view('pdf.footer')->render();
 
-        ob_get_clean();
+        $pdf = Browsershot::html($template)
+            ->showBackground()
+            ->noSandbox()
+            ->showBrowserHeaderAndFooter()
+            ->footerHtml($footerHtml)
+            ->format('A4')
+            ->pdf(); // hasil binary
 
-        $html = view('pdf.invoicepdftemplate', compact(['invoices', 'invoice', 'customer', 'contract_number']));
-        $mpdf->WriteHTML($html);
-        $pdf = $mpdf->Output('', 'S');
+        // Kirim langsung ke browser untuk di-download
+        // return response($pdf)
+        //     ->header('Content-Type', 'application/pdf')
+        //     ->header('Content-Disposition', 'attachment; filename="' . $pdfFileName . '"');
+
+        // return back()->with('message', 'PDF Generated');
+
         return [
             Attachment::fromData(fn() => $pdf, $pdfFileName)
                 ->withMime('application/pdf'),

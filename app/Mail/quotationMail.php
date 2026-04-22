@@ -6,15 +6,16 @@ use App\Models\Customer;
 use App\Models\Quotation;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\App;
+use Spatie\Browsershot\Browsershot;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\App;
-use Barryvdh\DomPDF\Facade\Pdf;
 
 class quotationMail extends Mailable
 {
@@ -42,6 +43,7 @@ class quotationMail extends Mailable
         // $month = month($invoice->due_date);
         $month = getMonthName($quotation->due_date);
         $subject = 'Quotation ' . $quotation_number . ' for ' . $customer->company;
+
         return new Envelope(
             subject: $subject,
             // cc: 'tiffany.blueskycreation@gmail.com',
@@ -62,7 +64,9 @@ class quotationMail extends Mailable
         return new Content(
             view: 'pdf.quotationEmailTemplate',
             with: [
-                'title' => $customer->salutation,  'custName' => $customer->name, 'quotation_number' => $quotation_number,
+                'title' => $customer->salutation,
+                'custName' => $customer->name,
+                'quotation_number' => $quotation_number,
                 'company' => $customer->company,
             ],
         );
@@ -78,17 +82,27 @@ class quotationMail extends Mailable
         $quotations = Quotation::where('number', $this->number)->get();
         $quotation = Quotation::where('number', $this->number)->first();
         $customer = Customer::find($quotation->customer_id);
+
         $pdfFileName = 'BlueSkyCreation_' . quoNumberFormat($this->number, $quotation->quotation_date) . '.pdf';
 
+        // ✅ Generate HTML untuk isi PDF
+        $template = view('pdf.quotationpdftemplate', compact('quotations', 'quotation', 'customer'))->render();
 
-        // start dompdf
+        // ✅ Tambahkan footer HTML
+        $footerHtml = view('pdf.footer')->render();
 
-        $pdf = Pdf::loadView('pdf.quotationpdftemplate', compact(['quotations', 'quotation', 'customer']));
+        // ✅ Render ke PDF pakai Browsershot (binary)
+        $pdf = Browsershot::html($template)
+            ->showBackground()
+            ->noSandbox()
+            ->showBrowserHeaderAndFooter()
+            ->footerHtml($footerHtml)
+            ->format('A4')
+            ->pdf(); // hasil binary
 
-        // return $pdf->download('template.pdf');
-
+        // ✅ Return attachment langsung dari binary
         return [
-            Attachment::fromData(fn () => $pdf, $pdfFileName)
+            Attachment::fromData(fn() => $pdf, $pdfFileName)
                 ->withMime('application/pdf'),
         ];
     }

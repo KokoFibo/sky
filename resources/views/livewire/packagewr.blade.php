@@ -24,7 +24,9 @@
                         <td class="px-6 py-4">{{ $loop->iteration }}</td>
                         <td class="px-6 py-4">{{ $d->package }}</td>
                         <td class="px-6 py-4">{{ number_format($d->price) }}</td>
-                        <td class="px-6 py-4">{!! $d->description !!}</td>
+                        <td class="px-6 py-4 ql-editor">{!! $d->description !!}</td>
+                        {{-- <td class="px-6 py-4">{{ $d->description }}</td> --}}
+
 
                         <td class="px-6 py-4">
                             <div class="flex gap-2">
@@ -50,48 +52,7 @@
     </div>
     @include('modal.addPackageModal')
     {{-- @include('modal.editPackageModal') --}}
-    {{-- <script>
-                ClassicEditor.editorConfig = function(config) {
-                    config.removePlugins = 'uploadImage';
-                }
-            </script> --}}
-    {{-- referensi remove toolbar https://ckeditor.com/docs/ckeditor5/latest/features/toolbar/toolbar.html --}}
-    <script>
-        $(document).ready(function() {
-            const editor = CKEDITOR.replace('description');
-            editor.on('change', function(event) {
-                console.log(event.editor.getData());
-                @this.set('description', event.editor.getData());
-            })
-        })
-
-        // $(document).ready(function() {
-        //     const editor2 = CKEDITOR.replace('description2');
-        //     editor2.on('change', function(event) {
-        //         console.log(event.editor.getData());
-        //         @this.set('description2', event.editor.getData());
-        //     })
-        // })
 
 
-        // CKEDITOR.replace('description');
-        // ClassicEditor
-        //     .create(document.querySelector('#description'), {
-        //         toolbar: {
-        //             items: [
-        //                 'undo', 'redo',
-        //                 '|', 'bold', 'italic', 'blockQuote',
-        //             ],
-        //             shouldNotGroupWhenFull: false
-        //         }
-        //     })
-        //     .then(editor => {
-        //         editor.model.document.on('change:data', () => {
-        //             @this.set('description', editor.getData());
-        //         })
-        //     })
-        //     .catch(error => {
-        //         console.error(error);
-        //     });
-    </script>
+
 </div>
